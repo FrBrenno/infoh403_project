@@ -1,0 +1,5 @@
+# Ignore the libraries files
+/more/lib
+
+# Ignore the .jar directory
+/dist
