@@ -14,7 +14,7 @@ $(JAR_NAME): compile
 compile: ./src/*.java generate_lexer
 	javac -d ./dist/ $^
 
-generate_lexer: ./src/*.jflex
+generate_lexer: ./src/*.flex
 	jflex -d ./src/ $^
 
 test: $(JAR_NAME)
