@@ -3,3 +3,6 @@
 
 # Ignore the .jar directory
 /dist
+
+# Ignore the .idea directory
+/.idea

@@ -2,7 +2,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class Main {
-    private PascalMaisPresqueLexer lexer;
+    private PMPLexer lexer;
 
     public void main(String[] args) throws FileNotFoundException {
         if (args.length != 1){
@@ -11,6 +11,6 @@ public class Main {
         }
 
         FileReader inputFile = new FileReader(args[0]);
-        this.lexer = new PascalMaisPresqueLexer(inputFile);
+        this.lexer = new PMPLexer(inputFile);
     }
 }
