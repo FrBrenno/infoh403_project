@@ -1,6 +1,6 @@
 # JAR file name and main class
 JAR_NAME = part1.jar
-MAIN_CLASS = Main.main
+MAIN_CLASS = Main
 
 # Test file and arguments
 TEST_SOURCE = ./test/sourceFile.pmp
@@ -18,11 +18,11 @@ all: $(JAR_NAME)
 
 $(JAR_NAME): compile
 	@echo ---Compiling .jar file---
-	jar cfe ./dist/$(JAR_NAME) $(MAIN_CLASS) -C ./dist/ .
+	jar cfe ./dist/$(JAR_NAME) $(MAIN_CLASS) -C ./src .
 
-compile: generate_lexer
+compile: generate_lexer ./src/*.java
 	@echo ---Compiling java classes file---
-	javac -d ./dist/ ./src/*.java
+	javac ./src/*.java
 
 generate_lexer: ./src/*.flex
 	@echo ---Generating Lexer---
@@ -31,10 +31,9 @@ generate_lexer: ./src/*.flex
 # test: $(JAR_NAME)
 # 	java -cp $(JAR_NAME) $(MAIN_CLASS) $(TEST_SOURCE)
 
-test:
+test: clean $(JAR_NAME)
 	@echo ---Running tests---
-	jflex src/LexicalAnalyzer.flex
-	javac src/LexicalAnalyzer.java
+	java -jar ./dist/$(JAR_NAME)
 
 clean:
 	@echo ---Cleaning the project---

@@ -4,6 +4,7 @@ import java.io.FileReader;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
+        System.out.println("--- Main is running ---");
         if (args.length != 1){
             System.out.println("Il faut passer un fichier en argument.");
             System.exit(0);
