@@ -3,11 +3,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The type Main.
+ * The Main class
  */
 public class Main {
     /**
-     * Main class that runs the LexicalAnalyzer.
+     * Main method that runs the LexicalAnalyzer.
      *
      * @param args the path to the input file
      * @throws IOException Not able to find or open the file

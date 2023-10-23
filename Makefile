@@ -1,5 +1,7 @@
 # JAR file name and main class
-JAR_NAME = part1.jar
+PROJECT_NAME = part1
+AUTHORS = "BrennoFerreira_PhilippeMutkowski"
+JAR_NAME = $(PROJECT_NAME).jar
 MAIN_CLASS = Main
 
 # Test file and arguments
@@ -28,15 +30,19 @@ generate_lexer: ./src/*.flex
 	@echo ---Generating Lexer---
 	jflex -d ./src/ $^
 
-# test: $(JAR_NAME)
-# 	java -cp $(JAR_NAME) $(MAIN_CLASS) $(TEST_SOURCE)
+javadoc:
+	javadoc -d ./doc/ -sourcepath ./src/ ./src/*.java
+
+rebuild:
+	@echo ---Rebuilding the project---
+	make clean all
 
 test:
-	@echo ---Rebuilding the project---
-	make clean $(JAR_NAME)
 	@echo ---Running tests---
 	java -jar ./dist/$(JAR_NAME) ./test/sourceFile.pmp
 
+deliverables:
+	make rebuild test javadoc
 clean:
 	@echo ---Cleaning the project---
 	$(RM)

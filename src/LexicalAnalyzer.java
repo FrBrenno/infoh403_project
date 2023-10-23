@@ -729,7 +729,8 @@ class LexicalAnalyzer {
 
       if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
         zzAtEOF = true;
-          {     return new Symbol(LexicalUnit.EOS, yyline, yycolumn);
+          {     // End of stream
+    return new Symbol(LexicalUnit.EOS, yyline, yycolumn);
  }
       }
       else {
