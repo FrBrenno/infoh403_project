@@ -26,6 +26,8 @@ EndOfLine = "\r"?"\n"
     return new Symbol(LexicalUnit.EOS, yyline, yycolumn);
 %eofval}
 
+// Implement a function that sends the next token;
+
 %% // Token identification
 
 // Reserved keywords
