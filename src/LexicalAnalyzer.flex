@@ -66,7 +66,7 @@ EndOfLine = ["\r""\n""\r\n"]
 // States
 <YYINITIAL> {
     "**" {yybegin(SHORT_COMMENT);}
-    "''" {yybegin(LONG_COMMENT);}
+    "''" { yybegin(LONG_COMMENT);}
     [^"**""''"] {} // Ignore all other characters that are not comments or the ERE defined here
 }
 
@@ -76,6 +76,7 @@ EndOfLine = ["\r""\n""\r\n"]
 }
 
 <LONG_COMMENT> {
-    "''"$ {yybegin(YYINITIAL);}
+    "''" {yybegin(YYINITIAL);}
+    {EndOfLine} {}
     . {} // Ignore comments characters
 }

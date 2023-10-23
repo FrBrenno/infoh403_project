@@ -1,0 +1,28 @@
+'' This input tries to deal with comments ''
+
+begin
+    checkpoint1
+    '' this comment should be ignore ''
+
+    checkpoint2
+    ** this comment should be ignore **
+
+    checkpoint3
+    ** a := b + 1
+
+    checkpoint4
+    ** is this ignored ** i do not know
+
+    checkpoint5
+    '' For some reason this comment does not work
+    ''
+
+    checkpoint6
+    '' a nested comment **would work? ''
+
+    checkpoint7
+    '' and now ** '' ** ?''
+
+    checkpoint8
+    ** '' this is a long comment in a short comment''
+end
