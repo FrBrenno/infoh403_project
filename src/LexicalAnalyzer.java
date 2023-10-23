@@ -99,15 +99,15 @@ class LexicalAnalyzer {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\2\1\2\0\1\2\1\3\1\4\1\5\1\6\1\7"+
-    "\1\10\1\11\1\1\1\2\1\12\1\13\12\2\1\14"+
-    "\1\15\1\3\1\6\13\16\2\3\1\2\1\17\2\0"+
-    "\1\20\2\0\1\21\1\22\4\0\1\23\1\24\2\16"+
-    "\1\20\2\16\1\21\1\22\4\16\2\25\2\0\1\26"+
-    "\2\0\1\27\4\0\1\26\2\16\1\27\4\16\1\30"+
-    "\2\31\1\0\1\32\1\0\1\33\1\34\1\0\1\16"+
-    "\1\32\1\16\1\33\1\34\1\16\1\35\1\36\1\37"+
-    "\1\35\1\36\1\37";
+    "\4\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7"+
+    "\1\10\1\11\1\1\1\12\1\13\12\1\1\14\1\15"+
+    "\1\2\1\5\13\16\2\2\1\1\1\17\2\0\1\20"+
+    "\2\0\1\21\1\22\4\0\1\23\1\24\2\16\1\20"+
+    "\2\16\1\21\1\22\4\16\2\25\2\0\1\26\2\0"+
+    "\1\27\4\0\1\26\2\16\1\27\4\16\1\30\2\31"+
+    "\1\0\1\32\1\0\1\33\1\34\1\0\1\16\1\32"+
+    "\1\16\1\33\1\34\1\16\1\35\1\36\1\37\1\35"+
+    "\1\36\1\37";
 
   private static int [] zzUnpackAction() {
     int [] result = new int[110];
@@ -259,11 +259,11 @@ class LexicalAnalyzer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\2\1\2\0\6\11\1\1\1\11\2\1\2\11\12\1"+
-    "\2\11\20\1\1\11\2\0\1\11\2\0\2\11\4\0"+
-    "\2\11\13\1\1\11\1\1\2\0\1\11\2\0\1\11"+
-    "\4\0\10\1\2\11\1\1\1\0\1\11\1\0\2\11"+
-    "\1\0\6\1\3\11\3\1";
+    "\4\0\6\11\1\1\1\11\2\1\2\11\12\1\2\11"+
+    "\20\1\1\11\2\0\1\11\2\0\2\11\4\0\2\11"+
+    "\13\1\1\11\1\1\2\0\1\11\2\0\1\11\4\0"+
+    "\10\1\2\11\1\1\1\0\1\11\1\0\2\11\1\0"+
+    "\6\1\3\11\3\1";
 
   private static int [] zzUnpackAttribute() {
     int [] result = new int[110];
@@ -788,47 +788,47 @@ class LexicalAnalyzer {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { return new Symbol(LexicalUnit.NUMBER, yyline, yycolumn, yytext());
+            { 
             }
           // fall through
           case 32: break;
           case 2:
-            { 
+            { System.out.print(yytext());
             }
           // fall through
           case 33: break;
           case 3:
-            { System.out.print(yytext());
+            { return new Symbol(LexicalUnit.LPAREN, yyline, yycolumn);
             }
           // fall through
           case 34: break;
           case 4:
-            { return new Symbol(LexicalUnit.LPAREN, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.RPAREN, yyline, yycolumn);
             }
           // fall through
           case 35: break;
           case 5:
-            { return new Symbol(LexicalUnit.RPAREN, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.TIMES, yyline, yycolumn);
             }
           // fall through
           case 36: break;
           case 6:
-            { return new Symbol(LexicalUnit.TIMES, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.PLUS, yyline, yycolumn);
             }
           // fall through
           case 37: break;
           case 7:
-            { return new Symbol(LexicalUnit.PLUS, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.MINUS, yyline, yycolumn);
             }
           // fall through
           case 38: break;
           case 8:
-            { return new Symbol(LexicalUnit.MINUS, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.DIVIDE, yyline, yycolumn);
             }
           // fall through
           case 39: break;
           case 9:
-            { return new Symbol(LexicalUnit.DIVIDE, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.NUMBER, yyline, yycolumn, yytext());
             }
           // fall through
           case 40: break;

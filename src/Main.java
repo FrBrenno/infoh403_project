@@ -2,7 +2,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class Main {
-    private LexicalAnalyzer lexer;
 
     public void main(String[] args) throws FileNotFoundException {
         if (args.length != 1){
@@ -11,6 +10,5 @@ public class Main {
         }
 
         FileReader inputFile = new FileReader(args[0]);
-        this.lexer = new LexicalAnalyzer(inputFile);
     }
 }

@@ -15,7 +15,7 @@
 // ERE: Extended Regular Expression
 AlphaNum = [a-zA-Z0-9]
 VarName = [a-z]{AlphaNum}*
-Number = "-"?[0-9]*
+Number = "-"?[0-9]+
 EndOfLine = "\r"?"\n"
 
 // STATES

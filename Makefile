@@ -1,20 +1,28 @@
 # JAR file name and main class
 JAR_NAME = part1.jar
-MAIN_CLASS = PascalMaisPresqueLexer.main
+MAIN_CLASS = Main.main
 
 # Test file and arguments
 TEST_SOURCE = ./test/sourceFile.pmp
+
+# Determine the operating system
+ifeq ($(OS),Windows_NT)
+    RM := del /Q .\dist\* .\src\LexicalAnalyzer.java .\src\LexicalAnalyzer.java~
+else
+    RM := rm -f dist/* & rm src/LexicalAnalyzer.java src/LexicalAnalyzer.java~
+endif
+
 
 # Targets
 all: $(JAR_NAME)
 
 $(JAR_NAME): compile
 	@echo ---Compiling .jar file---
-	jar cfe $@ $(MAIN_CLASS) -C ./dist/ .
+	jar cfe ./dist/$(JAR_NAME) $(MAIN_CLASS) -C ./dist/ .
 
-compile: ./src/*.java generate_lexer
+compile: generate_lexer
 	@echo ---Compiling java classes file---
-	javac -d ./dist/ $^
+	javac -d ./dist/ ./src/*.java
 
 generate_lexer: ./src/*.flex
 	@echo ---Generating Lexer---
@@ -30,13 +38,8 @@ test:
 
 clean:
 	@echo ---Cleaning the project---
-	rm -rf ./src/PascalMaisPresqueLexer.java 
-	rm -rf ./src/PMPLexer.java 
-	rm -rf ./src/PMPLexer.java~
-# lignes au dessus à retirer une fois que c'est bon
-	rm -rf dist/*.class $(JAR_NAME)
-	rm -rf src/LexicalAnalyzer.java 
-	rm -rf src/LexicalAnalyzer.java~
-	rm -rf src/*.class
+	$(RM)
+
+
 
 .PHONY: all generate_lexer compile test clean
