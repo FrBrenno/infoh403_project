@@ -1,0 +1,29 @@
+'' This input tries to use every LexicalUnit available ''
+
+begin
+    a := 0
+    b := 1
+    c := a + b
+    d := a - b
+    e := a * b
+    f := a / b
+
+    if a < b then
+        g := 1
+    else
+        g := 0
+
+    if b = a then
+        h := 1
+    else
+        h := 0
+
+    while {e < 100} do
+        begin
+            e := (e + 1)
+        end
+
+    print(a)
+    print(b)
+    read(c)
+end

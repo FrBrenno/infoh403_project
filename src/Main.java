@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,10 +21,11 @@ public class Main {
         }
 
         // In case multiple input are passed in parameters
-        int count = args.length;
-        while (count >= 1) {
+        int i = 0;
+        while (i < args.length) {
+            System.out.println("File: " + args[i]);
             // Variable initialization
-            String filepath = args[0];
+            String filepath = args[i];
             FileReader inputFile = new FileReader(filepath);
             LexicalAnalyzer lexer = new LexicalAnalyzer(inputFile);
             Map<Object, Integer> variableMap = new HashMap<>();
@@ -53,7 +55,7 @@ public class Main {
             // Close the output file
             fileOutputStream.close();
 
-            count--;
+            i++;
         }
     }
 

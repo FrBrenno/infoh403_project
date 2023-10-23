@@ -9,9 +9,9 @@ TEST_SOURCE = ./test/sourceFile.pmp
 
 # Determine the operating system
 ifeq ($(OS),Windows_NT)
-    RM := del /Q .\dist\* .\src\LexicalAnalyzer.java .\src\LexicalAnalyzer.java~
+    RM := del /Q .\dist\* .\src\LexicalAnalyzer.java .\src\LexicalAnalyzer.java~ .\test\*.out
 else
-    RM := rm -f dist/* & rm src/LexicalAnalyzer.java src/LexicalAnalyzer.java~
+    RM := rm -f dist/* & rm src/LexicalAnalyzer.java src/LexicalAnalyzer.java~ ./test/*.out
 endif
 
 
@@ -43,6 +43,7 @@ test:
 
 deliverables:
 	make rebuild test javadoc
+
 clean:
 	@echo ---Cleaning the project---
 	$(RM)
