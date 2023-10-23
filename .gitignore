@@ -1,8 +1,4 @@
-# Ignore the libraries files
 /more/lib
-
-# Ignore the .jar directory
 /dist
-
-# Ignore the .idea directory
 /.idea
+F403project1.pdf
