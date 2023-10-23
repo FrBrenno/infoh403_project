@@ -71,7 +71,7 @@ EndOfLine = ["\r""\n""\r\n"]
 }
 
 <SHORT_COMMENT> {
-    {EndOfLine}$ {yybegin(YYINITIAL);}
+    {EndOfLine} {yybegin(YYINITIAL);}
     . {} // Ignore comments characters
 }
 

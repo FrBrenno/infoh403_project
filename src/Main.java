@@ -14,40 +14,47 @@ public class Main {
      */
     public static void main(String[] args) throws IOException {
         // Verify arguments entry
-        if (args.length != 1) {
+        if (args.length < 1) {
             System.out.println("Il faut passer un fichier en argument.");
             System.exit(1);
         }
 
-        // Variable initialization
-        String filepath = args[0];
-        FileReader inputFile = new FileReader(filepath);
-        LexicalAnalyzer lexer = new LexicalAnalyzer(inputFile);
-        Map<Object, Integer> variableMap = new HashMap<>();
+        // In case multiple input are passed in parameters
+        int count = args.length;
+        while (count >= 1) {
+            // Variable initialization
+            String filepath = args[0];
+            FileReader inputFile = new FileReader(filepath);
+            LexicalAnalyzer lexer = new LexicalAnalyzer(inputFile);
+            Map<Object, Integer> variableMap = new HashMap<>();
 
-        // Create a FileOutputStream to write to the file
-        FileOutputStream fileOutputStream = changeOutput(filepath.replace(".pmp", ".out"));
+            // Create a FileOutputStream to write to the file
+            String outputFilepath = filepath.replace(".pmp", ".out");
+            FileOutputStream fileOutputStream = changeOutput(outputFilepath);
 
-        // Scan the file token by token
-        Symbol current_token = lexer.yylex();
+            // Scan the file token by token
+            Symbol current_token = lexer.yylex();
 
-        while (current_token.getType() != LexicalUnit.EOS){
-            // Check if it is a variable
-            if (current_token.getType() == LexicalUnit.VARNAME){
-                addVariable(variableMap, current_token);
+            while (current_token.getType() != LexicalUnit.EOS) {
+                // Check if it is a variable
+                if (current_token.getType() == LexicalUnit.VARNAME) {
+                    addVariable(variableMap, current_token);
+                }
+
+                // Print the token
+                System.out.println(current_token);
+
+                // Get the next token
+                current_token = lexer.yylex();
             }
 
-            // Print the token
-            System.out.println(current_token);
+            // Print variable table
+            printVariableMap(variableMap);
+            // Close the output file
+            fileOutputStream.close();
 
-            // Get the next token
-            current_token = lexer.yylex();
+            count--;
         }
-
-        // Print variable table
-        printVariableMap(variableMap);
-        // Close the output file
-        fileOutputStream.close();
     }
 
     /**

@@ -39,7 +39,7 @@ rebuild:
 
 test:
 	@echo ---Running tests---
-	java -jar ./dist/$(JAR_NAME) ./test/sourceFile.pmp
+	java -jar ./dist/$(JAR_NAME) ./test/*.pmp
 
 deliverables:
 	make rebuild test javadoc
