@@ -29,37 +29,37 @@ EndOfLine = "\r"?"\n"
 
 // Reserved keywords
 
-"begin" {System.out.print("BEGIN :___________________________"); return new Symbol(LexicalUnit.BEG, yyline, yycolumn);}
-"end" {return new Symbol(LexicalUnit.END, yyline, yycolumn);}
-"if" {return new Symbol(LexicalUnit.IF, yyline, yycolumn);}
-"then" {return new Symbol(LexicalUnit.THEN, yyline, yycolumn);}
-"else" {return new Symbol(LexicalUnit.ELSE, yyline, yycolumn);}
-"and" {return new Symbol(LexicalUnit.AND, yyline, yycolumn);}
-"or" {return new Symbol(LexicalUnit.OR, yyline, yycolumn);}
-"while" {return new Symbol(LexicalUnit.WHILE, yyline, yycolumn);}
-"do" {return new Symbol(LexicalUnit.DO, yyline, yycolumn);}
-"print" {return new Symbol(LexicalUnit.PRINT, yyline, yycolumn);}
-"read" {return new Symbol(LexicalUnit.READ, yyline, yycolumn);}
+"begin" {return new Symbol(LexicalUnit.BEG, yyline, yycolumn, yytext());}
+"end" {return new Symbol(LexicalUnit.END, yyline, yycolumn, yytext());}
+"if" {return new Symbol(LexicalUnit.IF, yyline, yycolumn, yytext());}
+"then" {return new Symbol(LexicalUnit.THEN, yyline, yycolumn, yytext());}
+"else" {return new Symbol(LexicalUnit.ELSE, yyline, yycolumn, yytext());}
+"and" {return new Symbol(LexicalUnit.AND, yyline, yycolumn, yytext());}
+"or" {return new Symbol(LexicalUnit.OR, yyline, yycolumn, yytext());}
+"while" {return new Symbol(LexicalUnit.WHILE, yyline, yycolumn, yytext());}
+"do" {return new Symbol(LexicalUnit.DO, yyline, yycolumn, yytext());}
+"print" {return new Symbol(LexicalUnit.PRINT, yyline, yycolumn, yytext());}
+"read" {return new Symbol(LexicalUnit.READ, yyline, yycolumn, yytext());}
 
 // Structure Symbols
 
-"(" {return new Symbol(LexicalUnit.LPAREN, yyline, yycolumn);}
-")" {return new Symbol(LexicalUnit.RPAREN, yyline, yycolumn);}
-"{" {return new Symbol(LexicalUnit.LBRACK, yyline, yycolumn);}
-"}" {return new Symbol(LexicalUnit.RBRACK, yyline, yycolumn);}
+"(" {return new Symbol(LexicalUnit.LPAREN, yyline, yycolumn, yytext());}
+")" {return new Symbol(LexicalUnit.RPAREN, yyline, yycolumn, yytext());}
+"{" {return new Symbol(LexicalUnit.LBRACK, yyline, yycolumn, yytext());}
+"}" {return new Symbol(LexicalUnit.RBRACK, yyline, yycolumn, yytext());}
 
 // Operation Symbols
 
-":=" {return new Symbol(LexicalUnit.ASSIGN, yyline, yycolumn);}
-"-" {return new Symbol(LexicalUnit.MINUS, yyline, yycolumn);}
-"+" {return new Symbol(LexicalUnit.PLUS, yyline, yycolumn);}
-"*" {return new Symbol(LexicalUnit.TIMES, yyline, yycolumn);}
-"/" {return new Symbol(LexicalUnit.DIVIDE, yyline, yycolumn);}
+":=" {return new Symbol(LexicalUnit.ASSIGN, yyline, yycolumn, yytext());}
+"-" {return new Symbol(LexicalUnit.MINUS, yyline, yycolumn, yytext());}
+"+" {return new Symbol(LexicalUnit.PLUS, yyline, yycolumn, yytext());}
+"*" {return new Symbol(LexicalUnit.TIMES, yyline, yycolumn, yytext());}
+"/" {return new Symbol(LexicalUnit.DIVIDE, yyline, yycolumn, yytext());}
 
 // Relational Symbols
 
-"=" {return new Symbol(LexicalUnit.EQUAL, yyline, yycolumn);}
-"<" {return new Symbol(LexicalUnit.SMALLER, yyline, yycolumn);}
+"=" {return new Symbol(LexicalUnit.EQUAL, yyline, yycolumn, yytext());}
+"<" {return new Symbol(LexicalUnit.SMALLER, yyline, yycolumn, yytext());}
 
 // ERE
 

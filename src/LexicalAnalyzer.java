@@ -793,32 +793,32 @@ class LexicalAnalyzer {
           // fall through
           case 31: break;
           case 2:
-            { return new Symbol(LexicalUnit.LPAREN, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.LPAREN, yyline, yycolumn, yytext());
             }
           // fall through
           case 32: break;
           case 3:
-            { return new Symbol(LexicalUnit.RPAREN, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.RPAREN, yyline, yycolumn, yytext());
             }
           // fall through
           case 33: break;
           case 4:
-            { return new Symbol(LexicalUnit.TIMES, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.TIMES, yyline, yycolumn, yytext());
             }
           // fall through
           case 34: break;
           case 5:
-            { return new Symbol(LexicalUnit.PLUS, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.PLUS, yyline, yycolumn, yytext());
             }
           // fall through
           case 35: break;
           case 6:
-            { return new Symbol(LexicalUnit.MINUS, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.MINUS, yyline, yycolumn, yytext());
             }
           // fall through
           case 36: break;
           case 7:
-            { return new Symbol(LexicalUnit.DIVIDE, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.DIVIDE, yyline, yycolumn, yytext());
             }
           // fall through
           case 37: break;
@@ -828,22 +828,22 @@ class LexicalAnalyzer {
           // fall through
           case 38: break;
           case 9:
-            { return new Symbol(LexicalUnit.SMALLER, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.SMALLER, yyline, yycolumn, yytext());
             }
           // fall through
           case 39: break;
           case 10:
-            { return new Symbol(LexicalUnit.EQUAL, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.EQUAL, yyline, yycolumn, yytext());
             }
           // fall through
           case 40: break;
           case 11:
-            { return new Symbol(LexicalUnit.LBRACK, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.LBRACK, yyline, yycolumn, yytext());
             }
           // fall through
           case 41: break;
           case 12:
-            { return new Symbol(LexicalUnit.RBRACK, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.RBRACK, yyline, yycolumn, yytext());
             }
           // fall through
           case 42: break;
@@ -853,22 +853,22 @@ class LexicalAnalyzer {
           // fall through
           case 43: break;
           case 14:
-            { return new Symbol(LexicalUnit.ASSIGN, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.ASSIGN, yyline, yycolumn, yytext());
             }
           // fall through
           case 44: break;
           case 15:
-            { return new Symbol(LexicalUnit.DO, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.DO, yyline, yycolumn, yytext());
             }
           // fall through
           case 45: break;
           case 16:
-            { return new Symbol(LexicalUnit.IF, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.IF, yyline, yycolumn, yytext());
             }
           // fall through
           case 46: break;
           case 17:
-            { return new Symbol(LexicalUnit.OR, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.OR, yyline, yycolumn, yytext());
             }
           // fall through
           case 47: break;
@@ -891,12 +891,12 @@ class LexicalAnalyzer {
           // fall through
           case 50: break;
           case 21:
-            { return new Symbol(LexicalUnit.AND, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.AND, yyline, yycolumn, yytext());
             }
           // fall through
           case 51: break;
           case 22:
-            { return new Symbol(LexicalUnit.END, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.END, yyline, yycolumn, yytext());
             }
           // fall through
           case 52: break;
@@ -917,32 +917,32 @@ class LexicalAnalyzer {
           // fall through
           case 54: break;
           case 25:
-            { return new Symbol(LexicalUnit.ELSE, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.ELSE, yyline, yycolumn, yytext());
             }
           // fall through
           case 55: break;
           case 26:
-            { return new Symbol(LexicalUnit.READ, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.READ, yyline, yycolumn, yytext());
             }
           // fall through
           case 56: break;
           case 27:
-            { return new Symbol(LexicalUnit.THEN, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.THEN, yyline, yycolumn, yytext());
             }
           // fall through
           case 57: break;
           case 28:
-            { System.out.print("BEGIN :___________________________"); return new Symbol(LexicalUnit.BEG, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.BEG, yyline, yycolumn, yytext());
             }
           // fall through
           case 58: break;
           case 29:
-            { return new Symbol(LexicalUnit.PRINT, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.PRINT, yyline, yycolumn, yytext());
             }
           // fall through
           case 59: break;
           case 30:
-            { return new Symbol(LexicalUnit.WHILE, yyline, yycolumn);
+            { return new Symbol(LexicalUnit.WHILE, yyline, yycolumn, yytext());
             }
           // fall through
           case 60: break;
