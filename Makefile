@@ -33,7 +33,7 @@ generate_lexer: ./src/*.flex
 
 test: clean $(JAR_NAME)
 	@echo ---Running tests---
-	java -jar ./dist/$(JAR_NAME)
+	java -jar ./dist/$(JAR_NAME) ./test/sourceFile.pmp
 
 clean:
 	@echo ---Cleaning the project---
