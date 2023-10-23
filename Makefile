@@ -9,22 +9,27 @@ TEST_SOURCE = ./test/sourceFile.pmp
 all: $(JAR_NAME)
 
 $(JAR_NAME): compile
+	@echo ---Compiling .jar file---
 	jar cfe $@ $(MAIN_CLASS) -C ./dist/ .
 
 compile: ./src/*.java generate_lexer
+	@echo ---Compiling java classes file---
 	javac -d ./dist/ $^
 
 generate_lexer: ./src/*.flex
+	@echo ---Generating Lexer---
 	jflex -d ./src/ $^
 
 # test: $(JAR_NAME)
 # 	java -cp $(JAR_NAME) $(MAIN_CLASS) $(TEST_SOURCE)
 
-test: 
+test:
+	@echo ---Running tests---
 	jflex src/LexicalAnalyzer.flex
 	javac src/LexicalAnalyzer.java
 
 clean:
+	@echo ---Cleaning the project---
 	rm -rf ./src/PascalMaisPresqueLexer.java 
 	rm -rf ./src/PMPLexer.java 
 	rm -rf ./src/PMPLexer.java~
