@@ -7,7 +7,6 @@
 
 %class LexicalAnalyzer
 %unicode
-%standalone
 %line
 %column
 %type Symbol
@@ -25,8 +24,6 @@ EndOfLine = "\r"?"\n"
 %eofval{
     return new Symbol(LexicalUnit.EOS, yyline, yycolumn);
 %eofval}
-
-// Implement a function that sends the next token;
 
 %% // Token identification
 
