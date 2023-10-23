@@ -15,7 +15,7 @@
 AlphaNum = [a-zA-Z0-9]
 VarName = [a-z]{AlphaNum}*
 Number = "-"?[0-9]+
-EndOfLine = "\r"?"\n"
+EndOfLine = ["\r""\n""\r\n"]
 
 // STATES
 %xstate YYINITIAL, SHORT_COMMENT, LONG_COMMENT
@@ -63,14 +63,14 @@ EndOfLine = "\r"?"\n"
 
 // ERE
 
-^{VarName} {return new Symbol(LexicalUnit.VARNAME, yyline, yycolumn, yytext());}
+{VarName} {return new Symbol(LexicalUnit.VARNAME, yyline, yycolumn, yytext());}
 {Number}  {return new Symbol(LexicalUnit.NUMBER, yyline, yycolumn, yytext());} // "... Number is a string of digits"
 
 // Comments
 
 <YYINITIAL> {
-    ^"**" {yybegin(SHORT_COMMENT);}
-    ^"''" {yybegin(LONG_COMMENT);}
+    "**" {yybegin(SHORT_COMMENT);}
+    "''" {yybegin(LONG_COMMENT);}
     [^"**""''"] {} // To check
 }
 

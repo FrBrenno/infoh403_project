@@ -32,15 +32,13 @@ generate_lexer: ./src/*.flex
 # 	java -cp $(JAR_NAME) $(MAIN_CLASS) $(TEST_SOURCE)
 
 test:
+	@echo ---Rebuilding the project---
+	make clean $(JAR_NAME)
 	@echo ---Running tests---
 	java -jar ./dist/$(JAR_NAME) ./test/sourceFile.pmp
 
 clean:
 	@echo ---Cleaning the project---
 	$(RM)
-
-rebuild:
-	@echo ---Rebuilding the project---
-	make clean $(JAR_NAME)
 
 .PHONY: all generate_lexer compile test clean
