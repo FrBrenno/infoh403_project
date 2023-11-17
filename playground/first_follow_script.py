@@ -156,8 +156,6 @@ def first(variable):
         logging_first.append(f"(DEBUG): Base case: Found terminal {variable} in variable {variable}")
         return first_sets[variable]
 
-    logging_first.append(f"(DEBUG): Calculating first set for variable {variable}")
-
     for production in grammar[variable]:
         first_symbol = production[0]
         if first_symbol in Terminals:
@@ -171,7 +169,7 @@ def first(variable):
                 first_sets[variable] = first_sets[variable].union(first(production[1]))
 
     logging_first.append(f"(INFO):Computed first set for variable {variable}: {first_sets[variable]}")
-
+    logging_first.append("\n")
     return first_sets[variable]
 
 
@@ -191,8 +189,6 @@ def follow(variable):
     if variable == Variables.PROGRAM:
         logging_follow.append(f"(DEBUG): Base case: Found start symbol {variable}")
         follow_sets[variable].add(Terminals.EOF)
-
-    logging_follow.append(f"(DEBUG): Calculating follow set for variable {variable}")
 
     for key in grammar:
         logging_follow.append(f"(DEBUG): ### Checking variable {key}")
@@ -228,7 +224,7 @@ def follow(variable):
                             follow_sets[variable] = follow_sets[variable].union(first(next_symbol))
 
     logging_follow.append(f"(INFO): Computed follow set for variable {variable}: {follow_sets[variable]}")
-
+    logging_follow.append("\n")
     return follow_sets[variable]
 
 
