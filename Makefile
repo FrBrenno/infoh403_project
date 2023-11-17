@@ -1,5 +1,5 @@
 # JAR file name and main class
-PROJECT_NAME = part1
+PROJECT_NAME = part2
 AUTHORS = "BrennoFerreira_PhilippeMutkowski"
 JAR_NAME = $(PROJECT_NAME).jar
 MAIN_CLASS = Main
@@ -31,7 +31,7 @@ generate_lexer: ./src/*.flex
 	jflex -d ./src/ $^
 
 javadoc:
-	javadoc -d ./doc/ -sourcepath ./src/ ./src/*.java
+	javadoc -d ./doc/javadoc/ -sourcepath ./src/ ./src/*.java
 
 rebuild:
 	@echo ---Rebuilding the project---

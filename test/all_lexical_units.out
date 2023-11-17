@@ -1,0 +1,90 @@
+token: begin	lexical unit: BEG
+token: a	lexical unit: VARNAME
+token: :=	lexical unit: ASSIGN
+token: 0	lexical unit: NUMBER
+token: b	lexical unit: VARNAME
+token: :=	lexical unit: ASSIGN
+token: 1	lexical unit: NUMBER
+token: c	lexical unit: VARNAME
+token: :=	lexical unit: ASSIGN
+token: a	lexical unit: VARNAME
+token: +	lexical unit: PLUS
+token: b	lexical unit: VARNAME
+token: d	lexical unit: VARNAME
+token: :=	lexical unit: ASSIGN
+token: a	lexical unit: VARNAME
+token: -	lexical unit: MINUS
+token: b	lexical unit: VARNAME
+token: e	lexical unit: VARNAME
+token: :=	lexical unit: ASSIGN
+token: a	lexical unit: VARNAME
+token: *	lexical unit: TIMES
+token: b	lexical unit: VARNAME
+token: f	lexical unit: VARNAME
+token: :=	lexical unit: ASSIGN
+token: a	lexical unit: VARNAME
+token: /	lexical unit: DIVIDE
+token: b	lexical unit: VARNAME
+token: if	lexical unit: IF
+token: a	lexical unit: VARNAME
+token: <	lexical unit: SMALLER
+token: b	lexical unit: VARNAME
+token: then	lexical unit: THEN
+token: g	lexical unit: VARNAME
+token: :=	lexical unit: ASSIGN
+token: 1	lexical unit: NUMBER
+token: else	lexical unit: ELSE
+token: g	lexical unit: VARNAME
+token: :=	lexical unit: ASSIGN
+token: 0	lexical unit: NUMBER
+token: if	lexical unit: IF
+token: b	lexical unit: VARNAME
+token: =	lexical unit: EQUAL
+token: a	lexical unit: VARNAME
+token: then	lexical unit: THEN
+token: h	lexical unit: VARNAME
+token: :=	lexical unit: ASSIGN
+token: 1	lexical unit: NUMBER
+token: else	lexical unit: ELSE
+token: h	lexical unit: VARNAME
+token: :=	lexical unit: ASSIGN
+token: 0	lexical unit: NUMBER
+token: while	lexical unit: WHILE
+token: {	lexical unit: LBRACK
+token: e	lexical unit: VARNAME
+token: <	lexical unit: SMALLER
+token: 100	lexical unit: NUMBER
+token: }	lexical unit: RBRACK
+token: do	lexical unit: DO
+token: begin	lexical unit: BEG
+token: e	lexical unit: VARNAME
+token: :=	lexical unit: ASSIGN
+token: (	lexical unit: LPAREN
+token: e	lexical unit: VARNAME
+token: +	lexical unit: PLUS
+token: 1	lexical unit: NUMBER
+token: )	lexical unit: RPAREN
+token: end	lexical unit: END
+token: print	lexical unit: PRINT
+token: (	lexical unit: LPAREN
+token: a	lexical unit: VARNAME
+token: )	lexical unit: RPAREN
+token: print	lexical unit: PRINT
+token: (	lexical unit: LPAREN
+token: b	lexical unit: VARNAME
+token: )	lexical unit: RPAREN
+token: read	lexical unit: READ
+token: (	lexical unit: LPAREN
+token: c	lexical unit: VARNAME
+token: )	lexical unit: RPAREN
+token: end	lexical unit: END
+
+Variables
+a 4
+b 5
+c 6
+d 7
+e 8
+f 9
+g 12
+h 17
