@@ -25,6 +25,7 @@ public class Parser {
 
     void printToken() {
         /*Pas super utile, juste pour que mon monkey brain capte ce qu'il se passe hahaha */
+        /*AHHAHAHAHAH tkt, ça m'est aussi utile pour comprendre*/
         System.out.println(currentToken.toString());
     }
 }
