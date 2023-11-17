@@ -1,0 +1,57 @@
+First Symbol of production [<Terminals.BEGIN: ('begin',)>, <Variables.CODE: ('<Code>',)>, <Terminals.END: ('end',)>] is terminal Terminals.BEGIN
+Computed first set for variable Variables.PROGRAM: {<Terminals.BEGIN: ('begin',)>}
+First Symbol of production [<Variables.INSTLIST: ('<InstList>',)>] is variable Variables.INSTLIST
+First Symbol of production [<Variables.INSTRUCTION: ('<Instruction>',)>, <Variables.INSTTAIL: ('<InstTail>',)>] is variable Variables.INSTRUCTION
+First Symbol of production [<Variables.ASSIGN: ('<Assign>',)>] is variable Variables.ASSIGN
+First Symbol of production [<Terminals.VARNAME: ('[VarName]',)>, <Terminals.ASSIGN: (':=',)>, <Variables.EXPRARITH: ('<ExprArith>',)>] is terminal Terminals.VARNAME
+Computed first set for variable Variables.ASSIGN: {<Terminals.VARNAME: ('[VarName]',)>}
+First Symbol of production [<Variables.IF: ('<If>',)>] is variable Variables.IF
+First Symbol of production [<Terminals.IF: ('if',)>, <Variables.COND: ('<Cond>',)>, <Terminals.THEN: ('then',)>, <Variables.INSTRUCTION: ('<Instruction>',)>, <Terminals.ELSE: ('else',)>, <Variables.ELSETAIL: ('<ElseTail>',)>] is terminal Terminals.IF
+Computed first set for variable Variables.IF: {<Terminals.IF: ('if',)>}
+First Symbol of production [<Terminals.WHILE: ('while',)>, <Variables.COND: ('<Cond>',)>, <Terminals.DO: ('do',)>, <Variables.INSTRUCTION: ('<Instruction>',)>] is terminal Terminals.WHILE
+First Symbol of production [<Terminals.PRINT: ('print',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.RPAREN: (')',)>] is terminal Terminals.PRINT
+First Symbol of production [<Terminals.READ: ('read',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.RPAREN: (')',)>] is terminal Terminals.READ
+First Symbol of production [<Terminals.BEGIN: ('begin',)>, <Variables.INSTLIST: ('<InstList>',)>, <Terminals.END: ('end',)>] is terminal Terminals.BEGIN
+Computed first set for variable Variables.INSTRUCTION: {<Terminals.IF: ('if',)>, <Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.WHILE: ('while',)>}
+Computed first set for variable Variables.INSTLIST: {<Terminals.PRINT: ('print',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.IF: ('if',)>, <Terminals.READ: ('read',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.WHILE: ('while',)>}
+First Symbol of production [<Terminals.EPSILON: ('eps',)>] is terminal Terminals.EPSILON
+Computed first set for variable Variables.CODE: {<Terminals.PRINT: ('print',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.IF: ('if',)>, <Terminals.READ: ('read',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.WHILE: ('while',)>}
+First Symbol of production [<Terminals.DOTS: ('...',)>, <Variables.INSTLIST: ('<InstList>',)>] is terminal Terminals.DOTS
+First Symbol of production [<Terminals.EPSILON: ('eps',)>] is terminal Terminals.EPSILON
+Computed first set for variable Variables.INSTTAIL: {<Terminals.DOTS: ('...',)>, <Terminals.EPSILON: ('eps',)>}
+First Symbol of production [<Variables.PROD: ('<Prod>',)>, <Variables.EXPRARITHPRIME: ("<ExprArith'>",)>] is variable Variables.PROD
+First Symbol of production [<Variables.ATOM: ('<Atom>',)>, <Variables.PRODPRIME: ("<Prod'>",)>] is variable Variables.ATOM
+First Symbol of production [<Terminals.VARNAME: ('[VarName]',)>] is terminal Terminals.VARNAME
+First Symbol of production [<Terminals.NUMBER: ('[Number]',)>] is terminal Terminals.NUMBER
+First Symbol of production [<Terminals.LPAREN: ('(',)>, <Variables.EXPRARITH: ('<ExprArith>',)>, <Terminals.RPAREN: (')',)>] is terminal Terminals.LPAREN
+First Symbol of production [<Terminals.MINUS: ('-',)>, <Variables.EXPRARITH: ('<ExprArith>',)>] is terminal Terminals.MINUS
+Computed first set for variable Variables.ATOM: {<Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
+Computed first set for variable Variables.PROD: {<Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
+Computed first set for variable Variables.EXPRARITH: {<Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
+First Symbol of production [<Terminals.PLUS: ('+',)>, <Variables.PROD: ('<Prod>',)>, <Variables.EXPRARITHPRIME: ("<ExprArith'>",)>] is terminal Terminals.PLUS
+First Symbol of production [<Terminals.MINUS: ('-',)>, <Variables.PROD: ('<Prod>',)>, <Variables.EXPRARITHPRIME: ("<ExprArith'>",)>] is terminal Terminals.MINUS
+First Symbol of production [<Terminals.EPSILON: ('eps',)>] is terminal Terminals.EPSILON
+Computed first set for variable Variables.EXPRARITHPRIME: {<Terminals.EPSILON: ('eps',)>, <Terminals.PLUS: ('+',)>, <Terminals.MINUS: ('-',)>}
+First Symbol of production [<Terminals.TIMES: ('*',)>, <Variables.ATOM: ('<Atom>',)>, <Variables.PRODPRIME: ("<Prod'>",)>] is terminal Terminals.TIMES
+First Symbol of production [<Terminals.DIVIDE: ('/',)>, <Variables.ATOM: ('<Atom>',)>, <Variables.PRODPRIME: ("<Prod'>",)>] is terminal Terminals.DIVIDE
+First Symbol of production [<Terminals.EPSILON: ('eps',)>] is terminal Terminals.EPSILON
+Computed first set for variable Variables.PRODPRIME: {<Terminals.DIVIDE: ('/',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.TIMES: ('*',)>}
+First Symbol of production [<Variables.INSTRUCTION: ('<Instruction>',)>] is variable Variables.INSTRUCTION
+First Symbol of production [<Terminals.EPSILON: ('eps',)>] is terminal Terminals.EPSILON
+Computed first set for variable Variables.ELSETAIL: {<Terminals.PRINT: ('print',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.IF: ('if',)>, <Terminals.READ: ('read',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.WHILE: ('while',)>}
+First Symbol of production [<Variables.AND: ('<And>',)>, <Variables.CONDPRIME: ("<Cond'>",)>] is variable Variables.AND
+First Symbol of production [<Variables.CONDATOM: ('<CondAtom>',)>, <Variables.ANDPRIME: ("<And'>",)>] is variable Variables.CONDATOM
+First Symbol of production [<Terminals.LBRACK: ('{',)>, <Variables.COND: ('<Cond>',)>, <Terminals.RBRACK: ('}',)>] is terminal Terminals.LBRACK
+First Symbol of production [<Variables.EXPRARITH: ('<ExprArith>',)>, <Variables.COMP: '<Comp>'>, <Variables.EXPRARITH: ('<ExprArith>',)>] is variable Variables.EXPRARITH
+Computed first set for variable Variables.CONDATOM: {<Terminals.MINUS: ('-',)>, <Terminals.LBRACK: ('{',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.NUMBER: ('[Number]',)>}
+Computed first set for variable Variables.AND: {<Terminals.MINUS: ('-',)>, <Terminals.LBRACK: ('{',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.NUMBER: ('[Number]',)>}
+Computed first set for variable Variables.COND: {<Terminals.MINUS: ('-',)>, <Terminals.LBRACK: ('{',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.NUMBER: ('[Number]',)>}
+First Symbol of production [<Terminals.OR: ('or',)>, <Variables.AND: ('<And>',)>, <Variables.CONDPRIME: ("<Cond'>",)>] is terminal Terminals.OR
+First Symbol of production [<Terminals.EPSILON: ('eps',)>] is terminal Terminals.EPSILON
+Computed first set for variable Variables.CONDPRIME: {<Terminals.OR: ('or',)>, <Terminals.EPSILON: ('eps',)>}
+First Symbol of production [<Terminals.AND: ('and',)>, <Variables.CONDATOM: ('<CondAtom>',)>, <Variables.ANDPRIME: ("<And'>",)>] is terminal Terminals.AND
+First Symbol of production [<Terminals.EPSILON: ('eps',)>] is terminal Terminals.EPSILON
+Computed first set for variable Variables.ANDPRIME: {<Terminals.AND: ('and',)>, <Terminals.EPSILON: ('eps',)>}
+First Symbol of production [<Terminals.EQUAL: ('=',)>] is terminal Terminals.EQUAL
+First Symbol of production [<Terminals.SMALLER: ('<',)>] is terminal Terminals.SMALLER
+Computed first set for variable Variables.COMP: {<Terminals.EQUAL: ('=',)>, <Terminals.SMALLER: ('<',)>}

@@ -1,0 +1,436 @@
+Base case: Found start symbol Variables.PROGRAM
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.PROGRAM: {<Terminals.EOF: '$'>}
+### Checking variable Variables.PROGRAM
+Case 2.1: Found terminal Terminals.END after variable Variables.CODE
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.CODE: {<Terminals.END: ('end',)>}
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+Case 1: Found variable Variables.INSTLIST at the end of production [<Variables.INSTLIST: ('<InstList>',)>]
+### Checking variable Variables.INSTLIST
+### Checking variable Variables.INSTTAIL
+Case 1: Found variable Variables.INSTLIST at the end of production [<Terminals.DOTS: ('...',)>, <Variables.INSTLIST: ('<InstList>',)>]
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+Case 1: Found variable Variables.INSTTAIL at the end of production [<Variables.INSTRUCTION: ('<Instruction>',)>, <Variables.INSTTAIL: ('<InstTail>',)>]
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.INSTTAIL: {<Terminals.END: ('end',)>}
+### Checking variable Variables.INSTRUCTION
+Case 2.1: Found terminal Terminals.END after variable Variables.INSTLIST
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.INSTLIST: {<Terminals.END: ('end',)>}
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+Case 2.2.1: Found variable Variables.INSTTAIL after variable Variables.INSTRUCTION and epsilon is in first set of Variables.INSTTAIL
+Case 2.2.1: Consider applying rule with epsilon in the next iteration
+Case 2.2.1: Found variable Variables.INSTTAIL at the end of production [<Variables.INSTRUCTION: ('<Instruction>',)>, <Variables.INSTTAIL: ('<InstTail>',)>]
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+Case 2.1: Found terminal Terminals.ELSE after variable Variables.INSTRUCTION
+### Checking variable Variables.ELSETAIL
+Case 1: Found variable Variables.INSTRUCTION at the end of production [<Variables.INSTRUCTION: ('<Instruction>',)>]
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+Case 1: Found variable Variables.ELSETAIL at the end of production [<Terminals.IF: ('if',)>, <Variables.COND: ('<Cond>',)>, <Terminals.THEN: ('then',)>, <Variables.INSTRUCTION: ('<Instruction>',)>, <Terminals.ELSE: ('else',)>, <Variables.ELSETAIL: ('<ElseTail>',)>]
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+Case 1: Found variable Variables.IF at the end of production [<Variables.IF: ('<If>',)>]
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.IF: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.ELSETAIL: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
+### Checking variable Variables.COND
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.INSTRUCTION: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+Case 1: Found variable Variables.ASSIGN at the end of production [<Variables.ASSIGN: ('<Assign>',)>]
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.ASSIGN: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+### Checking variable Variables.ASSIGN
+Case 1: Found variable Variables.EXPRARITH at the end of production [<Terminals.VARNAME: ('[VarName]',)>, <Terminals.ASSIGN: (':=',)>, <Variables.EXPRARITH: ('<ExprArith>',)>]
+### Checking variable Variables.EXPRARITH
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+Case 2.1: Found terminal Terminals.RPAREN after variable Variables.EXPRARITH
+Case 1: Found variable Variables.EXPRARITH at the end of production [<Terminals.MINUS: ('-',)>, <Variables.EXPRARITH: ('<ExprArith>',)>]
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+Case 2.2.1: Found variable Variables.PRODPRIME after variable Variables.ATOM and epsilon is in first set of Variables.PRODPRIME
+Case 2.2.1: Consider applying rule with epsilon in the next iteration
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+Case 1: Found variable Variables.PRODPRIME at the end of production [<Variables.ATOM: ('<Atom>',)>, <Variables.PRODPRIME: ("<Prod'>",)>]
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+Case 2.2.1: Found variable Variables.EXPRARITHPRIME after variable Variables.PROD and epsilon is in first set of Variables.EXPRARITHPRIME
+Case 2.2.1: Consider applying rule with epsilon in the next iteration
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+Case 1: Found variable Variables.EXPRARITHPRIME at the end of production [<Variables.PROD: ('<Prod>',)>, <Variables.EXPRARITHPRIME: ("<ExprArith'>",)>]
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.EXPRARITHPRIME: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.RPAREN: (')',)>}
+Case 2.2.1: Found variable Variables.EXPRARITHPRIME at the end of production [<Variables.PROD: ('<Prod>',)>, <Variables.EXPRARITHPRIME: ("<ExprArith'>",)>]
+### Checking variable Variables.EXPRARITHPRIME
+Case 2.2.1: Found variable Variables.EXPRARITHPRIME after variable Variables.PROD and epsilon is in first set of Variables.EXPRARITHPRIME
+Case 2.2.1: Consider applying rule with epsilon in the next iteration
+Case 2.2.1: Found variable Variables.EXPRARITHPRIME at the end of production [<Terminals.PLUS: ('+',)>, <Variables.PROD: ('<Prod>',)>, <Variables.EXPRARITHPRIME: ("<ExprArith'>",)>]
+Case 2.2.1: Found variable Variables.EXPRARITHPRIME after variable Variables.PROD and epsilon is in first set of Variables.EXPRARITHPRIME
+Case 2.2.1: Consider applying rule with epsilon in the next iteration
+Case 2.2.1: Found variable Variables.EXPRARITHPRIME at the end of production [<Terminals.MINUS: ('-',)>, <Variables.PROD: ('<Prod>',)>, <Variables.EXPRARITHPRIME: ("<ExprArith'>",)>]
+### Checking variable Variables.PROD
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.PROD: {<Terminals.DOTS: ('...',)>, <Terminals.MINUS: ('-',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.PLUS: ('+',)>, <Terminals.END: ('end',)>}
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.PRODPRIME: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.MINUS: ('-',)>, <Terminals.END: ('end',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>}
+Case 2.2.1: Found variable Variables.PRODPRIME at the end of production [<Variables.ATOM: ('<Atom>',)>, <Variables.PRODPRIME: ("<Prod'>",)>]
+### Checking variable Variables.PRODPRIME
+Case 2.2.1: Found variable Variables.PRODPRIME after variable Variables.ATOM and epsilon is in first set of Variables.PRODPRIME
+Case 2.2.1: Consider applying rule with epsilon in the next iteration
+Case 2.2.1: Found variable Variables.PRODPRIME at the end of production [<Terminals.TIMES: ('*',)>, <Variables.ATOM: ('<Atom>',)>, <Variables.PRODPRIME: ("<Prod'>",)>]
+Case 2.2.1: Found variable Variables.PRODPRIME after variable Variables.ATOM and epsilon is in first set of Variables.PRODPRIME
+Case 2.2.1: Consider applying rule with epsilon in the next iteration
+Case 2.2.1: Found variable Variables.PRODPRIME at the end of production [<Terminals.DIVIDE: ('/',)>, <Variables.ATOM: ('<Atom>',)>, <Variables.PRODPRIME: ("<Prod'>",)>]
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.ATOM: {<Terminals.DIVIDE: ('/',)>, <Terminals.DOTS: ('...',)>, <Terminals.TIMES: ('*',)>, <Terminals.MINUS: ('-',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.PLUS: ('+',)>, <Terminals.END: ('end',)>}
+### Checking variable Variables.IF
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+Case 2.2.2: Found variable Variables.COMP after variable Variables.EXPRARITH and epsilon is not in first set of Variables.COMP
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.EXPRARITH: {<Terminals.DIVIDE: ('/',)>, <Terminals.DOTS: ('...',)>, <Terminals.TIMES: ('*',)>, <Terminals.MINUS: ('-',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.EQUAL: ('=',)>, <Terminals.END: ('end',)>}
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+Case 2.1: Found terminal Terminals.DO after variable Variables.COND
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+Case 2.1: Found terminal Terminals.THEN after variable Variables.COND
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+Case 2.1: Found terminal Terminals.RBRACK after variable Variables.COND
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.COND: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>}
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+Case 1: Found variable Variables.CONDPRIME at the end of production [<Variables.AND: ('<And>',)>, <Variables.CONDPRIME: ("<Cond'>",)>]
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.CONDPRIME: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>}
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+Case 2.2.1: Found variable Variables.CONDPRIME after variable Variables.AND and epsilon is in first set of Variables.CONDPRIME
+Case 2.2.1: Consider applying rule with epsilon in the next iteration
+Case 2.2.1: Found variable Variables.CONDPRIME at the end of production [<Variables.AND: ('<And>',)>, <Variables.CONDPRIME: ("<Cond'>",)>]
+### Checking variable Variables.CONDPRIME
+Case 2.2.1: Found variable Variables.CONDPRIME after variable Variables.AND and epsilon is in first set of Variables.CONDPRIME
+Case 2.2.1: Consider applying rule with epsilon in the next iteration
+Case 2.2.1: Found variable Variables.CONDPRIME at the end of production [<Terminals.OR: ('or',)>, <Variables.AND: ('<And>',)>, <Variables.CONDPRIME: ("<Cond'>",)>]
+### Checking variable Variables.AND
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.AND: {<Terminals.OR: ('or',)>, <Terminals.THEN: ('then',)>, <Terminals.RBRACK: ('}',)>, <Terminals.DO: ('do',)>}
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+Case 1: Found variable Variables.ANDPRIME at the end of production [<Variables.CONDATOM: ('<CondAtom>',)>, <Variables.ANDPRIME: ("<And'>",)>]
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.ANDPRIME: {<Terminals.THEN: ('then',)>, <Terminals.OR: ('or',)>, <Terminals.RBRACK: ('}',)>, <Terminals.DO: ('do',)>}
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+Case 2.2.1: Found variable Variables.ANDPRIME after variable Variables.CONDATOM and epsilon is in first set of Variables.ANDPRIME
+Case 2.2.1: Consider applying rule with epsilon in the next iteration
+Case 2.2.1: Found variable Variables.ANDPRIME at the end of production [<Variables.CONDATOM: ('<CondAtom>',)>, <Variables.ANDPRIME: ("<And'>",)>]
+### Checking variable Variables.ANDPRIME
+Case 2.2.1: Found variable Variables.ANDPRIME after variable Variables.CONDATOM and epsilon is in first set of Variables.ANDPRIME
+Case 2.2.1: Consider applying rule with epsilon in the next iteration
+Case 2.2.1: Found variable Variables.ANDPRIME at the end of production [<Terminals.AND: ('and',)>, <Variables.CONDATOM: ('<CondAtom>',)>, <Variables.ANDPRIME: ("<And'>",)>]
+### Checking variable Variables.CONDATOM
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.CONDATOM: {<Terminals.OR: ('or',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DO: ('do',)>, <Terminals.THEN: ('then',)>}
+### Checking variable Variables.PROGRAM
+### Checking variable Variables.CODE
+### Checking variable Variables.INSTLIST
+### Checking variable Variables.INSTTAIL
+### Checking variable Variables.INSTRUCTION
+### Checking variable Variables.ASSIGN
+### Checking variable Variables.EXPRARITH
+### Checking variable Variables.EXPRARITHPRIME
+### Checking variable Variables.PROD
+### Checking variable Variables.PRODPRIME
+### Checking variable Variables.ATOM
+### Checking variable Variables.IF
+### Checking variable Variables.ELSETAIL
+### Checking variable Variables.COND
+### Checking variable Variables.CONDPRIME
+### Checking variable Variables.AND
+### Checking variable Variables.ANDPRIME
+### Checking variable Variables.CONDATOM
+Case 2.2.2: Found variable Variables.EXPRARITH after variable Variables.COMP and epsilon is not in first set of Variables.EXPRARITH
+### Checking variable Variables.COMP
+Computed follow set for variable Variables.COMP: {<Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
