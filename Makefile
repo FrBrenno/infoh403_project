@@ -44,6 +44,10 @@ test:
 deliverables:
 	make rebuild test javadoc
 
+flep:
+	javac ./src/*.java
+	cd src && java Main ../test/euclid.pmp
+
 clean:
 	@echo ---Cleaning the project---
 	$(RM)
