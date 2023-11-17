@@ -1,20 +1,20 @@
-FOLLOW
+Variable,FOLLOW
 <PROGRAM>,['$']
 <CODE>,['end']
 <INSTLIST>,['end']
 <INSTTAIL>,['end']
-<INSTRUCTION>,"['eps', '...', 'else', 'end']"
-<ASSIGN>,"['else', 'eps', 'end', '...']"
-<EXPRARITH>,"[')', 'eps', '=', '...', 'else', 'end', '<']"
-<EXPRARITHPRIME>,"[')', 'eps', '=', '...', 'else', 'end', '<']"
-<PROD>,"[')', 'eps', '+', '=', '...', 'else', 'end', '-', '<']"
-<PRODPRIME>,"[')', 'eps', '+', '=', '...', 'else', 'end', '-', '<']"
-<ATOM>,"['*', ')', 'eps', '+', '...', 'else', 'end', '-', '<', '/', '=']"
-<IF>,"['else', 'eps', 'end', '...']"
-<ELSETAIL>,"['else', 'eps', 'end', '...']"
-<COND>,"['do', 'then', '}']"
-<CONDPRIME>,"['do', 'then', '}']"
-<AND>,"['eps', 'or', 'do', 'then', '}']"
-<ANDPRIME>,"['eps', 'or', 'do', 'then', '}']"
-<CONDATOM>,"['eps', 'or', 'do', '}', 'and', 'then']"
-<COMP>,"['(', '[VarName]', '-', '[Number]']"
+<INSTRUCTION>,"['...', 'end', 'else', 'eps']"
+<ASSIGN>,"['else', '...', 'eps', 'end']"
+<EXPRARITH>,"['*', '...', 'eps', '<', '+', '-', '=', '/', 'else', ')', 'end']"
+<EXPRARITHPRIME>,"['...', 'end', 'else', ')', 'eps']"
+<PROD>,"['...', '+', '-', 'end', 'else', ')', 'eps']"
+<PRODPRIME>,"['...', 'eps', 'else', ')', '+', 'end', '-']"
+<ATOM>,"['*', '...', '+', '-', 'end', '/', 'else', ')', 'eps']"
+<IF>,"['else', '...', 'eps', 'end']"
+<ELSETAIL>,"['else', '...', 'eps', 'end']"
+<COND>,"['then', 'do', '}']"
+<CONDPRIME>,"['then', 'do', '}']"
+<AND>,"['then', '}', 'do', 'or', 'eps']"
+<ANDPRIME>,"['then', '}', 'do', 'or', 'eps']"
+<CONDATOM>,"['}', 'do', 'then', 'and', 'or', 'eps']"
+<COMP>,"['[VarName]', '(', '[Number]', '-']"

@@ -100,7 +100,7 @@ grammar = {
                 [Terminals.VARNAME],
                 [Terminals.NUMBER],
                 [Terminals.LPAREN, Variables.EXPRARITH, Terminals.RPAREN],
-                [Terminals.MINUS, Variables.ATOM]
+                [Terminals.MINUS, Variables.EXPRARITH]
                 ],
             Variables.IF : [
                 [Terminals.IF, Variables.COND, Terminals.THEN, Variables.INSTRUCTION, Terminals.ELSE, Variables.ELSETAIL]
