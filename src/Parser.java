@@ -1,11 +1,15 @@
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class Parser {
     private FileReader inputFile;
     private LexicalAnalyzer lexer;
     private Symbol currentToken;
     private Symbol lookAhead;
+    private ArrayList<Integer> usedRules;
+    
 
     public Parser(String filename) throws IOException {
         try {
@@ -46,7 +50,10 @@ public class Parser {
         ParseTree root = new ParseTree(progSymbol);
         switch (currentToken.getType()) {
             case BEG:
-                code(root);
+                usedRules.add(1);
+                //ajouter begin à la liste des enfants de root
+                code(root); // ajouter code à la liste des enfants de root
+                //ajouter end à la liste des enfants de root
                 break;
         
             default:
@@ -64,6 +71,7 @@ public class Parser {
         switch (currentToken.getType()) {
             case VARNAME :
                 // InstList(); et ainsi de suite 
+                
                 break;
             case READ :
                 // InstList(); et ainsi de suite 
