@@ -1,6 +1,34 @@
 from enum import Enum
 import csv
 import datetime
+import sys
+
+now = datetime.datetime.now()
+if sys.platform == "win32":
+    # Code to be executed if the user is using Windows
+    print("Windows")
+    first_out_filename = ".\\playground\\out\\first_computation_log.txt"
+    follow_out_filename = ".\\playground\\out\\follow_computation_log.txt"
+    first_csv_name = f".\\playground\\out\\first_{now.day}_{now.month}_{now.hour}_{now.minute}.csv"
+    follow_csv_name = f".\\playground\\out\\follow_{now.day}_{now.month}_{now.hour}_{now.minute}.csv"
+    action_csv_name = f".\\playground\\out\\action_{now.day}_{now.month}_{now.hour}_{now.minute}.csv"
+    log_file_name = f".\\playground\\out\\ll1_check_{now.day}_{now.month}_{now.hour}_{now.minute}.log"
+
+elif sys.platform == "darwin":
+    # Code to be executed if the user is using macOS
+    print("macOS")
+    first_out_filename = "./playground/out/first_computation_log.txt"
+    follow_out_filename = "./playground/out/follow_computation_log.txt"
+    first_csv_name = f"./playground/out/first_{now.day}_{now.month}_{now.hour}_{now.minute}.csv"
+    follow_csv_name = f"./playground/out/follow_{now.day}_{now.month}_{now.hour}_{now.minute}.csv"
+    action_csv_name = f"./playground/out/action_{now.day}_{now.month}_{now.hour}_{now.minute}.csv"
+    log_file_name = f"./playground/out/ll1_check_{now.day}_{now.month}_{now.hour}_{now.minute}.log"
+elif sys.platform == "linux":
+    # Code to be executed if the user is using Linux
+    print("Linux")
+else:
+    # Code to be executed if the user is using an unknown operating system
+    print("Unknown operating system")
 
 
 class Variables(Enum):
@@ -101,7 +129,7 @@ grammar = {
                 [Terminals.VARNAME],
                 [Terminals.NUMBER],
                 [Terminals.LPAREN, Variables.EXPRARITH, Terminals.RPAREN],
-                [Terminals.MINUS, Variables.EXPRARITH]
+                [Terminals.MINUS, Variables.ATOM]
                 ],
             Variables.IF : [
                 [Terminals.IF, Variables.COND, Terminals.THEN, Variables.INSTRUCTION, Terminals.ELSE, Variables.ELSETAIL]
@@ -261,10 +289,6 @@ def action_table():
     
 
 def first_follow_csv():
-    now = datetime.datetime.now()
-    first_csv_name = f".\\playground\\first_{now.day}_{now.month}_{now.hour}_{now.minute}.csv"
-    follow_csv_name = f".\\playground\\follow_{now.day}_{now.month}_{now.hour}_{now.minute}.csv"
-    
     with open(first_csv_name, "w+", newline='') as f:
         writer = csv.writer(f, lineterminator='\n')
         writer.writerow(["Variable", "FIRST"])
@@ -283,8 +307,6 @@ def action_table_to_csv():
     """ 
     This function writes the action table to a csv file. 
     """
-    now = datetime.datetime.now()
-    action_csv_name = f".\\playground\\action_{now.day}_{now.month}_{now.hour}_{now.minute}.csv"
     
     action = action_table()
     with open(action_csv_name, "w+", newline='') as f:
@@ -381,8 +403,6 @@ def check_ll1():
         log.append("Grammar is not LL(1)")
 
     # Write log to file
-    now = datetime.datetime.now()
-    log_file_name = f".\\playground\\ll1_check_{now.day}_{now.month}_{now.hour}_{now.minute}.log"
     with open(log_file_name, "w+", encoding='utf-8') as f:
         for line in log:
             f.write(line + "\n")
@@ -394,8 +414,8 @@ def write_log_file(file_path, log_data):
 def main():
     
     first_follow_csv()
-    write_log_file(".\\playground\\first_computation_log.txt", "\n".join(logging_first))
-    write_log_file(".\\playground\\follow_computation_log.txt", "\n".join(logging_follow))
+    write_log_file(first_out_filename, "\n".join(logging_first))
+    write_log_file(follow_out_filename, "\n".join(logging_follow))
     action_table_to_csv()
     check_ll1()
 

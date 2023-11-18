@@ -1,0 +1,20 @@
+Variable,FOLLOW
+<PROGRAM>,['$']
+<CODE>,['end']
+<INSTLIST>,['end']
+<INSTTAIL>,['end']
+<INSTRUCTION>,"['end', 'else', '...']"
+<ASSIGN>,"['end', 'else', '...']"
+<EXPRARITH>,"[')', '<', '=', 'end', 'else', '...']"
+<EXPRARITHPRIME>,"[')', '<', '=', 'end', 'else', '...']"
+<PROD>,"[')', '-', 'end', 'else', '...', '<', '+', '=']"
+<PRODPRIME>,"[')', '-', 'end', 'else', '...', '<', '+', '=']"
+<ATOM>,"[')', '-', 'end', 'else', '...', '<', '+', '*', '/', '=']"
+<IF>,"['end', 'else', '...']"
+<ELSETAIL>,"['end', 'else', '...']"
+<COND>,"['}', 'then', 'do']"
+<CONDPRIME>,"['}', 'then', 'do']"
+<AND>,"['then', 'or', 'do', '}']"
+<ANDPRIME>,"['}', 'do', 'then', 'or']"
+<CONDATOM>,"['do', 'and', 'then', 'or', '}']"
+<COMP>,"['[VarName]', '-', '(', '[Number]']"

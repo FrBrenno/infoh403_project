@@ -1,5 +1,6 @@
 public enum LexicalUnit{
     PROGRAM,
+    CODE,
     VARNAME,
     NUMBER,
     BEG,

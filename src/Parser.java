@@ -1,6 +1,5 @@
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Parser {
@@ -20,6 +19,7 @@ public class Parser {
         lexer = new LexicalAnalyzer(inputFile);
         lookAhead = lexer.yylex();
         nextToken();
+        usedRules = new ArrayList<Integer>();
     }
 
     public Symbol getCurrentToken() {
@@ -43,7 +43,7 @@ public class Parser {
     }
 
 
-    public void program() {
+    public Boolean program() {
         /* First de <Program> : begin */
         printToken();
         Symbol progSymbol = new Symbol(LexicalUnit.PROGRAM);
@@ -51,14 +51,16 @@ public class Parser {
         switch (currentToken.getType()) {
             case BEG:
                 usedRules.add(1);
-                //ajouter begin à la liste des enfants de root
-                code(root); // ajouter code à la liste des enfants de root
-                //ajouter end à la liste des enfants de root
-                break;
+
+                ParseTree begintree = new ParseTree(currentToken);                  root.addChild(begintree);
+                ParseTree codeTree = new ParseTree(new Symbol(LexicalUnit.CODE));   root.addChild(codeTree);
+                    code(codeTree); 
+                ParseTree endtree = new ParseTree(new Symbol(LexicalUnit.END));     root.addChild(endtree);
+                return true;
         
             default:
                 syntaxError();
-                break;
+                return false;
         }
     }
 
@@ -67,7 +69,6 @@ public class Parser {
         nextToken();
         printToken();
         System.out.println("here");
-        System.out.println(tree.toLaTexTree()); // chelou pcq le token est "null" quand on print le tree to latex alors qu'avant c'est chill
         switch (currentToken.getType()) {
             case VARNAME :
                 // InstList(); et ainsi de suite 
