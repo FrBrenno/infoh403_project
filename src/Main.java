@@ -30,9 +30,7 @@ public class Main {
         }
         
         parser = new Parser(filepath);
-        for (int j = 0; j < 10; j++){
-        parser.printToken();
-        parser.nextToken();}
+        parser.program();
 
     }
 }

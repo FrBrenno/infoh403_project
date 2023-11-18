@@ -45,6 +45,7 @@ deliverables:
 	make rebuild test javadoc
 
 flep:
+	jflex -d ./src/ ./src/*.flex
 	javac ./src/*.java
 	cd src && java Main ../test/euclid.pmp
 

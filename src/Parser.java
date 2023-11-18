@@ -18,14 +18,63 @@ public class Parser {
         nextToken();
     }
 
-    void nextToken() throws IOException {
-        currentToken = lookAhead;
-        lookAhead = lexer.yylex();
+    public Symbol getCurrentToken() {
+        return currentToken;
     }
 
-    void printToken() {
+    public void nextToken() {
+        currentToken = lookAhead;
+        try {
+            lookAhead = lexer.yylex();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
+    public void printToken() {
         /*Pas super utile, juste pour que mon monkey brain capte ce qu'il se passe hahaha */
         /*AHHAHAHAHAH tkt, ça m'est aussi utile pour comprendre*/
         System.out.println(currentToken.toString());
+    }
+
+
+    public void program() {
+        /* First de <Program> : begin */
+        printToken();
+        Symbol progSymbol = new Symbol(LexicalUnit.PROGRAM);
+        ParseTree root = new ParseTree(progSymbol);
+        switch (currentToken.getType()) {
+            case BEG:
+                code(root);
+                break;
+        
+            default:
+                syntaxError();
+                break;
+        }
+    }
+
+    private void code(ParseTree tree) {
+        /* First du begin : begin, read, print, while, if, [VarName], ε */
+        nextToken();
+        printToken();
+        System.out.println("here");
+        System.out.println(tree.toLaTexTree()); // chelou pcq le token est "null" quand on print le tree to latex alors qu'avant c'est chill
+        switch (currentToken.getType()) {
+            case VARNAME :
+                // InstList(); et ainsi de suite 
+                break;
+            case READ :
+                // InstList(); et ainsi de suite 
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void syntaxError() {
+        System.out.println("Syntax error");
+        System.exit(1);
     }
 }
