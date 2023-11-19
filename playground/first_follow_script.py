@@ -1,27 +1,28 @@
 from enum import Enum
 import csv
 import datetime
+from pprint import pprint
 import sys
 
-now = datetime.datetime.now()
+
 if sys.platform == "win32":
     # Code to be executed if the user is using Windows
     first_out_filename = ".\\playground\\out\\first_computation_log.txt"
     follow_out_filename = ".\\playground\\out\\follow_computation_log.txt"
-    ll1_log_filename = f".\\playground\\out\\ll1_check_{now.day}_{now.month}_{now.hour}_{now.minute}.txt"
-    first_csv_name = f".\\playground\\out\\first_{now.day}_{now.month}_{now.hour}_{now.minute}.csv"
-    follow_csv_name = f".\\playground\\out\\follow_{now.day}_{now.month}_{now.hour}_{now.minute}.csv"
-    action_csv_name = f".\\playground\\out\\action_{now.day}_{now.month}_{now.hour}_{now.minute}.csv"
+    ll1_log_filename = f".\\playground\\out\\ll1_check.txt"
+    first_csv_name = f".\\playground\\out\\first.csv"
+    follow_csv_name = f".\\playground\\out\\follow.csv"
+    action_csv_name = f".\\playground\\out\\action.csv"
 
 else:
     # Code to be executed if the user is using macOS or Linux
     first_out_filename = "./playground/out/first_computation_log.txt"
     follow_out_filename = "./playground/out/follow_computation_log.txt"
-    ll1_log_filename = f"./playground/out/ll1_check_{now.day}_{now.month}_{now.hour}_{now.minute}.txt"
-    first_csv_name = f"./playground/out/first_{now.day}_{now.month}_{now.hour}_{now.minute}.csv"
-    follow_csv_name = f"./playground/out/follow_{now.day}_{now.month}_{now.hour}_{now.minute}.csv"
-    action_csv_name = f"./playground/out/action_{now.day}_{now.month}_{now.hour}_{now.minute}.csv"
-    log_file_name = f"./playground/out/ll1_check_{now.day}_{now.month}_{now.hour}_{now.minute}.log"
+    ll1_log_filename = f"./playground/out/ll1_check.txt"
+    first_csv_name = f"./playground/out/first.csv"
+    follow_csv_name = f"./playground/out/follow.csv"
+    action_csv_name = f"./playground/out/action.csv"
+    log_file_name = f"./playground/out/ll1_check.log"
 
 
 ### Enumerations Terminals and Variables
@@ -168,6 +169,11 @@ logging_ll1 = []
 
 ### Functions
 
+def getIndex(production, variable):
+    """Returns a list of all indices of a given variable in a given production."""
+    return [i for i, x in enumerate(production) if x == variable]
+    
+
 def compute_first(variable):
     """
     This function computes the first set of a given variable in the grammar.
@@ -208,7 +214,7 @@ def compute_follow(variable):
     This function computes the follow set of a given variable in the grammar.
     It avoids infinite recursion by keeping track of the variables for which the follow set is already computed.
     """
-    logging_follow.append(f"(INFO): Calculating follow set for variable {variable}")
+    logging_follow.append(f"(INFO):## BEGIN Calculating follow set for variable {variable}")
     # Base case: follow set is already computed
     if follow_sets.get(variable) is not None:
         logging_follow.append(f"(DEBUG): Base case: Follow set for {variable} already computed: {follow_sets[variable]}")
@@ -225,36 +231,37 @@ def compute_follow(variable):
         logging_follow.append(f"(DEBUG): ### Checking variable {key}")
         for production in grammar[key]:
             if variable in production:
-                variable_index = production.index(variable)
-                if variable_index == len(production) - 1:
-                    # Case 1: variable is at the end of the production
-                    if key != variable:
-                        logging_follow.append(f"(DEBUG): Case 1: Found variable {variable} at the end of production {production}")
-                        follow_sets[variable] = follow_sets[variable].union(compute_follow(key))
-                else:
-                    # Case 2: variable is not at the end of the production
-                    next_symbol = production[variable_index + 1]
-                    if next_symbol in Terminals:
-                        # Case 2.1: next symbol is a terminal
-                        logging_follow.append(f"(DEBUG): Case 2.1: Found terminal {next_symbol} after variable {variable}")
-                        follow_sets[variable].add(next_symbol)
+                variable_index_list = getIndex(production, variable) 
+                for variable_index in variable_index_list:
+                    if variable_index == len(production) - 1:
+                        # Case 1: variable is at the end of the production
+                        if key != variable:
+                            logging_follow.append(f"(DEBUG): Case 1: Found variable {variable} at the end of production {production}")
+                            follow_sets[variable] = follow_sets[variable].union(compute_follow(key))
                     else:
-                        # Case 2.2: next symbol is a variable
-                        if Terminals.EPSILON in compute_first(next_symbol):
-                            # Case 2.2.1: epsilon is in the first set of the next symbol
-                            logging_follow.append(f"(DEBUG): Case 2.2.1: Found variable {next_symbol} after variable {variable} and epsilon is in first set of {next_symbol}")
-                            follow_sets[variable] = follow_sets[variable].union(compute_first(next_symbol).difference({Terminals.EPSILON}))
-                            logging_follow.append(f"(DEBUG): Case 2.2.1: Consider applying rule with epsilon in the next iteration")
-                            follow_sets[variable] = follow_sets[variable].union(compute_follow(next_symbol))
-                            if variable_index + 1 == len(production) - 1:
-                                logging_follow.append(f"(DEBUG): Case 2.2.1: Found variable {next_symbol} at the end of production {production}")
-                                follow_sets[variable] = follow_sets[variable].union(compute_follow(key))
+                        # Case 2: variable is not at the end of the production
+                        next_symbol = production[variable_index + 1]
+                        if next_symbol in Terminals:
+                            # Case 2.1: next symbol is a terminal
+                            logging_follow.append(f"(DEBUG): Case 2.1: Found terminal {next_symbol} after variable {variable}")
+                            follow_sets[variable].add(next_symbol)
                         else:
-                            # Case 2.2.2: epsilon is not in the first set of the next symbol
-                            logging_follow.append(f"(DEBUG): Case 2.2.2: Found variable {next_symbol} after variable {variable} and epsilon is not in first set of {next_symbol}")
-                            follow_sets[variable] = follow_sets[variable].union(compute_first(next_symbol))
+                            # Case 2.2: next symbol is a variable
+                            if Terminals.EPSILON in compute_first(next_symbol):
+                                # Case 2.2.1: epsilon is in the first set of the next symbol
+                                logging_follow.append(f"(DEBUG): Case 2.2.1: Found variable {next_symbol} after variable {variable} and epsilon is in first set of {next_symbol}")
+                                follow_sets[variable] = follow_sets[variable].union(compute_first(next_symbol).difference({Terminals.EPSILON}))
+                                logging_follow.append(f"(DEBUG): Case 2.2.1: Consider applying rule with epsilon in the next iteration")
+                                follow_sets[variable] = follow_sets[variable].union(compute_follow(next_symbol))
+                                if variable_index + 1 == len(production) - 1:
+                                    logging_follow.append(f"(DEBUG): Case 2.2.1: Found variable {next_symbol} at the end of production {production}")
+                                    follow_sets[variable] = follow_sets[variable].union(compute_follow(key))
+                            else:
+                                # Case 2.2.2: epsilon is not in the first set of the next symbol
+                                logging_follow.append(f"(DEBUG): Case 2.2.2: Found variable {next_symbol} after variable {variable} and epsilon is not in first set of {next_symbol}")
+                                follow_sets[variable] = follow_sets[variable].union(compute_first(next_symbol))
 
-    logging_follow.append(f"(INFO): Computed follow set for variable {variable}: {follow_sets[variable]}")
+    logging_follow.append(f"(INFO):## END follow set for variable {variable}: {follow_sets[variable]}")
     logging_follow.append("\n")
     return follow_sets[variable]
 
@@ -378,16 +385,19 @@ def first_follow_csv():
     with open(first_csv_name, "w+", newline='') as f:
         writer = csv.writer(f, lineterminator='\n')
         writer.writerow(["Variable", "FIRST"])
+        first_set = {}
         for key in grammar:
             first_set = compute_first(key)
-            writer.writerow([f"<{key.name}>",f"{[item.value[0] if isinstance(item, Enum) else item for item in first_set]}"])
+            writer.writerow([key.name, first_set])
 
     with open(follow_csv_name, "w+", newline='') as f:
         writer = csv.writer(f, lineterminator='\n')
         writer.writerow(["Variable", "FOLLOW"])
+        follow_set = {}
         for key in grammar:
             follow_set = compute_follow(key)
-            writer.writerow([f"<{key.name}>",f"{[item.value[0] if isinstance(item, Enum) else item for item in follow_set]}"])
+            writer.writerow([key.name, follow_set])
+            
 
 def action_table_to_csv():
     """ 
@@ -411,11 +421,10 @@ def main():
     first_follow_csv()
     compute_action_table()
     check_ll1()
-    
+    action_table_to_csv()
     # Write log files
     write_log_file(first_out_filename, "\n".join(logging_first))
     write_log_file(follow_out_filename, "\n".join(logging_follow))
-    action_table_to_csv()
     write_log_file(ll1_log_filename, "\n".join(logging_ll1))
 
         
