@@ -49,27 +49,25 @@ public class Parser {
         printToken();
         Symbol progSymbol = new Symbol(LexicalUnit.PROGRAM);
         ParseTree root = new ParseTree(progSymbol);
-        switch (currentToken.getType()) {
-            case BEG:
-                usedRules.add(1);
+        if (currentToken.getType() == LexicalUnit.BEG)
+        {
+            usedRules.add(1);
+            ParseTree beginTree = new ParseTree(currentToken);
+            root.addChild(beginTree);
 
-                ParseTree beginTree = new ParseTree(currentToken);
-                root.addChild(beginTree);
-// ___________________________________________________________________________________________________________________________________
-                ParseTree codeTree = new ParseTree(new Symbol(LexicalUnit.CODE));
-                root.addChild(
-                        code(codeTree)
-                );  //les returns de chaque methode doivent rendre leurs arbres (plutôt que true false)
-// ___________________________________________________________________________________________________________________________________
-                ParseTree endTree = new ParseTree(new Symbol(LexicalUnit.END));
-                root.addChild(endTree);
-                System.out.println(root.toForestPicture());
-                return root;
+            ParseTree codeTree = new ParseTree(new Symbol(LexicalUnit.CODE));
+            root.addChild(
+                    code(codeTree)
+            );  //les returns de chaque methode doivent rendre leurs arbres (plutôt que true false)
 
-            default:
-                syntaxError(currentToken);
-                return null;
+            ParseTree endTree = new ParseTree(new Symbol(LexicalUnit.END));
+            root.addChild(endTree);
+
+            System.out.println(root.toForestPicture());
+            return root;
         }
+        syntaxError(currentToken);
+        return null;
     }
 
     /*
@@ -87,22 +85,18 @@ public class Parser {
             currentToken.getType() == LexicalUnit.PRINT ||
             currentToken.getType() == LexicalUnit.READ
         ){
-            /* la condition parait super moche mais c'est parce que tout ces tokens
-            utilisent la règle 2, avec le switch case c'était beaucoup long et
-            il y avait beaucoup de répétitions
-            */
             usedRules.add(2);
             ParseTree instListTree = new ParseTree(new Symbol(LexicalUnit.INSTLIST));
             parentTree.addChild(
                     instList(instListTree)
             );
             return parentTree;
-        } else if (currentToken.getType() == LexicalUnit.END) {
+        }
+        else if (currentToken.getType() == LexicalUnit.END) {
             usedRules.add(3);
-            // Ici, il ne faut rien mettre, car on a déjà consommé le END dans le switch de program
-            // (pour les epsilon juste mettre la règle utilisée)
             return null;
-        } else {
+        }
+        else {
             syntaxError(currentToken);
             return null;
         }
@@ -127,6 +121,7 @@ public class Parser {
             parentTree.addChild(
                     instruction(instructionTree)
             );
+
             ParseTree instListTree = new ParseTree(new Symbol(LexicalUnit.INSTLIST));
             parentTree.addChild(
                     instTail(instListTree)
@@ -179,10 +174,12 @@ public class Parser {
 
     * First de inst: begin, read, print, while, if, [VarName]
      */
-    private ParseTree instruction(ParseTree parentTree) {
+    private ParseTree instruction(ParseTree parentTree)
+    {
         nextToken();
         printToken();
-        if (currentToken.getType() == LexicalUnit.VARNAME) {
+        if (currentToken.getType() == LexicalUnit.VARNAME)
+        {
             usedRules.add(7);
             ParseTree assignTree = new ParseTree(new Symbol(LexicalUnit.ASSIGN));
             parentTree.addChild(
@@ -204,7 +201,7 @@ public class Parser {
             usedRules.add(9);
             ParseTree whileTree = new ParseTree(new Symbol(LexicalUnit.WHILE));
             parentTree.addChild(whileTree);
-
+            
             ParseTree condTree = new ParseTree(new Symbol(LexicalUnit.COND));
             parentTree.addChild(
                     cond(condTree)
@@ -569,6 +566,7 @@ public class Parser {
             parentTree.addChild(
                     cond(condTree)
             );
+
 
             ParseTree thenTree = new ParseTree(new Symbol(LexicalUnit.THEN));
             parentTree.addChild(thenTree);

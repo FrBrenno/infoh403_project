@@ -276,11 +276,11 @@ def compute_action_table():
     production_number = 1
     for variable in grammar:
         for production in grammar[variable]:
-            first_set = compute_first(production[0])
+            first_set = compute_first(production[0]) 
             for terminal in first_set:
-                if terminal != Terminals.EPSILON:
+                if terminal != Terminals.EPSILON: 
                     action_table[variable][terminal] = production_number
-            if Terminals.EPSILON in first_set:
+            if Terminals.EPSILON in first_set: 
                 follow_set = compute_follow(variable)
                 for terminal in follow_set:
                     action_table[variable][terminal] = production_number
