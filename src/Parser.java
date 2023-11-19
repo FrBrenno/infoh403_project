@@ -28,6 +28,7 @@ public class Parser {
 
     public void nextToken() {
         currentToken = lookAhead;
+        printToken();
         try {
             lookAhead = lexer.yylex();
         } catch (IOException e) {
@@ -45,7 +46,7 @@ public class Parser {
     First de <Program> : begin 
     */
     public ParseTree program() {
-        printToken();
+        ;
         Symbol progSymbol = new Symbol(LexicalUnit.PROGRAM);
         ParseTree root = new ParseTree(progSymbol);
         if (currentToken.getType() == LexicalUnit.BEG)
@@ -59,7 +60,8 @@ public class Parser {
                     code(codeTree)
             );
 
-            ParseTree endTree = new ParseTree(new Symbol(LexicalUnit.END));
+            nextToken();
+            ParseTree endTree = new ParseTree(currentToken);
             root.addChild(endTree);
 
             System.out.println(root.toForestPicture());
@@ -76,7 +78,7 @@ public class Parser {
      */
     private ParseTree code(ParseTree parentTree) {
         nextToken();
-        printToken();
+        ;
         if (currentToken.getType() == LexicalUnit.VARNAME ||
             currentToken.getType() == LexicalUnit.BEG ||
             currentToken.getType() == LexicalUnit.IF ||
@@ -89,11 +91,11 @@ public class Parser {
             parentTree.addChild(
                     instList(instListTree)
             );
-            return parentTree;
+            return parentTree ;
         }
         else if (currentToken.getType() == LexicalUnit.END) {
             usedRules.add(3);
-            return null;
+            return parentTree ;
         }
         else {
             syntaxError(currentToken);
@@ -102,12 +104,13 @@ public class Parser {
     }
 
     /*
-     * [4] <InstList> -> <Inst> <InstTail>
+     * [4] <InstList> -> <Instruction> <InstTail>
+     * 
      * First de <InstList> : [VarName], begin, if, while, print, read
      */
     private ParseTree instList(ParseTree parentTree) {
         nextToken();
-        printToken();
+        ;
         if (currentToken.getType() == LexicalUnit.VARNAME ||
             currentToken.getType() == LexicalUnit.BEG ||
             currentToken.getType() == LexicalUnit.IF ||
@@ -136,10 +139,12 @@ public class Parser {
     /*
     * [5] <InstTail> -> ...<InstList>
     * [6] <InstTail> -> ε
-     */
+    *
+    * First de instTail: ..., ε
+    */
     private ParseTree instTail(ParseTree parentTree) {
         nextToken();
-        printToken();
+        ;
         if (currentToken.getType() == LexicalUnit.DOTS)
         {
             usedRules.add(5);
@@ -155,7 +160,7 @@ public class Parser {
         else if (currentToken.getType() == LexicalUnit.END)
         {
             usedRules.add(6);
-            return null;
+            return parentTree;
         }
         else {
             syntaxError(currentToken);
@@ -176,7 +181,6 @@ public class Parser {
     private ParseTree instruction(ParseTree parentTree)
     {
         nextToken();
-        printToken();
         if (currentToken.getType() == LexicalUnit.VARNAME)
         {
             usedRules.add(7);
@@ -232,51 +236,17 @@ public class Parser {
                     instList(instListTree)
             );
 
-            ParseTree endTree = new ParseTree(new Symbol(LexicalUnit.END));
-            parentTree.addChild(endTree);
-
-            return parentTree;
-        }
-        /*
-        if (currentToken.getType() == LexicalUnit.READ) {
-            // c'est un bordel, mais laisse le moi quand je reviens du sport
-            // Brenno: Il serait pas mieux de créer une fonction read? genre comme c'est avant dans la grammaire
-            // et comme le assign?
-            usedRules.add(11);
-            ParseTree readTree = new ParseTree(new Symbol(LexicalUnit.READ));
             nextToken();
-            printToken();
-            if (currentToken.getType() == LexicalUnit.LPAREN) {
-                ParseTree lparenTree = new ParseTree(currentToken);
-                parentTree.addChild(lparenTree);
-                nextToken();
-                printToken();
-                if (currentToken.getType() == LexicalUnit.VARNAME) {
-                    ParseTree varNameTree = new ParseTree(currentToken);
-                    parentTree.addChild(varNameTree);
-                    nextToken();
-                    printToken();
-                    if (currentToken.getType() == LexicalUnit.RPAREN) {
-                        ParseTree rparenTree = new ParseTree(currentToken);
-                        parentTree.addChild(rparenTree);
-
-                        return parentTree;
-                    }
-                    else {
-                        syntaxError(currentToken);
-                        return null;
-                    }
-                }
-                else {
-                    syntaxError(currentToken);
-                    return null;
-                }
+            if(currentToken.getType() == LexicalUnit.END){
+                ParseTree endTree = new ParseTree(currentToken);
+                parentTree.addChild(endTree);
             }
             else {
                 syntaxError(currentToken);
                 return null;
             }
-        }*/
+            return parentTree;
+        }
         else {
             syntaxError(currentToken);
             return null;
@@ -289,36 +259,37 @@ public class Parser {
      * First de assign: [VarName]
      */
     private ParseTree assign(ParseTree parentTree) {
+        usedRules.add(13);
+        ParseTree varNameTree = new ParseTree(currentToken);
+        parentTree.addChild(varNameTree);
+
         nextToken();
-        printToken();
-        if (currentToken.getType() == LexicalUnit.VARNAME) {
-            usedRules.add(13);
-            ParseTree varNameTree = new ParseTree(currentToken);
-            parentTree.addChild(varNameTree);
-
-            ParseTree equalTree = new ParseTree(new Symbol(LexicalUnit.ASSIGN));
-            parentTree.addChild(equalTree);
-
-            ParseTree exprTree = new ParseTree(new Symbol(LexicalUnit.EXPRARIT));
-            parentTree.addChild(
-                    expr(exprTree)
-            );
-
-            return parentTree;
+        if(currentToken.getType() == LexicalUnit.ASSIGN)
+        {
+            ParseTree assignTree = new ParseTree(currentToken);
+            parentTree.addChild(assignTree);
         }
         else {
             syntaxError(currentToken);
             return null;
         }
+        
+        ParseTree exprTree = new ParseTree(new Symbol(LexicalUnit.EXPRARIT));
+        parentTree.addChild(
+                expr(exprTree)
+        );
+
+        return parentTree;
     }
+
 
     /*
     * [14] <ExprArith> ->  <Prod><ExprArithPrime>
-    * First de <ExprArith> : [VarName], [Number], (, -
+    * First de exprArith: [VarName], [Number], (, -
     */
     private ParseTree expr(ParseTree parentTree) {
         nextToken();
-        printToken();
+        ;
         if (currentToken.getType() == LexicalUnit.VARNAME ||
             currentToken.getType() == LexicalUnit.NUMBER ||
             currentToken.getType() == LexicalUnit.LPAREN ||
@@ -349,7 +320,7 @@ public class Parser {
     * */
     private ParseTree exprArithPrime(ParseTree parentTree) {
         nextToken();
-        printToken();
+        ;
         if (currentToken.getType() == LexicalUnit.PLUS)
         {
             usedRules.add(15);
@@ -387,10 +358,18 @@ public class Parser {
         else if(currentToken.getType() == LexicalUnit.END ||
                 currentToken.getType() == LexicalUnit.DOTS ||
                 currentToken.getType() == LexicalUnit.RPAREN ||
-                currentToken.getType() == LexicalUnit.ELSE
+                currentToken.getType() == LexicalUnit.ELSE ||
+                currentToken.getType() == LexicalUnit.THEN ||
+                currentToken.getType() == LexicalUnit.ELSE ||
+                currentToken.getType() == LexicalUnit.OR ||
+                currentToken.getType() == LexicalUnit.RBRACK ||
+                currentToken.getType() == LexicalUnit.DO ||
+                currentToken.getType() == LexicalUnit.EQUAL ||
+                currentToken.getType() == LexicalUnit.SMALLER ||
+                currentToken.getType() == LexicalUnit.AND 
         ){
             usedRules.add(17);
-            return null;
+            return parentTree;
         }
         else {
             syntaxError(currentToken);
@@ -403,7 +382,7 @@ public class Parser {
     * */
     private ParseTree prod(ParseTree parentTree) {
         nextToken();
-        printToken();
+        ;
         if (currentToken.getType() == LexicalUnit.VARNAME ||
             currentToken.getType() == LexicalUnit.NUMBER ||
             currentToken.getType() == LexicalUnit.LPAREN ||
@@ -434,7 +413,7 @@ public class Parser {
     * */
     private ParseTree prodPrime(ParseTree parentTree) {
         nextToken();
-        printToken();
+        ;
         if (currentToken.getType() == LexicalUnit.TIMES)
         {
             usedRules.add(19);
@@ -474,10 +453,17 @@ public class Parser {
                 currentToken.getType() == LexicalUnit.RPAREN ||
                 currentToken.getType() == LexicalUnit.MINUS ||
                 currentToken.getType() == LexicalUnit.PLUS ||
-                currentToken.getType() == LexicalUnit.ELSE
+                currentToken.getType() == LexicalUnit.THEN ||
+                currentToken.getType() == LexicalUnit.ELSE ||
+                currentToken.getType() == LexicalUnit.OR ||
+                currentToken.getType() == LexicalUnit.AND ||
+                currentToken.getType() == LexicalUnit.RBRACK ||
+                currentToken.getType() == LexicalUnit.EQUAL ||
+                currentToken.getType() == LexicalUnit.SMALLER ||
+                currentToken.getType() == LexicalUnit.DO
         ){
             usedRules.add(21);
-            return null;
+            return parentTree;
         }
         else {
             syntaxError(currentToken);
@@ -493,7 +479,7 @@ public class Parser {
      */
     private ParseTree atom(ParseTree parentTree) {
         nextToken();
-        printToken();
+        ;
         if (currentToken.getType() == LexicalUnit.VARNAME)
         {
             usedRules.add(22);
@@ -519,9 +505,17 @@ public class Parser {
                     expr(exprTree)
             );
 
-            ParseTree rparenTree = new ParseTree(new Symbol(LexicalUnit.RPAREN));
-            parentTree.addChild(rparenTree);
-            return parentTree;
+            nextToken();
+            if(currentToken.getType() == LexicalUnit.RPAREN)
+            {
+                ParseTree rparenTree = new ParseTree(currentToken);
+                parentTree.addChild(rparenTree);
+                return parentTree;
+            }
+            else {
+                syntaxError(currentToken);
+                return null;
+            }
         }
         else if(currentToken.getType() == LexicalUnit.MINUS)
         {
@@ -545,41 +539,49 @@ public class Parser {
     * [26] <If> -> if<Cond>then<Instruction>else<ElseTail>
     * */
     private ParseTree ifRule(ParseTree parentTree) {
+        usedRules.add(26);
+        ParseTree ifTree = new ParseTree(currentToken);
+        parentTree.addChild(ifTree);
+    
+
+        ParseTree condTree = new ParseTree(new Symbol(LexicalUnit.COND));
+        parentTree.addChild(
+                cond(condTree)
+        );
+
         nextToken();
-        printToken();
-        if (currentToken.getType() == LexicalUnit.IF)
+        if(currentToken.getType()==LexicalUnit.THEN){
+            ParseTree thenTree = new ParseTree(currentToken);
+            parentTree.addChild(thenTree);}
+        else {
+            syntaxError(currentToken);
+            return null;
+        }
+
+        ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST));
+        parentTree.addChild(
+                instruction(instructionTree)
+        );
+
+        nextToken();
+        if(currentToken.getType() == LexicalUnit.ELSE)
         {
-            usedRules.add(26);
-            ParseTree ifTree = new ParseTree(currentToken);
-            parentTree.addChild(ifTree);
-
-            ParseTree condTree = new ParseTree(new Symbol(LexicalUnit.COND));
-            parentTree.addChild(
-                    cond(condTree)
-            );
-
-
-            ParseTree thenTree = new ParseTree(new Symbol(LexicalUnit.THEN));
-            parentTree.addChild(thenTree);
-
-            ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST));
-            parentTree.addChild(
-                    instruction(instructionTree)
-            );
-
-            ParseTree elseTree = new ParseTree(new Symbol(LexicalUnit.ELSE));
+            ParseTree elseTree = new ParseTree(currentToken);
             parentTree.addChild(elseTree);
-
-            ParseTree elseTailTree = new ParseTree(new Symbol(LexicalUnit.ELSETAIL));
-            parentTree.addChild(
-                    elseTail(elseTailTree)
-            );
-            return parentTree;
         }
         else {
             syntaxError(currentToken);
             return null;
         }
+
+        ParseTree elseTailTree = new ParseTree(new Symbol(LexicalUnit.ELSETAIL));
+        parentTree.addChild(
+                elseTail(elseTailTree)
+        );
+        
+        return parentTree;
+            
+        
     }
 
     /*
@@ -588,7 +590,7 @@ public class Parser {
     * */
     private ParseTree elseTail(ParseTree parentTree) {
         nextToken();
-        printToken();
+        ;
         if (currentToken.getType() == LexicalUnit.VARNAME ||
             currentToken.getType() == LexicalUnit.BEG ||
             currentToken.getType() == LexicalUnit.IF ||
@@ -608,7 +610,7 @@ public class Parser {
                 currentToken.getType() == LexicalUnit.ELSE
         ){
             usedRules.add(28);
-            return null;
+            return parentTree;
         }
         else {
             syntaxError(currentToken);
@@ -621,7 +623,7 @@ public class Parser {
     * */
     private ParseTree cond(ParseTree parentTree) {
         nextToken();
-        printToken();
+        ;
         if (currentToken.getType() == LexicalUnit.VARNAME ||
             currentToken.getType() == LexicalUnit.NUMBER ||
             currentToken.getType() == LexicalUnit.LPAREN ||
@@ -652,7 +654,7 @@ public class Parser {
     * */
     private ParseTree condPrime(ParseTree parentTree) {
         nextToken();
-        printToken();
+        ;
         if (currentToken.getType() == LexicalUnit.OR)
         {
             usedRules.add(30);
@@ -664,9 +666,9 @@ public class Parser {
                     and(andTree)
             );
 
-            ParseTree condPrimeTree2 = new ParseTree(new Symbol(LexicalUnit.CONDPRIME));
+            ParseTree condPrimeTree = new ParseTree(new Symbol(LexicalUnit.CONDPRIME));
             parentTree.addChild(
-                    condPrime(condPrimeTree2)
+                    condPrime(condPrimeTree)
             );
             return parentTree;
         }
@@ -675,7 +677,7 @@ public class Parser {
                 currentToken.getType() == LexicalUnit.DO
         ){
             usedRules.add(31);
-            return null;
+            return parentTree;
         }
         else {
             syntaxError(currentToken);
@@ -686,9 +688,9 @@ public class Parser {
     /*
     * [32] <And> -> <CondAtom><AndPrime>
     **/
-    private ParseTree and(ParseTree andTree) {
+    private ParseTree and(ParseTree parentTree) {
         nextToken();
-        printToken();
+        ;
         if (currentToken.getType() == LexicalUnit.VARNAME ||
             currentToken.getType() == LexicalUnit.NUMBER ||
             currentToken.getType() == LexicalUnit.LPAREN ||
@@ -697,15 +699,15 @@ public class Parser {
         ){
             usedRules.add(32);
             ParseTree condAtomTree = new ParseTree(new Symbol(LexicalUnit.CONDATOM));
-            andTree.addChild(
+            parentTree.addChild(
                     condAtom(condAtomTree)
             );
 
             ParseTree andPrimeTree = new ParseTree(new Symbol(LexicalUnit.ANDPRIME));
-            andTree.addChild(
+            parentTree.addChild(
                     andPrime(andPrimeTree)
             );
-            return andTree;
+            return parentTree;
         }
         else {
             syntaxError(currentToken);
@@ -719,7 +721,7 @@ public class Parser {
     * */
     private ParseTree andPrime(ParseTree parentTree) {
         nextToken();
-        printToken();
+        ;
         if (currentToken.getType() == LexicalUnit.AND)
         {
             usedRules.add(33);
@@ -743,7 +745,7 @@ public class Parser {
                 currentToken.getType() == LexicalUnit.DO
         ){
             usedRules.add(34);
-            return null;
+            return parentTree;
         }
         else {
             syntaxError(currentToken);
@@ -757,8 +759,8 @@ public class Parser {
     * */
     private ParseTree condAtom(ParseTree parentTree) {
         nextToken();
-        printToken();
-        if (currentToken.getType() == LexicalUnit.OR)
+        ;
+        if (currentToken.getType() == LexicalUnit.LBRACK)
         {
             usedRules.add(35);
             ParseTree lbrackTree = new ParseTree(currentToken);
@@ -769,8 +771,15 @@ public class Parser {
                     cond(condTree)
             );
 
-            ParseTree rbrackTree = new ParseTree(new Symbol(LexicalUnit.RBRACK));
-            parentTree.addChild(rbrackTree);
+            nextToken();
+            if(currentToken.getType() == LexicalUnit.RBRACK){
+                ParseTree rbrackTree = new ParseTree(currentToken);
+                parentTree.addChild(rbrackTree);
+            }
+            else {
+                syntaxError(currentToken);
+                return null;
+            }
             return parentTree;
         }
         else if(currentToken.getType() == LexicalUnit.VARNAME ||
@@ -803,11 +812,11 @@ public class Parser {
 
     /*
     * [37] <Comp> -> =
-    * [38] <Comp> -> <
+    * [38]        -> <
     * */
     private ParseTree comp(ParseTree parentTree) {
         nextToken();
-        printToken();
+        ;
         if (currentToken.getType() == LexicalUnit.EQUAL)
         {
             usedRules.add(37);
@@ -818,8 +827,8 @@ public class Parser {
         else if(currentToken.getType() == LexicalUnit.SMALLER)
         {
             usedRules.add(38);
-            ParseTree ltTree = new ParseTree(currentToken);
-            parentTree.addChild(ltTree);
+            ParseTree smallerTree = new ParseTree(currentToken);
+            parentTree.addChild(smallerTree);
             return parentTree;
         }
         else {
@@ -832,119 +841,136 @@ public class Parser {
     * [39] <While> -> while<Cond>do<Instruction>
     * */
     private ParseTree whileRule(ParseTree parentTree) {
+        usedRules.add(39);
+        ParseTree whileTree = new ParseTree(currentToken);
+        parentTree.addChild(whileTree);
+
         nextToken();
-        printToken();
-        if (currentToken.getType() == LexicalUnit.COND) // le token "while" a été lu par la méthode instruction()
+        if (currentToken.getType() == LexicalUnit.COND)
         {
-            usedRules.add(39);
             ParseTree condTree = new ParseTree(new Symbol(LexicalUnit.COND));
             parentTree.addChild(
                     cond(condTree)
-            );
-
-            ParseTree doTree = new ParseTree(new Symbol(LexicalUnit.DO));
+            );}
+        else
+        {
+            syntaxError(currentToken);
+            return null;
+        }
+        
+        nextToken();
+        if (currentToken.getType() == LexicalUnit.DO)
+        {
+            ParseTree doTree = new ParseTree(currentToken);
             parentTree.addChild(doTree);
 
-            ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST));
-            parentTree.addChild(
-                    instruction(instructionTree)
-            );
-            return parentTree;
         }
         else
         {
             syntaxError(currentToken);
             return null;
         }
+    
+        ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST));
+        parentTree.addChild(
+                instruction(instructionTree)
+        );
+        return parentTree;
     }
+    
 
     /*
     * [40] <Print> -> print(<VarName>)
     * */
     private ParseTree printRule(ParseTree parentTree) {
+        usedRules.add(40);
+        ParseTree printTree = new ParseTree(currentToken);
+        parentTree.addChild(printTree);
+
         nextToken();
-        printToken();
-        if (currentToken.getType() == LexicalUnit.LPAREN) // "print" a été deja lu
+        if (currentToken.getType() == LexicalUnit.LPAREN)
         {
-            usedRules.add(40);
             ParseTree lparenTree = new ParseTree(currentToken);
             parentTree.addChild(lparenTree);
-
-            nextToken();
-            if (currentToken.getType() == LexicalUnit.VARNAME)
-            {
-                ParseTree varNameTree = new ParseTree(currentToken);
-                parentTree.addChild(varNameTree);
-            }
-            else
-            {
-                syntaxError(currentToken);
-                return null;
-            }
-
-            nextToken();
-            if (currentToken.getType() == LexicalUnit.RPAREN)
-            {
-                ParseTree rparenTree = new ParseTree(currentToken);
-                parentTree.addChild(rparenTree);
-            }
-            else
-            {
-                syntaxError(currentToken);
-                return null;
-            }
-            return parentTree;
         }
         else
         {
             syntaxError(currentToken);
             return null;
         }
+        
+        nextToken();
+        if (currentToken.getType() == LexicalUnit.VARNAME)
+        {
+            ParseTree varNameTree = new ParseTree(currentToken);
+            parentTree.addChild(varNameTree);
+        }
+        else
+        {
+            syntaxError(currentToken);
+            return null;
+        }
+
+        nextToken();
+        if (currentToken.getType() == LexicalUnit.RPAREN)
+        {
+            ParseTree rparenTree = new ParseTree(currentToken);
+            parentTree.addChild(rparenTree);
+        }
+        else
+        {
+            syntaxError(currentToken);
+            return null;
+        }
+        return parentTree;
     }
+    
 
     /*
     * [41] <Read> -> read(<VarName>)
     * */
-    private ParseTree readRule(ParseTree readTree) {
+    private ParseTree readRule(ParseTree parentTree) {
+        usedRules.add(41);
+        ParseTree readTree = new ParseTree(currentToken);
+        parentTree.addChild(readTree);
+
         nextToken();
-        printToken();
         if (currentToken.getType() == LexicalUnit.LPAREN)
         {
-            usedRules.add(41);
             ParseTree lparenTree = new ParseTree(currentToken);
-            readTree.addChild(lparenTree);
+            parentTree.addChild(lparenTree);
+        }
+        else{
+            syntaxError(currentToken);
+            return null;
+        }
 
-            nextToken();
-            if (currentToken.getType() == LexicalUnit.VARNAME)
-            {
-                ParseTree varNameTree = new ParseTree(currentToken);
-                readTree.addChild(varNameTree);
-            }
-            else
-            {
-                syntaxError(currentToken);
-                return null;
-            }
-
-            nextToken();
-            if (currentToken.getType() == LexicalUnit.RPAREN)
-            {
-                ParseTree rparenTree = new ParseTree(currentToken);
-                readTree.addChild(rparenTree);
-            }
-            else
-            {
-                syntaxError(currentToken);
-                return null;
-            }
-            return readTree;
+        nextToken();
+        if (currentToken.getType() == LexicalUnit.VARNAME)
+        {
+            ParseTree varNameTree = new ParseTree(currentToken);
+            parentTree.addChild(varNameTree);
         }
         else
         {
             syntaxError(currentToken);
             return null;
         }
+
+        nextToken();
+        if (currentToken.getType() == LexicalUnit.RPAREN)
+        {
+            ParseTree rparenTree = new ParseTree(currentToken);
+            parentTree.addChild(rparenTree);
+        }
+        else
+        {
+            syntaxError(currentToken);
+            return null;
+        }
+        return parentTree;
     }
+
 
 
     private void syntaxError(Symbol token) {
