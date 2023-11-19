@@ -3,48 +3,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/* WARNING: I GUESS WHEVENER WE CREATE A NODE TO THE PARSE TREE, WE SHOULD READ THE TOKEN FROM THE INPUT. ONLY
-FOR FUNCTIONS THAT HAS NO METHOD!
-* LIKE, if <COND> then <INST> else <ELSETAIL> should be like:
-* private ParseTree ifRule(ParseTree parentTree) {
-        nextToken();
-        printToken();
-        if (currentToken.getType() == LexicalUnit.IF)
-        {
-            usedRules.add(26);
-            ParseTree ifTree = new ParseTree(currentToken);
-            parentTree.addChild(ifTree);
-
-            ParseTree condTree = new ParseTree(new Symbol(LexicalUnit.COND));
-            parentTree.addChild(
-                    cond(condTree)
-            );
-
-            * nextToken();
-            ParseTree thenTree = new ParseTree(new Symbol(LexicalUnit.THEN));
-            parentTree.addChild(thenTree);
-
-            ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST));
-            parentTree.addChild(
-                    instruction(instructionTree)
-            );
-
-            * nextToken();
-            ParseTree elseTree = new ParseTree(new Symbol(LexicalUnit.ELSE));
-            parentTree.addChild(elseTree);
-
-            ParseTree elseTailTree = new ParseTree(new Symbol(LexicalUnit.ELSETAIL));
-            parentTree.addChild(
-                    elseTail(elseTailTree)
-            );
-            return parentTree;
-        }
-        else {
-            syntaxError(currentToken);
-            return null;
-        }
-    }
-* */
 public class Parser {
     private FileReader inputFile;
     private LexicalAnalyzer lexer;
@@ -272,7 +230,7 @@ public class Parser {
         else if (currentToken.getType() == LexicalUnit.READ)
         {
             usedRules.add(11);
-            // Brenno: J'attends pour faire cela, je pense que c'est mieux de faire une fonction print
+            // Brenno: J'attends pour faire cela, je pense que c'est mieux de faire une fonction read
             // comme pour les autres règles => modifier la grammaire ou pas car cela ne modifie pas tellement
             return null;
         }
@@ -669,8 +627,216 @@ public class Parser {
         }
     }
 
-
+    /*
+    * [29] <Cond> -> <And><CondPrime>
+    * */
     private ParseTree cond(ParseTree parentTree) {
+        nextToken();
+        printToken();
+        if (currentToken.getType() == LexicalUnit.VARNAME ||
+            currentToken.getType() == LexicalUnit.NUMBER ||
+            currentToken.getType() == LexicalUnit.LPAREN ||
+            currentToken.getType() == LexicalUnit.MINUS ||
+            currentToken.getType() == LexicalUnit.LBRACK
+        ){
+            usedRules.add(29);
+            ParseTree andTree = new ParseTree(new Symbol(LexicalUnit.AND));
+            parentTree.addChild(
+                    and(andTree)
+            );
+
+            ParseTree condPrimeTree = new ParseTree(new Symbol(LexicalUnit.CONDPRIME));
+            parentTree.addChild(
+                    condPrime(condPrimeTree)
+            );
+            return parentTree;
+        }
+        else {
+            syntaxError(currentToken);
+            return null;
+        }
+    }
+
+    /*
+    * [30] <CondPrime> -> or<And><CondPrime>
+    * [31] <CondPrime> -> ε
+    * */
+    private ParseTree condPrime(ParseTree parentTree) {
+        nextToken();
+        printToken();
+        if (currentToken.getType() == LexicalUnit.OR)
+        {
+            usedRules.add(30);
+            ParseTree orTree = new ParseTree(currentToken);
+            parentTree.addChild(orTree);
+
+            ParseTree andTree = new ParseTree(new Symbol(LexicalUnit.AND));
+            parentTree.addChild(
+                    and(andTree)
+            );
+
+            ParseTree condPrimeTree2 = new ParseTree(new Symbol(LexicalUnit.CONDPRIME));
+            parentTree.addChild(
+                    condPrime(condPrimeTree2)
+            );
+            return parentTree;
+        }
+        else if(currentToken.getType() == LexicalUnit.THEN ||
+                currentToken.getType() == LexicalUnit.RBRACK ||
+                currentToken.getType() == LexicalUnit.DO
+        ){
+            usedRules.add(31);
+            return null;
+        }
+        else {
+            syntaxError(currentToken);
+            return null;
+        }
+    }
+
+    /*
+    * [32] <And> -> <CondAtom><AndPrime>
+    **/
+    private ParseTree and(ParseTree andTree) {
+        nextToken();
+        printToken();
+        if (currentToken.getType() == LexicalUnit.VARNAME ||
+            currentToken.getType() == LexicalUnit.NUMBER ||
+            currentToken.getType() == LexicalUnit.LPAREN ||
+            currentToken.getType() == LexicalUnit.MINUS ||
+            currentToken.getType() == LexicalUnit.LBRACK
+        ){
+            usedRules.add(32);
+            ParseTree condAtomTree = new ParseTree(new Symbol(LexicalUnit.CONDATOM));
+            andTree.addChild(
+                    condAtom(condAtomTree)
+            );
+
+            ParseTree andPrimeTree = new ParseTree(new Symbol(LexicalUnit.ANDPRIME));
+            andTree.addChild(
+                    andPrime(andPrimeTree)
+            );
+            return andTree;
+        }
+        else {
+            syntaxError(currentToken);
+            return null;
+        }
+    }
+
+    /*
+    * [33] <AndPrime> -> and<CondAtom><AndPrime>
+    * [34] <AndPrime> -> ε
+    * */
+    private ParseTree andPrime(ParseTree parentTree) {
+        nextToken();
+        printToken();
+        if (currentToken.getType() == LexicalUnit.AND)
+        {
+            usedRules.add(33);
+            ParseTree andTree = new ParseTree(currentToken);
+            parentTree.addChild(andTree);
+
+            ParseTree condAtomTree = new ParseTree(new Symbol(LexicalUnit.CONDATOM));
+            parentTree.addChild(
+                    condAtom(condAtomTree)
+            );
+
+            ParseTree andPrimeTree = new ParseTree(new Symbol(LexicalUnit.ANDPRIME));
+            parentTree.addChild(
+                    andPrime(andPrimeTree)
+            );
+            return parentTree;
+        }
+        else if(currentToken.getType() == LexicalUnit.THEN ||
+                currentToken.getType() == LexicalUnit.OR ||
+                currentToken.getType() == LexicalUnit.RBRACK ||
+                currentToken.getType() == LexicalUnit.DO
+        ){
+            usedRules.add(34);
+            return null;
+        }
+        else {
+            syntaxError(currentToken);
+            return null;
+        }
+    }
+
+    /*
+    * [35] <CondAtom> -> {<Cond>}
+    * [36] <CondAtom> -> <ExprArith><Comp><ExprArith>
+    * */
+    private ParseTree condAtom(ParseTree parentTree) {
+        nextToken();
+        printToken();
+        if (currentToken.getType() == LexicalUnit.OR)
+        {
+            usedRules.add(35);
+            ParseTree lbrackTree = new ParseTree(currentToken);
+            parentTree.addChild(lbrackTree);
+
+            ParseTree condTree = new ParseTree(new Symbol(LexicalUnit.COND));
+            parentTree.addChild(
+                    cond(condTree)
+            );
+
+            ParseTree rbrackTree = new ParseTree(new Symbol(LexicalUnit.RBRACK));
+            parentTree.addChild(rbrackTree);
+            return parentTree;
+        }
+        else if(currentToken.getType() == LexicalUnit.VARNAME ||
+                currentToken.getType() == LexicalUnit.NUMBER ||
+                currentToken.getType() == LexicalUnit.LPAREN ||
+                currentToken.getType() == LexicalUnit.MINUS
+        ){
+            usedRules.add(36);
+            ParseTree exprArithTree = new ParseTree(new Symbol(LexicalUnit.EXPRARIT));
+            parentTree.addChild(
+                    expr(exprArithTree)
+            );
+
+            ParseTree compTree = new ParseTree(new Symbol(LexicalUnit.COMP));
+            parentTree.addChild(
+                    comp(compTree)
+            );
+
+            ParseTree exprArithTree2 = new ParseTree(new Symbol(LexicalUnit.EXPRARIT));
+            parentTree.addChild(
+                    expr(exprArithTree2)
+            );
+            return parentTree;
+        }
+        else {
+            syntaxError(currentToken);
+            return null;
+        }
+    }
+
+    /*
+    * [37] <Comp> -> =
+    * [38] <Comp> -> <
+    * */
+    private ParseTree comp(ParseTree parentTree) {
+        nextToken();
+        printToken();
+        if (currentToken.getType() == LexicalUnit.EQUAL)
+        {
+            usedRules.add(37);
+            ParseTree equalTree = new ParseTree(currentToken);
+            parentTree.addChild(equalTree);
+            return parentTree;
+        }
+        else if(currentToken.getType() == LexicalUnit.SMALLER)
+        {
+            usedRules.add(38);
+            ParseTree ltTree = new ParseTree(currentToken);
+            parentTree.addChild(ltTree);
+            return parentTree;
+        }
+        else {
+            syntaxError(currentToken);
+            return null;
+        }
     }
 
     private ParseTree read(ParseTree parentTree) {
