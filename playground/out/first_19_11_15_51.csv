@@ -1,0 +1,20 @@
+Variable,FIRST
+<PROGRAM>,['begin']
+<CODE>,"['[VarName]', 'read', 'if', 'print', 'eps', 'begin', 'while']"
+<INSTLIST>,"['[VarName]', 'read', 'if', 'print', 'begin', 'while']"
+<INSTTAIL>,"['eps', '...']"
+<INSTRUCTION>,"['if', '[VarName]', 'read', 'print', 'begin', 'while']"
+<ASSIGN>,['[VarName]']
+<EXPRARITH>,"['[VarName]', '(', '[Number]', '-']"
+<EXPRARITHPRIME>,"['+', 'eps', '-']"
+<PROD>,"['[VarName]', '(', '[Number]', '-']"
+<PRODPRIME>,"['/', 'eps', '*']"
+<ATOM>,"['[VarName]', '(', '[Number]', '-']"
+<IF>,['if']
+<ELSETAIL>,"['[VarName]', 'read', 'if', 'print', 'eps', 'begin', 'while']"
+<COND>,"['[VarName]', '{', '[Number]', '-', '(']"
+<CONDPRIME>,"['eps', 'or']"
+<AND>,"['[VarName]', '{', '[Number]', '-', '(']"
+<ANDPRIME>,"['and', 'eps']"
+<CONDATOM>,"['[VarName]', '{', '[Number]', '-', '(']"
+<COMP>,"['<', '=']"
