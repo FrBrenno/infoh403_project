@@ -56,10 +56,11 @@ public class Parser {
                 ParseTree codeTree = new ParseTree(new Symbol(LexicalUnit.CODE));   root.addChild(codeTree);
                     code(codeTree); 
                 ParseTree endtree = new ParseTree(new Symbol(LexicalUnit.END));     root.addChild(endtree);
+                System.out.println(root.toForestPicture());
                 return true;
         
             default:
-                syntaxError();
+                syntaxError(currentToken);
                 return false;
         }
     }
@@ -71,19 +72,25 @@ public class Parser {
         System.out.println("here");
         switch (currentToken.getType()) {
             case VARNAME :
-                // InstList(); et ainsi de suite 
-                
+                usedRules.add(2);
+                ParseTree varnameTree = new ParseTree(currentToken); tree.addChild(varnameTree);
+                InstList(tree);
                 break;
-            case READ :
-                // InstList(); et ainsi de suite 
+            case BEG :
+                usedRules.add(2);
+                ParseTree begTree = new ParseTree(currentToken); tree.addChild(begTree);
+                InstList(tree);
                 break;
             default:
                 break;
         }
     }
 
-    private void syntaxError() {
-        System.out.println("Syntax error");
+    private void InstList(ParseTree tree) {
+    }
+
+    private void syntaxError(Symbol token) {
+        System.out.println("Syntax error on line " + token.getLine() + " column " + token.getColumn() + " : " + token.getValue());
         System.exit(1);
     }
 }
