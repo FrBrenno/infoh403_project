@@ -45,7 +45,11 @@ class Variables(Enum):
     AND = "<And>",
     ANDPRIME = "<And'>",
     CONDATOM = "<CondAtom>",
-    COMP = "<Comp>"
+    COMP = "<Comp>",
+    WHILE = "<While>",
+    PRINT = "<Print>",
+    READ = "<Read>",
+    
 
 
 class Terminals(Enum):
@@ -97,9 +101,9 @@ grammar = {
             Variables.INSTRUCTION : [
                 [Variables.ASSIGN],
                 [Variables.IF],
-                [Terminals.WHILE, Variables.COND, Terminals.DO, Variables.INSTRUCTION],
-                [Terminals.PRINT, Terminals.LPAREN, Terminals.VARNAME, Terminals.RPAREN],
-                [Terminals.READ, Terminals.LPAREN, Terminals.VARNAME, Terminals.RPAREN],
+                [Variables.WHILE],
+                [Variables.PRINT],
+                [Variables.READ],
                 [Terminals.BEGIN, Variables.INSTLIST, Terminals.END]
                 ],
             Variables.ASSIGN : [
@@ -156,6 +160,15 @@ grammar = {
                 [Terminals.EQUAL],
                 [Terminals.SMALLER]
                 ],
+            Variables.WHILE : [
+                [Terminals.WHILE, Variables.COND, Terminals.DO, Variables.INSTRUCTION]
+                ],
+            Variables.PRINT : [
+                [Terminals.PRINT, Terminals.LPAREN, Terminals.VARNAME, Terminals.RPAREN]
+                ],
+            Variables.READ : [
+                [Terminals.READ, Terminals.LPAREN, Terminals.VARNAME, Terminals.RPAREN]
+                ]
            }
 
 ### Variable Initialization
@@ -409,9 +422,6 @@ def action_table_to_csv():
         for key in action_table:
             writer.writerow([key.name] + [action_table[key][terminal] for terminal in Terminals])
 
-
-
-
 def write_log_file(file_path, log_data):
     with open(file_path, 'w', encoding='utf-8') as file:
         file.write(log_data)
@@ -421,7 +431,7 @@ def main():
     first_follow_csv()
     compute_action_table()
     check_ll1()
-    action_table_to_csv()
+    action_table_to_csv()s
     # Write log files
     write_log_file(first_out_filename, "\n".join(logging_first))
     write_log_file(follow_out_filename, "\n".join(logging_follow))

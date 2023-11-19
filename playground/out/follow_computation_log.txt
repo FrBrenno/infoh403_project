@@ -19,6 +19,9 @@
 (DEBUG): ### Checking variable Variables.ANDPRIME
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): ### Checking variable Variables.COMP
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
 (INFO):## END follow set for variable Variables.PROGRAM: {<Terminals.EOF: '$'>}
 
 
@@ -43,6 +46,9 @@
 (DEBUG): ### Checking variable Variables.ANDPRIME
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): ### Checking variable Variables.COMP
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
 (INFO):## END follow set for variable Variables.CODE: {<Terminals.END: ('end',)>}
 
 
@@ -78,6 +84,9 @@
 (DEBUG): ### Checking variable Variables.ANDPRIME
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): ### Checking variable Variables.COMP
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
 (INFO):## END follow set for variable Variables.INSTTAIL: {<Terminals.END: ('end',)>}
 
 
@@ -97,6 +106,9 @@
 (DEBUG): ### Checking variable Variables.ANDPRIME
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): ### Checking variable Variables.COMP
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
 (INFO):## END follow set for variable Variables.INSTLIST: {<Terminals.END: ('end',)>}
 
 
@@ -162,6 +174,9 @@
 (DEBUG): ### Checking variable Variables.ANDPRIME
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): ### Checking variable Variables.COMP
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
 (INFO):## END follow set for variable Variables.IF: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 
 
@@ -172,6 +187,9 @@
 (DEBUG): ### Checking variable Variables.ANDPRIME
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): ### Checking variable Variables.COMP
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
 (INFO):## END follow set for variable Variables.ELSETAIL: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 
 
@@ -181,18 +199,17 @@
 (DEBUG): ### Checking variable Variables.ANDPRIME
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): ### Checking variable Variables.COMP
-(INFO):## END follow set for variable Variables.INSTRUCTION: {<Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>}
-
-
-(INFO):## BEGIN Calculating follow set for variable Variables.ASSIGN
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): Case 1: Found variable Variables.INSTRUCTION at the end of production [<Terminals.WHILE: ('while',)>, <Variables.COND: ('<Cond>',)>, <Terminals.DO: ('do',)>, <Variables.INSTRUCTION: ('<Instruction>',)>]
+(INFO):## BEGIN Calculating follow set for variable Variables.WHILE
 (DEBUG): ### Checking variable Variables.PROGRAM
 (DEBUG): ### Checking variable Variables.CODE
 (DEBUG): ### Checking variable Variables.INSTLIST
 (DEBUG): ### Checking variable Variables.INSTTAIL
 (DEBUG): ### Checking variable Variables.INSTRUCTION
-(DEBUG): Case 1: Found variable Variables.ASSIGN at the end of production [<Variables.ASSIGN: ('<Assign>',)>]
+(DEBUG): Case 1: Found variable Variables.WHILE at the end of production [<Variables.WHILE: ('<While>',)>]
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
-(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>}
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (DEBUG): ### Checking variable Variables.ASSIGN
 (DEBUG): ### Checking variable Variables.EXPRARITH
 (DEBUG): ### Checking variable Variables.EXPRARITHPRIME
@@ -207,6 +224,43 @@
 (DEBUG): ### Checking variable Variables.ANDPRIME
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): ### Checking variable Variables.COMP
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
+(INFO):## END follow set for variable Variables.WHILE: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
+
+
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
+(INFO):## END follow set for variable Variables.INSTRUCTION: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
+
+
+(INFO):## BEGIN Calculating follow set for variable Variables.ASSIGN
+(DEBUG): ### Checking variable Variables.PROGRAM
+(DEBUG): ### Checking variable Variables.CODE
+(DEBUG): ### Checking variable Variables.INSTLIST
+(DEBUG): ### Checking variable Variables.INSTTAIL
+(DEBUG): ### Checking variable Variables.INSTRUCTION
+(DEBUG): Case 1: Found variable Variables.ASSIGN at the end of production [<Variables.ASSIGN: ('<Assign>',)>]
+(INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
+(DEBUG): ### Checking variable Variables.ASSIGN
+(DEBUG): ### Checking variable Variables.EXPRARITH
+(DEBUG): ### Checking variable Variables.EXPRARITHPRIME
+(DEBUG): ### Checking variable Variables.PROD
+(DEBUG): ### Checking variable Variables.PRODPRIME
+(DEBUG): ### Checking variable Variables.ATOM
+(DEBUG): ### Checking variable Variables.IF
+(DEBUG): ### Checking variable Variables.ELSETAIL
+(DEBUG): ### Checking variable Variables.COND
+(DEBUG): ### Checking variable Variables.CONDPRIME
+(DEBUG): ### Checking variable Variables.AND
+(DEBUG): ### Checking variable Variables.ANDPRIME
+(DEBUG): ### Checking variable Variables.CONDATOM
+(DEBUG): ### Checking variable Variables.COMP
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
 (INFO):## END follow set for variable Variables.ASSIGN: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 
 
@@ -234,7 +288,7 @@
 (DEBUG): ### Checking variable Variables.ANDPRIME
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): Case 2.2.2: Found variable Variables.COMP after variable Variables.EXPRARITH and epsilon is not in first set of Variables.COMP
-(DEBUG): Case 1: Found variable Variables.EXPRARITH at the end of production [<Variables.EXPRARITH: ('<ExprArith>',)>, <Variables.COMP: '<Comp>'>, <Variables.EXPRARITH: ('<ExprArith>',)>]
+(DEBUG): Case 1: Found variable Variables.EXPRARITH at the end of production [<Variables.EXPRARITH: ('<ExprArith>',)>, <Variables.COMP: ('<Comp>',)>, <Variables.EXPRARITH: ('<ExprArith>',)>]
 (INFO):## BEGIN Calculating follow set for variable Variables.CONDATOM
 (DEBUG): ### Checking variable Variables.PROGRAM
 (DEBUG): ### Checking variable Variables.CODE
@@ -311,7 +365,6 @@
 (DEBUG): ### Checking variable Variables.INSTLIST
 (DEBUG): ### Checking variable Variables.INSTTAIL
 (DEBUG): ### Checking variable Variables.INSTRUCTION
-(DEBUG): Case 2.1: Found terminal Terminals.DO after variable Variables.COND
 (DEBUG): ### Checking variable Variables.ASSIGN
 (DEBUG): ### Checking variable Variables.EXPRARITH
 (DEBUG): ### Checking variable Variables.EXPRARITHPRIME
@@ -328,7 +381,11 @@
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): Case 2.1: Found terminal Terminals.RBRACK after variable Variables.COND
 (DEBUG): ### Checking variable Variables.COMP
-(INFO):## END follow set for variable Variables.COND: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>}
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): Case 2.1: Found terminal Terminals.DO after variable Variables.COND
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
+(INFO):## END follow set for variable Variables.COND: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.THEN: ('then',)>}
 
 
 (DEBUG): ### Checking variable Variables.CONDPRIME
@@ -336,51 +393,66 @@
 (DEBUG): ### Checking variable Variables.ANDPRIME
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): ### Checking variable Variables.COMP
-(INFO):## END follow set for variable Variables.CONDPRIME: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>}
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
+(INFO):## END follow set for variable Variables.CONDPRIME: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.THEN: ('then',)>}
 
 
 (DEBUG): Case 2.2.1: Found variable Variables.CONDPRIME at the end of production [<Variables.AND: ('<And>',)>, <Variables.CONDPRIME: ("<Cond'>",)>]
 (INFO):## BEGIN Calculating follow set for variable Variables.COND
-(DEBUG): Base case: Follow set for Variables.COND already computed: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>}
+(DEBUG): Base case: Follow set for Variables.COND already computed: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): ### Checking variable Variables.CONDPRIME
 (DEBUG): Case 2.2.1: Found variable Variables.CONDPRIME after variable Variables.AND and epsilon is in first set of Variables.CONDPRIME
 (DEBUG): Case 2.2.1: Consider applying rule with epsilon in the next iteration
 (INFO):## BEGIN Calculating follow set for variable Variables.CONDPRIME
-(DEBUG): Base case: Follow set for Variables.CONDPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>}
+(DEBUG): Base case: Follow set for Variables.CONDPRIME already computed: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): Case 2.2.1: Found variable Variables.CONDPRIME at the end of production [<Terminals.OR: ('or',)>, <Variables.AND: ('<And>',)>, <Variables.CONDPRIME: ("<Cond'>",)>]
 (INFO):## BEGIN Calculating follow set for variable Variables.CONDPRIME
-(DEBUG): Base case: Follow set for Variables.CONDPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>}
+(DEBUG): Base case: Follow set for Variables.CONDPRIME already computed: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): ### Checking variable Variables.AND
 (DEBUG): ### Checking variable Variables.ANDPRIME
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): ### Checking variable Variables.COMP
-(INFO):## END follow set for variable Variables.AND: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>}
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
+(INFO):## END follow set for variable Variables.AND: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.THEN: ('then',)>}
 
 
 (DEBUG): ### Checking variable Variables.ANDPRIME
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): ### Checking variable Variables.COMP
-(INFO):## END follow set for variable Variables.ANDPRIME: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.OR: ('or',)>, <Terminals.RBRACK: ('}',)>}
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
+(INFO):## END follow set for variable Variables.ANDPRIME: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.THEN: ('then',)>}
 
 
 (DEBUG): Case 2.2.1: Found variable Variables.ANDPRIME at the end of production [<Variables.CONDATOM: ('<CondAtom>',)>, <Variables.ANDPRIME: ("<And'>",)>]
 (INFO):## BEGIN Calculating follow set for variable Variables.AND
-(DEBUG): Base case: Follow set for Variables.AND already computed: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>}
+(DEBUG): Base case: Follow set for Variables.AND already computed: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): ### Checking variable Variables.ANDPRIME
 (DEBUG): Case 2.2.1: Found variable Variables.ANDPRIME after variable Variables.CONDATOM and epsilon is in first set of Variables.ANDPRIME
 (DEBUG): Case 2.2.1: Consider applying rule with epsilon in the next iteration
 (INFO):## BEGIN Calculating follow set for variable Variables.ANDPRIME
-(DEBUG): Base case: Follow set for Variables.ANDPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.OR: ('or',)>, <Terminals.RBRACK: ('}',)>}
+(DEBUG): Base case: Follow set for Variables.ANDPRIME already computed: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): Case 2.2.1: Found variable Variables.ANDPRIME at the end of production [<Terminals.AND: ('and',)>, <Variables.CONDATOM: ('<CondAtom>',)>, <Variables.ANDPRIME: ("<And'>",)>]
 (INFO):## BEGIN Calculating follow set for variable Variables.ANDPRIME
-(DEBUG): Base case: Follow set for Variables.ANDPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.OR: ('or',)>, <Terminals.RBRACK: ('}',)>}
+(DEBUG): Base case: Follow set for Variables.ANDPRIME already computed: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): ### Checking variable Variables.COMP
-(INFO):## END follow set for variable Variables.CONDATOM: {<Terminals.THEN: ('then',)>, <Terminals.AND: ('and',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>}
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
+(INFO):## END follow set for variable Variables.CONDATOM: {<Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.THEN: ('then',)>}
 
 
 (DEBUG): ### Checking variable Variables.COMP
-(INFO):## END follow set for variable Variables.EXPRARITH: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
+(INFO):## END follow set for variable Variables.EXPRARITH: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 
 
 (INFO):## BEGIN Calculating follow set for variable Variables.EXPRARITHPRIME
@@ -393,7 +465,7 @@
 (DEBUG): ### Checking variable Variables.EXPRARITH
 (DEBUG): Case 1: Found variable Variables.EXPRARITHPRIME at the end of production [<Variables.PROD: ('<Prod>',)>, <Variables.EXPRARITHPRIME: ("<ExprArith'>",)>]
 (INFO):## BEGIN Calculating follow set for variable Variables.EXPRARITH
-(DEBUG): Base case: Follow set for Variables.EXPRARITH already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.EXPRARITH already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): ### Checking variable Variables.EXPRARITHPRIME
 (DEBUG): ### Checking variable Variables.PROD
 (DEBUG): ### Checking variable Variables.PRODPRIME
@@ -406,7 +478,10 @@
 (DEBUG): ### Checking variable Variables.ANDPRIME
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): ### Checking variable Variables.COMP
-(INFO):## END follow set for variable Variables.EXPRARITHPRIME: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
+(INFO):## END follow set for variable Variables.EXPRARITHPRIME: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 
 
 (INFO):## BEGIN Calculating follow set for variable Variables.PROD
@@ -420,25 +495,25 @@
 (DEBUG): Case 2.2.1: Found variable Variables.EXPRARITHPRIME after variable Variables.PROD and epsilon is in first set of Variables.EXPRARITHPRIME
 (DEBUG): Case 2.2.1: Consider applying rule with epsilon in the next iteration
 (INFO):## BEGIN Calculating follow set for variable Variables.EXPRARITHPRIME
-(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): Case 2.2.1: Found variable Variables.EXPRARITHPRIME at the end of production [<Variables.PROD: ('<Prod>',)>, <Variables.EXPRARITHPRIME: ("<ExprArith'>",)>]
 (INFO):## BEGIN Calculating follow set for variable Variables.EXPRARITH
-(DEBUG): Base case: Follow set for Variables.EXPRARITH already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.EXPRARITH already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): ### Checking variable Variables.EXPRARITHPRIME
 (DEBUG): Case 2.2.1: Found variable Variables.EXPRARITHPRIME after variable Variables.PROD and epsilon is in first set of Variables.EXPRARITHPRIME
 (DEBUG): Case 2.2.1: Consider applying rule with epsilon in the next iteration
 (INFO):## BEGIN Calculating follow set for variable Variables.EXPRARITHPRIME
-(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): Case 2.2.1: Found variable Variables.EXPRARITHPRIME at the end of production [<Terminals.PLUS: ('+',)>, <Variables.PROD: ('<Prod>',)>, <Variables.EXPRARITHPRIME: ("<ExprArith'>",)>]
 (INFO):## BEGIN Calculating follow set for variable Variables.EXPRARITHPRIME
-(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): Case 2.2.1: Found variable Variables.EXPRARITHPRIME after variable Variables.PROD and epsilon is in first set of Variables.EXPRARITHPRIME
 (DEBUG): Case 2.2.1: Consider applying rule with epsilon in the next iteration
 (INFO):## BEGIN Calculating follow set for variable Variables.EXPRARITHPRIME
-(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): Case 2.2.1: Found variable Variables.EXPRARITHPRIME at the end of production [<Terminals.MINUS: ('-',)>, <Variables.PROD: ('<Prod>',)>, <Variables.EXPRARITHPRIME: ("<ExprArith'>",)>]
 (INFO):## BEGIN Calculating follow set for variable Variables.EXPRARITHPRIME
-(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): ### Checking variable Variables.PROD
 (DEBUG): ### Checking variable Variables.PRODPRIME
 (DEBUG): ### Checking variable Variables.ATOM
@@ -450,7 +525,10 @@
 (DEBUG): ### Checking variable Variables.ANDPRIME
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): ### Checking variable Variables.COMP
-(INFO):## END follow set for variable Variables.PROD: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.PLUS: ('+',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
+(INFO):## END follow set for variable Variables.PROD: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>, <Terminals.END: ('end',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>}
 
 
 (INFO):## BEGIN Calculating follow set for variable Variables.PRODPRIME
@@ -465,7 +543,7 @@
 (DEBUG): ### Checking variable Variables.PROD
 (DEBUG): Case 1: Found variable Variables.PRODPRIME at the end of production [<Variables.ATOM: ('<Atom>',)>, <Variables.PRODPRIME: ("<Prod'>",)>]
 (INFO):## BEGIN Calculating follow set for variable Variables.PROD
-(DEBUG): Base case: Follow set for Variables.PROD already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.PLUS: ('+',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.PROD already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>, <Terminals.END: ('end',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>}
 (DEBUG): ### Checking variable Variables.PRODPRIME
 (DEBUG): ### Checking variable Variables.ATOM
 (DEBUG): ### Checking variable Variables.IF
@@ -476,7 +554,10 @@
 (DEBUG): ### Checking variable Variables.ANDPRIME
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): ### Checking variable Variables.COMP
-(INFO):## END follow set for variable Variables.PRODPRIME: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>, <Terminals.PLUS: ('+',)>}
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
+(INFO):## END follow set for variable Variables.PRODPRIME: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 
 
 (INFO):## BEGIN Calculating follow set for variable Variables.ATOM
@@ -492,25 +573,25 @@
 (DEBUG): Case 2.2.1: Found variable Variables.PRODPRIME after variable Variables.ATOM and epsilon is in first set of Variables.PRODPRIME
 (DEBUG): Case 2.2.1: Consider applying rule with epsilon in the next iteration
 (INFO):## BEGIN Calculating follow set for variable Variables.PRODPRIME
-(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>, <Terminals.PLUS: ('+',)>}
+(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): Case 2.2.1: Found variable Variables.PRODPRIME at the end of production [<Variables.ATOM: ('<Atom>',)>, <Variables.PRODPRIME: ("<Prod'>",)>]
 (INFO):## BEGIN Calculating follow set for variable Variables.PROD
-(DEBUG): Base case: Follow set for Variables.PROD already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.PLUS: ('+',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.PROD already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>, <Terminals.END: ('end',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>}
 (DEBUG): ### Checking variable Variables.PRODPRIME
 (DEBUG): Case 2.2.1: Found variable Variables.PRODPRIME after variable Variables.ATOM and epsilon is in first set of Variables.PRODPRIME
 (DEBUG): Case 2.2.1: Consider applying rule with epsilon in the next iteration
 (INFO):## BEGIN Calculating follow set for variable Variables.PRODPRIME
-(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>, <Terminals.PLUS: ('+',)>}
+(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): Case 2.2.1: Found variable Variables.PRODPRIME at the end of production [<Terminals.TIMES: ('*',)>, <Variables.ATOM: ('<Atom>',)>, <Variables.PRODPRIME: ("<Prod'>",)>]
 (INFO):## BEGIN Calculating follow set for variable Variables.PRODPRIME
-(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>, <Terminals.PLUS: ('+',)>}
+(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): Case 2.2.1: Found variable Variables.PRODPRIME after variable Variables.ATOM and epsilon is in first set of Variables.PRODPRIME
 (DEBUG): Case 2.2.1: Consider applying rule with epsilon in the next iteration
 (INFO):## BEGIN Calculating follow set for variable Variables.PRODPRIME
-(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>, <Terminals.PLUS: ('+',)>}
+(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): Case 2.2.1: Found variable Variables.PRODPRIME at the end of production [<Terminals.DIVIDE: ('/',)>, <Variables.ATOM: ('<Atom>',)>, <Variables.PRODPRIME: ("<Prod'>",)>]
 (INFO):## BEGIN Calculating follow set for variable Variables.PRODPRIME
-(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>, <Terminals.PLUS: ('+',)>}
+(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (DEBUG): ### Checking variable Variables.ATOM
 (DEBUG): ### Checking variable Variables.IF
 (DEBUG): ### Checking variable Variables.ELSETAIL
@@ -520,7 +601,10 @@
 (DEBUG): ### Checking variable Variables.ANDPRIME
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): ### Checking variable Variables.COMP
-(INFO):## END follow set for variable Variables.ATOM: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.RBRACK: ('}',)>, <Terminals.DIVIDE: ('/',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.PLUS: ('+',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.TIMES: ('*',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
+(INFO):## END follow set for variable Variables.ATOM: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.DOTS: ('...',)>, <Terminals.TIMES: ('*',)>, <Terminals.THEN: ('then',)>, <Terminals.DIVIDE: ('/',)>, <Terminals.END: ('end',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>}
 
 
 (INFO):## BEGIN Calculating follow set for variable Variables.IF
@@ -528,15 +612,15 @@
 (INFO):## BEGIN Calculating follow set for variable Variables.ELSETAIL
 (DEBUG): Base case: Follow set for Variables.ELSETAIL already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.COND
-(DEBUG): Base case: Follow set for Variables.COND already computed: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>}
+(DEBUG): Base case: Follow set for Variables.COND already computed: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.CONDPRIME
-(DEBUG): Base case: Follow set for Variables.CONDPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>}
+(DEBUG): Base case: Follow set for Variables.CONDPRIME already computed: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.AND
-(DEBUG): Base case: Follow set for Variables.AND already computed: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>}
+(DEBUG): Base case: Follow set for Variables.AND already computed: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.ANDPRIME
-(DEBUG): Base case: Follow set for Variables.ANDPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.OR: ('or',)>, <Terminals.RBRACK: ('}',)>}
+(DEBUG): Base case: Follow set for Variables.ANDPRIME already computed: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.CONDATOM
-(DEBUG): Base case: Follow set for Variables.CONDATOM already computed: {<Terminals.THEN: ('then',)>, <Terminals.AND: ('and',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>}
+(DEBUG): Base case: Follow set for Variables.CONDATOM already computed: {<Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.COMP
 (DEBUG): ### Checking variable Variables.PROGRAM
 (DEBUG): ### Checking variable Variables.CODE
@@ -558,7 +642,70 @@
 (DEBUG): ### Checking variable Variables.CONDATOM
 (DEBUG): Case 2.2.2: Found variable Variables.EXPRARITH after variable Variables.COMP and epsilon is not in first set of Variables.EXPRARITH
 (DEBUG): ### Checking variable Variables.COMP
-(INFO):## END follow set for variable Variables.COMP: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.MINUS: ('-',)>}
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
+(INFO):## END follow set for variable Variables.COMP: {<Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>}
+
+
+(INFO):## BEGIN Calculating follow set for variable Variables.WHILE
+(DEBUG): Base case: Follow set for Variables.WHILE already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
+(INFO):## BEGIN Calculating follow set for variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.PROGRAM
+(DEBUG): ### Checking variable Variables.CODE
+(DEBUG): ### Checking variable Variables.INSTLIST
+(DEBUG): ### Checking variable Variables.INSTTAIL
+(DEBUG): ### Checking variable Variables.INSTRUCTION
+(DEBUG): Case 1: Found variable Variables.PRINT at the end of production [<Variables.PRINT: ('<Print>',)>]
+(INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
+(DEBUG): ### Checking variable Variables.ASSIGN
+(DEBUG): ### Checking variable Variables.EXPRARITH
+(DEBUG): ### Checking variable Variables.EXPRARITHPRIME
+(DEBUG): ### Checking variable Variables.PROD
+(DEBUG): ### Checking variable Variables.PRODPRIME
+(DEBUG): ### Checking variable Variables.ATOM
+(DEBUG): ### Checking variable Variables.IF
+(DEBUG): ### Checking variable Variables.ELSETAIL
+(DEBUG): ### Checking variable Variables.COND
+(DEBUG): ### Checking variable Variables.CONDPRIME
+(DEBUG): ### Checking variable Variables.AND
+(DEBUG): ### Checking variable Variables.ANDPRIME
+(DEBUG): ### Checking variable Variables.CONDATOM
+(DEBUG): ### Checking variable Variables.COMP
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
+(INFO):## END follow set for variable Variables.PRINT: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
+
+
+(INFO):## BEGIN Calculating follow set for variable Variables.READ
+(DEBUG): ### Checking variable Variables.PROGRAM
+(DEBUG): ### Checking variable Variables.CODE
+(DEBUG): ### Checking variable Variables.INSTLIST
+(DEBUG): ### Checking variable Variables.INSTTAIL
+(DEBUG): ### Checking variable Variables.INSTRUCTION
+(DEBUG): Case 1: Found variable Variables.READ at the end of production [<Variables.READ: ('<Read>',)>]
+(INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
+(DEBUG): ### Checking variable Variables.ASSIGN
+(DEBUG): ### Checking variable Variables.EXPRARITH
+(DEBUG): ### Checking variable Variables.EXPRARITHPRIME
+(DEBUG): ### Checking variable Variables.PROD
+(DEBUG): ### Checking variable Variables.PRODPRIME
+(DEBUG): ### Checking variable Variables.ATOM
+(DEBUG): ### Checking variable Variables.IF
+(DEBUG): ### Checking variable Variables.ELSETAIL
+(DEBUG): ### Checking variable Variables.COND
+(DEBUG): ### Checking variable Variables.CONDPRIME
+(DEBUG): ### Checking variable Variables.AND
+(DEBUG): ### Checking variable Variables.ANDPRIME
+(DEBUG): ### Checking variable Variables.CONDATOM
+(DEBUG): ### Checking variable Variables.COMP
+(DEBUG): ### Checking variable Variables.WHILE
+(DEBUG): ### Checking variable Variables.PRINT
+(DEBUG): ### Checking variable Variables.READ
+(INFO):## END follow set for variable Variables.READ: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 
 
 (INFO):## BEGIN Calculating follow set for variable Variables.CODE
@@ -566,80 +713,80 @@
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTTAIL
 (DEBUG): Base case: Follow set for Variables.INSTTAIL already computed: {<Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.EXPRARITHPRIME
-(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.PRODPRIME
-(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>, <Terminals.PLUS: ('+',)>}
+(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.ELSETAIL
 (DEBUG): Base case: Follow set for Variables.ELSETAIL already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.CONDPRIME
-(DEBUG): Base case: Follow set for Variables.CONDPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>}
+(DEBUG): Base case: Follow set for Variables.CONDPRIME already computed: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.ANDPRIME
-(DEBUG): Base case: Follow set for Variables.ANDPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.OR: ('or',)>, <Terminals.RBRACK: ('}',)>}
+(DEBUG): Base case: Follow set for Variables.ANDPRIME already computed: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.CODE
 (DEBUG): Base case: Follow set for Variables.CODE already computed: {<Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTTAIL
 (DEBUG): Base case: Follow set for Variables.INSTTAIL already computed: {<Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
-(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>}
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
-(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>}
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
-(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>}
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
-(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>}
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
-(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>}
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
-(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>}
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
-(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>}
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
-(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>}
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
-(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>}
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
-(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>}
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
-(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>}
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
-(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>}
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
-(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>}
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
-(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>}
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.INSTRUCTION
-(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>}
+(DEBUG): Base case: Follow set for Variables.INSTRUCTION already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.EXPRARITHPRIME
-(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.EXPRARITHPRIME
-(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.EXPRARITHPRIME
-(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.EXPRARITHPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.PRODPRIME
-(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>, <Terminals.PLUS: ('+',)>}
+(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.PRODPRIME
-(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>, <Terminals.PLUS: ('+',)>}
+(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.PRODPRIME
-(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>, <Terminals.PLUS: ('+',)>}
+(DEBUG): Base case: Follow set for Variables.PRODPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.END: ('end',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.DOTS: ('...',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.ATOM
-(DEBUG): Base case: Follow set for Variables.ATOM already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.RBRACK: ('}',)>, <Terminals.DIVIDE: ('/',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.PLUS: ('+',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.TIMES: ('*',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.ATOM already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.DOTS: ('...',)>, <Terminals.TIMES: ('*',)>, <Terminals.THEN: ('then',)>, <Terminals.DIVIDE: ('/',)>, <Terminals.END: ('end',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.ATOM
-(DEBUG): Base case: Follow set for Variables.ATOM already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.RBRACK: ('}',)>, <Terminals.DIVIDE: ('/',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.PLUS: ('+',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.TIMES: ('*',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.ATOM already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.DOTS: ('...',)>, <Terminals.TIMES: ('*',)>, <Terminals.THEN: ('then',)>, <Terminals.DIVIDE: ('/',)>, <Terminals.END: ('end',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.ATOM
-(DEBUG): Base case: Follow set for Variables.ATOM already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.RBRACK: ('}',)>, <Terminals.DIVIDE: ('/',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.PLUS: ('+',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.TIMES: ('*',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.ATOM already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.DOTS: ('...',)>, <Terminals.TIMES: ('*',)>, <Terminals.THEN: ('then',)>, <Terminals.DIVIDE: ('/',)>, <Terminals.END: ('end',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.ATOM
-(DEBUG): Base case: Follow set for Variables.ATOM already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.RBRACK: ('}',)>, <Terminals.DIVIDE: ('/',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.PLUS: ('+',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.TIMES: ('*',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.ATOM already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.DOTS: ('...',)>, <Terminals.TIMES: ('*',)>, <Terminals.THEN: ('then',)>, <Terminals.DIVIDE: ('/',)>, <Terminals.END: ('end',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.ATOM
-(DEBUG): Base case: Follow set for Variables.ATOM already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.RBRACK: ('}',)>, <Terminals.DIVIDE: ('/',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.PLUS: ('+',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.TIMES: ('*',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.ATOM already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.DOTS: ('...',)>, <Terminals.TIMES: ('*',)>, <Terminals.THEN: ('then',)>, <Terminals.DIVIDE: ('/',)>, <Terminals.END: ('end',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.ATOM
-(DEBUG): Base case: Follow set for Variables.ATOM already computed: {<Terminals.THEN: ('then',)>, <Terminals.SMALLER: ('<',)>, <Terminals.AND: ('and',)>, <Terminals.RBRACK: ('}',)>, <Terminals.DIVIDE: ('/',)>, <Terminals.OR: ('or',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.END: ('end',)>, <Terminals.PLUS: ('+',)>, <Terminals.DOTS: ('...',)>, <Terminals.EQUAL: ('=',)>, <Terminals.TIMES: ('*',)>, <Terminals.ELSE: ('else',)>, <Terminals.RPAREN: (')',)>}
+(DEBUG): Base case: Follow set for Variables.ATOM already computed: {<Terminals.OR: ('or',)>, <Terminals.SMALLER: ('<',)>, <Terminals.PLUS: ('+',)>, <Terminals.RPAREN: (')',)>, <Terminals.ELSE: ('else',)>, <Terminals.MINUS: ('-',)>, <Terminals.DO: ('do',)>, <Terminals.DOTS: ('...',)>, <Terminals.TIMES: ('*',)>, <Terminals.THEN: ('then',)>, <Terminals.DIVIDE: ('/',)>, <Terminals.END: ('end',)>, <Terminals.EQUAL: ('=',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.ELSETAIL
 (DEBUG): Base case: Follow set for Variables.ELSETAIL already computed: {<Terminals.ELSE: ('else',)>, <Terminals.DOTS: ('...',)>, <Terminals.END: ('end',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.CONDPRIME
-(DEBUG): Base case: Follow set for Variables.CONDPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>}
+(DEBUG): Base case: Follow set for Variables.CONDPRIME already computed: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.ANDPRIME
-(DEBUG): Base case: Follow set for Variables.ANDPRIME already computed: {<Terminals.THEN: ('then',)>, <Terminals.DO: ('do',)>, <Terminals.OR: ('or',)>, <Terminals.RBRACK: ('}',)>}
+(DEBUG): Base case: Follow set for Variables.ANDPRIME already computed: {<Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.CONDATOM
-(DEBUG): Base case: Follow set for Variables.CONDATOM already computed: {<Terminals.THEN: ('then',)>, <Terminals.AND: ('and',)>, <Terminals.RBRACK: ('}',)>, <Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>}
+(DEBUG): Base case: Follow set for Variables.CONDATOM already computed: {<Terminals.OR: ('or',)>, <Terminals.DO: ('do',)>, <Terminals.RBRACK: ('}',)>, <Terminals.AND: ('and',)>, <Terminals.THEN: ('then',)>}
 (INFO):## BEGIN Calculating follow set for variable Variables.COMP
-(DEBUG): Base case: Follow set for Variables.COMP already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.MINUS: ('-',)>}
+(DEBUG): Base case: Follow set for Variables.COMP already computed: {<Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>}

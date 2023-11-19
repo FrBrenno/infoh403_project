@@ -19,6 +19,9 @@ Checking non-terminal AND
 Checking non-terminal ANDPRIME
 Checking non-terminal CONDATOM
 Checking non-terminal COMP
+Checking non-terminal WHILE
+Checking non-terminal PRINT
+Checking non-terminal READ
 Condition 1: No common prefix check completed
 Condition 1: PASSED!
 #################### CONDITION 2 ####################
@@ -42,6 +45,9 @@ Checking non-terminal AND for ε-productions
 Checking non-terminal ANDPRIME for ε-productions
 Checking non-terminal CONDATOM for ε-productions
 Checking non-terminal COMP for ε-productions
+Checking non-terminal WHILE for ε-productions
+Checking non-terminal PRINT for ε-productions
+Checking non-terminal READ for ε-productions
 Condition 2: No ε-productions conflict check completed
 Condition 2: PASSED!
 #################### CONDITION bis ####################
@@ -55,33 +61,33 @@ Intersection between First sets of productions and Follow set is empty
 ### Checking non-terminal INSTRUCTION for LL(1)
 Checking rule: INSTRUCTION -> Variables.ASSIGN | Variables.IF
 Intersection between First sets of productions and Follow set is empty
-Checking rule: INSTRUCTION -> Variables.ASSIGN | Terminals.WHILE
+Checking rule: INSTRUCTION -> Variables.ASSIGN | Variables.WHILE
 Intersection between First sets of productions and Follow set is empty
-Checking rule: INSTRUCTION -> Variables.ASSIGN | Terminals.PRINT
+Checking rule: INSTRUCTION -> Variables.ASSIGN | Variables.PRINT
 Intersection between First sets of productions and Follow set is empty
-Checking rule: INSTRUCTION -> Variables.ASSIGN | Terminals.READ
+Checking rule: INSTRUCTION -> Variables.ASSIGN | Variables.READ
 Intersection between First sets of productions and Follow set is empty
 Checking rule: INSTRUCTION -> Variables.ASSIGN | Terminals.BEGIN
 Intersection between First sets of productions and Follow set is empty
-Checking rule: INSTRUCTION -> Variables.IF | Terminals.WHILE
+Checking rule: INSTRUCTION -> Variables.IF | Variables.WHILE
 Intersection between First sets of productions and Follow set is empty
-Checking rule: INSTRUCTION -> Variables.IF | Terminals.PRINT
+Checking rule: INSTRUCTION -> Variables.IF | Variables.PRINT
 Intersection between First sets of productions and Follow set is empty
-Checking rule: INSTRUCTION -> Variables.IF | Terminals.READ
+Checking rule: INSTRUCTION -> Variables.IF | Variables.READ
 Intersection between First sets of productions and Follow set is empty
 Checking rule: INSTRUCTION -> Variables.IF | Terminals.BEGIN
 Intersection between First sets of productions and Follow set is empty
-Checking rule: INSTRUCTION -> Terminals.WHILE | Terminals.PRINT
+Checking rule: INSTRUCTION -> Variables.WHILE | Variables.PRINT
 Intersection between First sets of productions and Follow set is empty
-Checking rule: INSTRUCTION -> Terminals.WHILE | Terminals.READ
+Checking rule: INSTRUCTION -> Variables.WHILE | Variables.READ
 Intersection between First sets of productions and Follow set is empty
-Checking rule: INSTRUCTION -> Terminals.WHILE | Terminals.BEGIN
+Checking rule: INSTRUCTION -> Variables.WHILE | Terminals.BEGIN
 Intersection between First sets of productions and Follow set is empty
-Checking rule: INSTRUCTION -> Terminals.PRINT | Terminals.READ
+Checking rule: INSTRUCTION -> Variables.PRINT | Variables.READ
 Intersection between First sets of productions and Follow set is empty
-Checking rule: INSTRUCTION -> Terminals.PRINT | Terminals.BEGIN
+Checking rule: INSTRUCTION -> Variables.PRINT | Terminals.BEGIN
 Intersection between First sets of productions and Follow set is empty
-Checking rule: INSTRUCTION -> Terminals.READ | Terminals.BEGIN
+Checking rule: INSTRUCTION -> Variables.READ | Terminals.BEGIN
 Intersection between First sets of productions and Follow set is empty
 ### Checking non-terminal EXPRARITHPRIME for LL(1)
 Checking rule: EXPRARITHPRIME -> Terminals.PLUS | Terminals.MINUS
