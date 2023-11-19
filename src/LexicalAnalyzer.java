@@ -132,7 +132,7 @@ class LexicalAnalyzer {
 
   private static final String ZZ_ROWMAP_PACKED_0 =
     "\0\0\0\42\0\104\0\146\0\210\0\146\0\146\0\252"+
-    "\0\146\0\314\0\146\0\314\0\356\0\146\0\146\0\u0110"+
+    "\0\146\0\146\0\146\0\314\0\356\0\146\0\146\0\u0110"+
     "\0\u0132\0\u0154\0\u0176\0\u0198\0\u01ba\0\u01dc\0\u01fe\0\u0220"+
     "\0\u0242\0\u0264\0\146\0\146\0\146\0\u0286\0\146\0\146"+
     "\0\146\0\u02a8\0\u02ca\0\u0154\0\u02ec\0\u030e\0\u0154\0\u0154"+
@@ -236,8 +236,8 @@ class LexicalAnalyzer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\3\0\1\11\1\0\2\11\1\1\1\11\1\1\1\11"+
-    "\2\1\2\11\13\1\3\11\1\1\3\11\34\1";
+    "\3\0\1\11\1\0\2\11\1\1\3\11\2\1\2\11"+
+    "\13\1\3\11\1\1\3\11\34\1";
 
   private static int [] zzUnpackAttribute() {
     int [] result = new int[61];
