@@ -38,13 +38,17 @@ public class ParseTree {
         this.children = chdn;
     }
 
+    public void addChild(ParseTree child) {
+        this.children.add(child);
+    }
+    
     /**
      * Writes the tree as LaTeX code
      */
     public String toLaTexTree() {
         StringBuilder treeTeX = new StringBuilder();
         treeTeX.append("[");
-        treeTeX.append("{" + label.toString() + "}");
+        treeTeX.append("{" + label.toTreeString() + "}");
         treeTeX.append(" ");
 
         for (ParseTree child : children) {

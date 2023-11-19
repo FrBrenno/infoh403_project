@@ -69,4 +69,16 @@ public class Symbol{
 		}
 		return "Non-terminal symbol";
 	}
+
+	public String toTreeString(){
+	if(this.isTerminal()){
+		final String value	= this.value != null? this.value.toString() : "null";
+		final String type		= this.type  != null? this.type.toString()  : "null";
+		if(value == "null"){
+			return type;
+		}
+		return type+" value: "+value;
+		}
+		return "Non-terminal symbol";
+	}
 }
