@@ -166,9 +166,9 @@ public class Parser {
     /*
     [7] <Instruction>   →	<Assign>
 	[8]                 →	<If>
-	[9]                 →	while<Cond>do<Instruction>
-	[10]                →	print([varName])
-	[11]                →	read([varName])
+	[9]                 →	<While>
+	[10]                →	<Print>
+	[11]                →	<Read>
 	[12]                →	begin<InstList>end
 
     * First de inst: begin, read, print, while, if, [VarName]
@@ -199,36 +199,28 @@ public class Parser {
         {
             usedRules.add(9);
             ParseTree whileTree = new ParseTree(new Symbol(LexicalUnit.WHILE));
-            parentTree.addChild(whileTree);
-            
-            ParseTree condTree = new ParseTree(new Symbol(LexicalUnit.COND));
             parentTree.addChild(
-                    cond(condTree)
+                    whileRule(whileTree)
             );
-
-            ParseTree doTree = new ParseTree(new Symbol(LexicalUnit.DO));
-            parentTree.addChild(doTree);
-
-            ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST));
-            parentTree.addChild(
-                    instruction(instructionTree)
-            );
-
             return parentTree;
         }
         else if (currentToken.getType() == LexicalUnit.PRINT)
         {
             usedRules.add(10);
-            // Brenno: J'attends pour faire cela, je pense que c'est mieux de faire une fonction print
-            // comme pour les autres règles => modifier la grammaire ou pas car cela ne modifie pas tellement
-            return null;
+            ParseTree printTree = new ParseTree(new Symbol(LexicalUnit.PRINT));
+            parentTree.addChild(
+                    printRule(printTree)
+            );
+            return parentTree;
         }
         else if (currentToken.getType() == LexicalUnit.READ)
         {
             usedRules.add(11);
-            // Brenno: J'attends pour faire cela, je pense que c'est mieux de faire une fonction read
-            // comme pour les autres règles => modifier la grammaire ou pas car cela ne modifie pas tellement
-            return null;
+            ParseTree readTree = new ParseTree(new Symbol(LexicalUnit.READ));
+            parentTree.addChild(
+                    readRule(readTree)
+            );
+            return parentTree;
         }
         else if(currentToken.getType() == LexicalUnit.BEG ){
             usedRules.add(12);
@@ -836,8 +828,122 @@ public class Parser {
         }
     }
 
-    private ParseTree read(ParseTree parentTree) {
-        return null;
+    /*
+    * [39] <While> -> while<Cond>do<Instruction>
+    * */
+    private ParseTree whileRule(ParseTree parentTree) {
+        nextToken();
+        printToken();
+        if (currentToken.getType() == LexicalUnit.COND) // le token "while" a été lu par la méthode instruction()
+        {
+            usedRules.add(39);
+            ParseTree condTree = new ParseTree(new Symbol(LexicalUnit.COND));
+            parentTree.addChild(
+                    cond(condTree)
+            );
+
+            ParseTree doTree = new ParseTree(new Symbol(LexicalUnit.DO));
+            parentTree.addChild(doTree);
+
+            ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST));
+            parentTree.addChild(
+                    instruction(instructionTree)
+            );
+            return parentTree;
+        }
+        else
+        {
+            syntaxError(currentToken);
+            return null;
+        }
+    }
+
+    /*
+    * [40] <Print> -> print(<VarName>)
+    * */
+    private ParseTree printRule(ParseTree parentTree) {
+        nextToken();
+        printToken();
+        if (currentToken.getType() == LexicalUnit.LPAREN) // "print" a été deja lu
+        {
+            usedRules.add(40);
+            ParseTree lparenTree = new ParseTree(currentToken);
+            parentTree.addChild(lparenTree);
+
+            nextToken();
+            if (currentToken.getType() == LexicalUnit.VARNAME)
+            {
+                ParseTree varNameTree = new ParseTree(currentToken);
+                parentTree.addChild(varNameTree);
+            }
+            else
+            {
+                syntaxError(currentToken);
+                return null;
+            }
+
+            nextToken();
+            if (currentToken.getType() == LexicalUnit.RPAREN)
+            {
+                ParseTree rparenTree = new ParseTree(currentToken);
+                parentTree.addChild(rparenTree);
+            }
+            else
+            {
+                syntaxError(currentToken);
+                return null;
+            }
+            return parentTree;
+        }
+        else
+        {
+            syntaxError(currentToken);
+            return null;
+        }
+    }
+
+    /*
+    * [41] <Read> -> read(<VarName>)
+    * */
+    private ParseTree readRule(ParseTree readTree) {
+        nextToken();
+        printToken();
+        if (currentToken.getType() == LexicalUnit.LPAREN)
+        {
+            usedRules.add(41);
+            ParseTree lparenTree = new ParseTree(currentToken);
+            readTree.addChild(lparenTree);
+
+            nextToken();
+            if (currentToken.getType() == LexicalUnit.VARNAME)
+            {
+                ParseTree varNameTree = new ParseTree(currentToken);
+                readTree.addChild(varNameTree);
+            }
+            else
+            {
+                syntaxError(currentToken);
+                return null;
+            }
+
+            nextToken();
+            if (currentToken.getType() == LexicalUnit.RPAREN)
+            {
+                ParseTree rparenTree = new ParseTree(currentToken);
+                readTree.addChild(rparenTree);
+            }
+            else
+            {
+                syntaxError(currentToken);
+                return null;
+            }
+            return readTree;
+        }
+        else
+        {
+            syntaxError(currentToken);
+            return null;
+        }
     }
 
 
