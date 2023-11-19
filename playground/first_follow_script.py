@@ -235,7 +235,6 @@ def action_table():
     Absolute number means the number of the rule in the grammar, not the number of the rule in the production.
     """
     action = {}
-    rule_number = 0
 
     # Initialize action table
     for variable in Variables:
@@ -244,18 +243,18 @@ def action_table():
             action[variable][terminal] = None
 
     # Fill action table
+    production_number = 1
     for variable in grammar:
         for production in grammar[variable]:
-            rule_number += 1
-            for terminal in first_sets[variable]:
+            first_set = first(production[0])
+            for terminal in first_set:
                 if terminal != Terminals.EPSILON:
-                    action[variable][terminal] = rule_number
-            if Terminals.EPSILON in first_sets[variable]:
-                for terminal in follow_sets[variable]:
-                    action[variable][terminal] = rule_number
-            if Variables.PROGRAM in first_sets[variable]:
-                action[variable][Terminals.EOF] = rule_number
-
+                    action[variable][terminal] = production_number
+            if Terminals.EPSILON in first_set:
+                follow_set = follow(variable)
+                for terminal in follow_set:
+                    action[variable][terminal] = production_number
+            production_number += 1
     return action
     
     
