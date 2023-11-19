@@ -41,7 +41,7 @@ EndOfLine = ["\r""\n""\r\n"]
 "do" {return new Symbol(LexicalUnit.DO, yyline, yycolumn, yytext());}
 "print" {return new Symbol(LexicalUnit.PRINT, yyline, yycolumn, yytext());}
 "read" {return new Symbol(LexicalUnit.READ, yyline, yycolumn, yytext());}
-
+"..." {return new Symbol(LexicalUnit.DOTS, yyline, yycolumn, yytext());}
 // Structure Symbols
 "(" {return new Symbol(LexicalUnit.LPAREN, yyline, yycolumn, yytext());}
 ")" {return new Symbol(LexicalUnit.RPAREN, yyline, yycolumn, yytext());}
