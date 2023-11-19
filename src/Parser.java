@@ -1,4 +1,3 @@
-import javax.imageio.stream.FileCacheImageInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,7 +57,7 @@ public class Parser {
             ParseTree codeTree = new ParseTree(new Symbol(LexicalUnit.CODE));
             root.addChild(
                     code(codeTree)
-            );  //les returns de chaque methode doivent rendre leurs arbres (plutôt que true false)
+            );
 
             ParseTree endTree = new ParseTree(new Symbol(LexicalUnit.END));
             root.addChild(endTree);
