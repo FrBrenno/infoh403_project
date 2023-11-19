@@ -67,11 +67,11 @@ class LexicalAnalyzer {
 
   private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
     "\12\0\1\1\2\2\1\1\31\0\1\3\1\4\1\5"+
-    "\1\6\1\7\1\0\1\10\1\0\1\11\12\12\1\13"+
-    "\1\0\1\14\1\15\3\0\32\16\6\0\1\17\1\20"+
-    "\1\21\1\22\1\23\1\24\1\25\1\26\1\27\2\21"+
-    "\1\30\1\21\1\31\1\32\1\33\1\21\1\34\1\35"+
-    "\1\36\2\21\1\37\3\21\1\40\1\0\1\41\7\0"+
+    "\1\6\1\7\1\0\1\10\1\11\1\12\12\13\1\14"+
+    "\1\0\1\15\1\16\3\0\32\17\6\0\1\20\1\21"+
+    "\1\22\1\23\1\24\1\25\1\26\1\27\1\30\2\22"+
+    "\1\31\1\22\1\32\1\33\1\34\1\22\1\35\1\36"+
+    "\1\37\2\22\1\40\3\22\1\41\1\0\1\42\7\0"+
     "\1\2\u01a2\0\2\2\326\0\u0100\2";
 
   private static int [] zzUnpackcmap_blocks() {
@@ -100,13 +100,14 @@ class LexicalAnalyzer {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\3\0\1\1\1\0\1\2\1\3\1\4\1\5\1\6"+
-    "\1\7\1\10\1\1\1\11\1\12\13\13\1\14\1\15"+
-    "\1\16\1\1\1\17\1\20\1\21\2\13\1\22\2\13"+
-    "\1\23\1\24\4\13\1\25\2\13\1\26\5\13\1\27"+
-    "\1\13\1\30\1\31\1\13\1\32\1\33\1\34";
+    "\1\1\1\7\1\10\1\1\1\11\1\12\13\13\1\14"+
+    "\1\15\1\16\1\1\1\17\1\20\1\0\1\21\2\13"+
+    "\1\22\2\13\1\23\1\24\4\13\1\25\1\26\2\13"+
+    "\1\27\5\13\1\30\1\13\1\31\1\32\1\13\1\33"+
+    "\1\34\1\35";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[61];
+    int [] result = new int[64];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -131,17 +132,17 @@ class LexicalAnalyzer {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\42\0\104\0\146\0\210\0\146\0\146\0\252"+
-    "\0\146\0\146\0\146\0\314\0\356\0\146\0\146\0\u0110"+
-    "\0\u0132\0\u0154\0\u0176\0\u0198\0\u01ba\0\u01dc\0\u01fe\0\u0220"+
-    "\0\u0242\0\u0264\0\146\0\146\0\146\0\u0286\0\146\0\146"+
-    "\0\146\0\u02a8\0\u02ca\0\u0154\0\u02ec\0\u030e\0\u0154\0\u0154"+
-    "\0\u0330\0\u0352\0\u0374\0\u0396\0\u0154\0\u03b8\0\u03da\0\u0154"+
-    "\0\u03fc\0\u041e\0\u0440\0\u0462\0\u0484\0\u0154\0\u04a6\0\u0154"+
-    "\0\u0154\0\u04c8\0\u0154\0\u0154\0\u0154";
+    "\0\0\0\43\0\106\0\151\0\214\0\151\0\151\0\257"+
+    "\0\151\0\151\0\322\0\151\0\365\0\u0118\0\151\0\151"+
+    "\0\u013b\0\u015e\0\u0181\0\u01a4\0\u01c7\0\u01ea\0\u020d\0\u0230"+
+    "\0\u0253\0\u0276\0\u0299\0\151\0\151\0\151\0\u02bc\0\151"+
+    "\0\151\0\u02df\0\151\0\u0302\0\u0325\0\u0181\0\u0348\0\u036b"+
+    "\0\u0181\0\u0181\0\u038e\0\u03b1\0\u03d4\0\u03f7\0\151\0\u0181"+
+    "\0\u041a\0\u043d\0\u0181\0\u0460\0\u0483\0\u04a6\0\u04c9\0\u04ec"+
+    "\0\u0181\0\u050f\0\u0181\0\u0181\0\u0532\0\u0181\0\u0181\0\u0181";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[61];
+    int [] result = new int[64];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -165,35 +166,36 @@ class LexicalAnalyzer {
 
   private static final String ZZ_TRANS_PACKED_0 =
     "\3\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13"+
-    "\1\14\1\15\1\16\1\17\1\4\1\20\1\21\1\22"+
-    "\1\23\1\24\3\22\1\25\2\22\1\26\1\27\1\30"+
-    "\1\22\1\31\1\32\1\33\1\34\1\4\1\35\1\0"+
-    "\41\4\1\0\1\36\36\4\45\0\1\37\44\0\1\40"+
-    "\45\0\1\14\44\0\1\41\36\0\1\22\3\0\13\22"+
-    "\1\42\6\22\14\0\1\22\3\0\5\22\1\43\14\22"+
-    "\14\0\1\22\3\0\22\22\14\0\1\22\3\0\14\22"+
-    "\1\44\5\22\14\0\1\22\3\0\12\22\1\45\1\46"+
-    "\6\22\14\0\1\22\3\0\6\22\1\47\13\22\14\0"+
-    "\1\22\3\0\16\22\1\50\3\22\14\0\1\22\3\0"+
-    "\16\22\1\51\3\22\14\0\1\22\3\0\5\22\1\52"+
-    "\14\22\14\0\1\22\3\0\10\22\1\53\11\22\14\0"+
-    "\1\22\3\0\10\22\1\54\11\22\5\0\1\35\50\0"+
-    "\1\22\3\0\4\22\1\55\15\22\14\0\1\22\3\0"+
-    "\7\22\1\56\12\22\14\0\1\22\3\0\17\22\1\57"+
-    "\2\22\14\0\1\22\3\0\4\22\1\60\15\22\14\0"+
-    "\1\22\3\0\11\22\1\61\10\22\14\0\1\22\3\0"+
-    "\1\22\1\62\20\22\14\0\1\22\3\0\5\22\1\63"+
-    "\14\22\14\0\1\22\3\0\11\22\1\64\10\22\14\0"+
-    "\1\22\3\0\11\22\1\65\10\22\14\0\1\22\3\0"+
-    "\5\22\1\66\14\22\14\0\1\22\3\0\13\22\1\67"+
-    "\6\22\14\0\1\22\3\0\4\22\1\70\15\22\14\0"+
-    "\1\22\3\0\13\22\1\71\6\22\14\0\1\22\3\0"+
-    "\12\22\1\72\7\22\14\0\1\22\3\0\13\22\1\73"+
-    "\6\22\14\0\1\22\3\0\20\22\1\74\1\22\14\0"+
-    "\1\22\3\0\5\22\1\75\14\22\2\0";
+    "\1\14\1\15\1\16\1\17\1\20\1\4\1\21\1\22"+
+    "\1\23\1\24\1\25\3\23\1\26\2\23\1\27\1\30"+
+    "\1\31\1\23\1\32\1\33\1\34\1\35\1\4\1\36"+
+    "\1\0\42\4\1\0\1\37\37\4\46\0\1\40\45\0"+
+    "\1\41\45\0\1\42\44\0\1\15\45\0\1\43\37\0"+
+    "\1\23\3\0\13\23\1\44\6\23\15\0\1\23\3\0"+
+    "\5\23\1\45\14\23\15\0\1\23\3\0\22\23\15\0"+
+    "\1\23\3\0\14\23\1\46\5\23\15\0\1\23\3\0"+
+    "\12\23\1\47\1\50\6\23\15\0\1\23\3\0\6\23"+
+    "\1\51\13\23\15\0\1\23\3\0\16\23\1\52\3\23"+
+    "\15\0\1\23\3\0\16\23\1\53\3\23\15\0\1\23"+
+    "\3\0\5\23\1\54\14\23\15\0\1\23\3\0\10\23"+
+    "\1\55\11\23\15\0\1\23\3\0\10\23\1\56\11\23"+
+    "\5\0\1\36\50\0\1\57\44\0\1\23\3\0\4\23"+
+    "\1\60\15\23\15\0\1\23\3\0\7\23\1\61\12\23"+
+    "\15\0\1\23\3\0\17\23\1\62\2\23\15\0\1\23"+
+    "\3\0\4\23\1\63\15\23\15\0\1\23\3\0\11\23"+
+    "\1\64\10\23\15\0\1\23\3\0\1\23\1\65\20\23"+
+    "\15\0\1\23\3\0\5\23\1\66\14\23\15\0\1\23"+
+    "\3\0\11\23\1\67\10\23\15\0\1\23\3\0\11\23"+
+    "\1\70\10\23\15\0\1\23\3\0\5\23\1\71\14\23"+
+    "\15\0\1\23\3\0\13\23\1\72\6\23\15\0\1\23"+
+    "\3\0\4\23\1\73\15\23\15\0\1\23\3\0\13\23"+
+    "\1\74\6\23\15\0\1\23\3\0\12\23\1\75\7\23"+
+    "\15\0\1\23\3\0\13\23\1\76\6\23\15\0\1\23"+
+    "\3\0\20\23\1\77\1\23\15\0\1\23\3\0\5\23"+
+    "\1\100\14\23\2\0";
 
   private static int [] zzUnpacktrans() {
-    int [] result = new int[1258];
+    int [] result = new int[1365];
     int offset = 0;
     offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -236,11 +238,12 @@ class LexicalAnalyzer {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\3\0\1\11\1\0\2\11\1\1\3\11\2\1\2\11"+
-    "\13\1\3\11\1\1\3\11\34\1";
+    "\3\0\1\11\1\0\2\11\1\1\2\11\1\1\1\11"+
+    "\2\1\2\11\13\1\3\11\1\1\2\11\1\0\1\11"+
+    "\13\1\1\11\21\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[61];
+    int [] result = new int[64];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -734,142 +737,147 @@ class LexicalAnalyzer {
             { 
             }
           // fall through
-          case 29: break;
+          case 30: break;
           case 2:
             { return new Symbol(LexicalUnit.LPAREN, yyline, yycolumn, yytext());
             }
           // fall through
-          case 30: break;
+          case 31: break;
           case 3:
             { return new Symbol(LexicalUnit.RPAREN, yyline, yycolumn, yytext());
             }
           // fall through
-          case 31: break;
+          case 32: break;
           case 4:
             { return new Symbol(LexicalUnit.TIMES, yyline, yycolumn, yytext());
             }
           // fall through
-          case 32: break;
+          case 33: break;
           case 5:
             { return new Symbol(LexicalUnit.PLUS, yyline, yycolumn, yytext());
             }
           // fall through
-          case 33: break;
+          case 34: break;
           case 6:
             { return new Symbol(LexicalUnit.MINUS, yyline, yycolumn, yytext());
             }
           // fall through
-          case 34: break;
+          case 35: break;
           case 7:
             { return new Symbol(LexicalUnit.DIVIDE, yyline, yycolumn, yytext());
             }
           // fall through
-          case 35: break;
+          case 36: break;
           case 8:
             { return new Symbol(LexicalUnit.NUMBER, yyline, yycolumn, yytext());
             }
           // fall through
-          case 36: break;
+          case 37: break;
           case 9:
             { return new Symbol(LexicalUnit.SMALLER, yyline, yycolumn, yytext());
             }
           // fall through
-          case 37: break;
+          case 38: break;
           case 10:
             { return new Symbol(LexicalUnit.EQUAL, yyline, yycolumn, yytext());
             }
           // fall through
-          case 38: break;
+          case 39: break;
           case 11:
             { return new Symbol(LexicalUnit.VARNAME, yyline, yycolumn, yytext());
             }
           // fall through
-          case 39: break;
+          case 40: break;
           case 12:
             { return new Symbol(LexicalUnit.LBRACK, yyline, yycolumn, yytext());
             }
           // fall through
-          case 40: break;
+          case 41: break;
           case 13:
             { return new Symbol(LexicalUnit.RBRACK, yyline, yycolumn, yytext());
             }
           // fall through
-          case 41: break;
+          case 42: break;
           case 14:
             { yybegin(YYINITIAL);
             }
           // fall through
-          case 42: break;
+          case 43: break;
           case 15:
             { yybegin(LONG_COMMENT);
             }
           // fall through
-          case 43: break;
+          case 44: break;
           case 16:
             { yybegin(SHORT_COMMENT);
             }
           // fall through
-          case 44: break;
+          case 45: break;
           case 17:
             { return new Symbol(LexicalUnit.ASSIGN, yyline, yycolumn, yytext());
             }
           // fall through
-          case 45: break;
+          case 46: break;
           case 18:
             { return new Symbol(LexicalUnit.DO, yyline, yycolumn, yytext());
             }
           // fall through
-          case 46: break;
+          case 47: break;
           case 19:
             { return new Symbol(LexicalUnit.IF, yyline, yycolumn, yytext());
             }
           // fall through
-          case 47: break;
+          case 48: break;
           case 20:
             { return new Symbol(LexicalUnit.OR, yyline, yycolumn, yytext());
             }
           // fall through
-          case 48: break;
-          case 21:
-            { return new Symbol(LexicalUnit.AND, yyline, yycolumn, yytext());
-            }
-          // fall through
           case 49: break;
-          case 22:
-            { return new Symbol(LexicalUnit.END, yyline, yycolumn, yytext());
+          case 21:
+            { return new Symbol(LexicalUnit.DOTS, yyline, yycolumn, yytext());
             }
           // fall through
           case 50: break;
-          case 23:
-            { return new Symbol(LexicalUnit.ELSE, yyline, yycolumn, yytext());
+          case 22:
+            { return new Symbol(LexicalUnit.AND, yyline, yycolumn, yytext());
             }
           // fall through
           case 51: break;
-          case 24:
-            { return new Symbol(LexicalUnit.READ, yyline, yycolumn, yytext());
+          case 23:
+            { return new Symbol(LexicalUnit.END, yyline, yycolumn, yytext());
             }
           // fall through
           case 52: break;
-          case 25:
-            { return new Symbol(LexicalUnit.THEN, yyline, yycolumn, yytext());
+          case 24:
+            { return new Symbol(LexicalUnit.ELSE, yyline, yycolumn, yytext());
             }
           // fall through
           case 53: break;
-          case 26:
-            { return new Symbol(LexicalUnit.BEG, yyline, yycolumn, yytext());
+          case 25:
+            { return new Symbol(LexicalUnit.READ, yyline, yycolumn, yytext());
             }
           // fall through
           case 54: break;
-          case 27:
-            { return new Symbol(LexicalUnit.PRINT, yyline, yycolumn, yytext());
+          case 26:
+            { return new Symbol(LexicalUnit.THEN, yyline, yycolumn, yytext());
             }
           // fall through
           case 55: break;
-          case 28:
-            { return new Symbol(LexicalUnit.WHILE, yyline, yycolumn, yytext());
+          case 27:
+            { return new Symbol(LexicalUnit.BEG, yyline, yycolumn, yytext());
             }
           // fall through
           case 56: break;
+          case 28:
+            { return new Symbol(LexicalUnit.PRINT, yyline, yycolumn, yytext());
+            }
+          // fall through
+          case 57: break;
+          case 29:
+            { return new Symbol(LexicalUnit.WHILE, yyline, yycolumn, yytext());
+            }
+          // fall through
+          case 58: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
