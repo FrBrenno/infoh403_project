@@ -1,12 +1,15 @@
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 public class Parser {
     Integer i = 0;
     private FileReader inputFile;
     private LexicalAnalyzer lexer;
     private Symbol currentToken;
     private ArrayList<Integer> usedRules;
+    private Integer lastRuleIndex = 0;
     
 
     public Parser(String filename) throws IOException {
@@ -17,7 +20,7 @@ public class Parser {
         }
         usedRules = new ArrayList<Integer>();
         lexer = new LexicalAnalyzer(inputFile);
-        nextToken();
+        currentToken = lexer.yylex();
     }
 
     public Symbol getCurrentToken() {
@@ -36,10 +39,22 @@ public class Parser {
     }
 
     public void printToken() {
-        if (usedRules.size() > 10)
-            System.out.println("lookahead ---> "+currentToken.toString()+" dans la règle : "+usedRules.subList(usedRules.size()-11, usedRules.size()-1));
+        if (usedRules.size() > 3)
+        {
+            List<Integer> subListUsedRules = usedRules.subList(lastRuleIndex, usedRules.size()-1);
+            if (!subListUsedRules.isEmpty()) {
+                System.out.println("Current token: " + currentToken.toString() + " | Used rules: " + subListUsedRules);
+            }
+            else
+            {
+                System.out.println("Current token: " + currentToken.toString() + " | Used rules: NO RULES" );
+            }
+            lastRuleIndex = usedRules.size() - 1;
+        }
         else
-        System.out.println("lookahead ---> "+currentToken.toString());
+        {
+            System.out.println("Current token: " + currentToken.toString());
+        }
     }
 
     /* 
@@ -49,32 +64,30 @@ public class Parser {
     public ParseTree program() {
         Symbol progSymbol = new Symbol(LexicalUnit.PROGRAM);
         ParseTree root = new ParseTree(progSymbol);
-        if (currentToken.getType() == LexicalUnit.BEG)
-        {
-            usedRules.add(1);
-            ParseTree beginTree = new ParseTree(currentToken);
-            root.addChild(beginTree);
 
-            ParseTree codeTree = new ParseTree(new Symbol(LexicalUnit.CODE));
-            root.addChild(
-                    code(codeTree)
-            );
+        usedRules.add(1);
+        ParseTree beginTree = new ParseTree(currentToken);
+        root.addChild(beginTree);
+        match(LexicalUnit.BEG);
 
-            nextToken();
-            if(currentToken.getType() == LexicalUnit.END){
-                ParseTree endTree = new ParseTree(currentToken);
-                root.addChild(endTree);
-            }
-            else {
-                syntaxError(currentToken);
-                return null;
-            }
+        ParseTree codeTree = new ParseTree(new Symbol(LexicalUnit.CODE));
+        root.addChild(
+                code(codeTree)
+        );
 
-            System.out.println(root.toForestPicture());
-            return root;
+        if(currentToken.getType() == LexicalUnit.END){
+            ParseTree endTree = new ParseTree(currentToken);
+            root.addChild(endTree);
         }
-        syntaxError(currentToken);
-        return null;
+        else {
+            syntaxError(currentToken);
+            return null;
+        }
+        System.out.println("############## Syntax analysis finished ##############");
+        System.out.println("Sequence des règles utilisée : \n" + usedRules);
+        System.out.println("Arbre de dérivation en Latex: \n");
+        System.out.println(root.toLaTeX());
+        return root;
     }
 
     /*
@@ -83,7 +96,6 @@ public class Parser {
      * First de <Code> : [VarName], begin, if, while, print, read, ε
      */
     private ParseTree code(ParseTree parentTree) {
-        nextToken();
         if (currentToken.getType() == LexicalUnit.VARNAME ||
             currentToken.getType() == LexicalUnit.BEG ||
             currentToken.getType() == LexicalUnit.IF ||
@@ -114,19 +126,20 @@ public class Parser {
      * First de <InstList> : [VarName], begin, if, while, print, read
      */
     private ParseTree instList(ParseTree parentTree) {
-            System.out.println("Entré dans instlist");
-            usedRules.add(4);
-            ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST));
-            parentTree.addChild(
-                    instruction(instructionTree)
-            );
-            System.out.println("sorti de instruction");
-            ParseTree instTailTree = new ParseTree(new Symbol(LexicalUnit.INSTTAIL));
-            parentTree.addChild(
-                    instTail(instTailTree)
-            );
-            return parentTree;
+        System.out.println("Entré dans instlist");
 
+        usedRules.add(4);
+        ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST));
+        parentTree.addChild(
+                instruction(instructionTree)
+        );
+
+        ParseTree instTailTree = new ParseTree(new Symbol(LexicalUnit.INSTTAIL));
+        parentTree.addChild(
+                instTail(instTailTree)
+        );
+        System.out.println("Sorti d'un instlist");
+        return parentTree;
     }
 
     /*
@@ -136,24 +149,25 @@ public class Parser {
     * First de instTail: ..., ε
     */
     private ParseTree instTail(ParseTree parentTree) {
-        nextToken();
+        System.out.println("Entré dans instTail");
         if (currentToken.getType() == LexicalUnit.DOTS)
         {
             usedRules.add(5);
             ParseTree dotsTree = new ParseTree(currentToken);
             parentTree.addChild(dotsTree);
-            System.out.println("Entré dans instTail");
-            nextToken();
+            match(LexicalUnit.DOTS);
+
             ParseTree instListTree = new ParseTree(new Symbol(LexicalUnit.INSTLIST));
             parentTree.addChild(
                     instList(instListTree)
             );
-            System.out.println("instlist fini");
+            System.out.println("insttail fini");
             return parentTree;
         }
         else if (currentToken.getType() == LexicalUnit.END)
         {
             usedRules.add(6);
+            System.out.println("insttail fini");
             return parentTree;
         }
         else {
@@ -174,7 +188,8 @@ public class Parser {
      */
     private ParseTree instruction(ParseTree parentTree)
     {
-
+        System.out.println("Entré dans instruction");
+        
         if (currentToken.getType() == LexicalUnit.VARNAME)
         {
             usedRules.add(7);
@@ -182,6 +197,7 @@ public class Parser {
             parentTree.addChild(
                     assign(assignTree)
             );
+            System.out.println("instruction fini");
             return parentTree;
         }
         else if (currentToken.getType() == LexicalUnit.IF)
@@ -191,6 +207,7 @@ public class Parser {
             parentTree.addChild(
                     ifRule(ifTree)
             );
+            System.out.println("instruction fini");
             return parentTree;
         }
         else if (currentToken.getType() == LexicalUnit.WHILE)
@@ -200,6 +217,7 @@ public class Parser {
             parentTree.addChild(
                     whileRule(whileTree)
             );
+            System.out.println("instruction fini");
             return parentTree;
         }
         else if (currentToken.getType() == LexicalUnit.PRINT)
@@ -209,6 +227,7 @@ public class Parser {
             parentTree.addChild(
                     printRule(printTree)
             );
+            System.out.println("instruction fini");
             return parentTree;
         }
         else if (currentToken.getType() == LexicalUnit.READ)
@@ -218,28 +237,30 @@ public class Parser {
             parentTree.addChild(
                     readRule(readTree)
             );
+            System.out.println("instruction fini");
             return parentTree;
         }
         else if(currentToken.getType() == LexicalUnit.BEG ){
             usedRules.add(12);
-            ParseTree beginTree = new ParseTree(currentToken);
+            ParseTree beginTree = new ParseTree(new Symbol(LexicalUnit.BEG));
             parentTree.addChild(beginTree);
-
-            nextToken();
+            match(LexicalUnit.BEG);
+            
             ParseTree instListTree = new ParseTree(new Symbol(LexicalUnit.INSTLIST));
             parentTree.addChild(
                     instList(instListTree)
             );
 
-            nextToken();
+            
             if(currentToken.getType() == LexicalUnit.END){
-                ParseTree endTree = new ParseTree(currentToken);
+                ParseTree endTree = new ParseTree(new Symbol(LexicalUnit.END));
                 parentTree.addChild(endTree);
             }
             else {
                 syntaxError(currentToken);
                 return null;
             }
+            System.out.println("instruction fini");
             return parentTree;
         }
         else {
@@ -254,27 +275,22 @@ public class Parser {
      * First de assign: [VarName]
      */
     private ParseTree assign(ParseTree parentTree) {
+        System.out.println("Entré dans assign");
+
         usedRules.add(13);
         ParseTree varNameTree = new ParseTree(currentToken);
         parentTree.addChild(varNameTree);
+        match(LexicalUnit.VARNAME);
 
-        nextToken();
-        if(currentToken.getType() == LexicalUnit.ASSIGN)
-        {
-            ParseTree assignTree = new ParseTree(currentToken);
-            parentTree.addChild(assignTree);
-        }
-        else {
-            syntaxError(currentToken);
-            return null;
-        }
+        ParseTree assignTree = new ParseTree(currentToken);
+        parentTree.addChild(assignTree);
+        match(LexicalUnit.ASSIGN);
         
-        nextToken();
         ParseTree exprTree = new ParseTree(new Symbol(LexicalUnit.EXPRARIT));
         parentTree.addChild(
                 expr(exprTree)
         );
-
+        System.out.println("assign fini");
         return parentTree;
     }
 
@@ -284,6 +300,7 @@ public class Parser {
     * First de exprArith: [VarName], [Number], (, -
     */
     private ParseTree expr(ParseTree parentTree) {
+        System.out.println("Entré dans expr");
         if (currentToken.getType() == LexicalUnit.VARNAME ||
             currentToken.getType() == LexicalUnit.NUMBER ||
             currentToken.getType() == LexicalUnit.LPAREN ||
@@ -299,6 +316,7 @@ public class Parser {
             parentTree.addChild(
                     exprArithPrime(exprArithPrimeTree)
             );
+            System.out.println("expr fini");
             return parentTree;
         }
         else {
@@ -313,12 +331,14 @@ public class Parser {
     * [17] <ExprArithPrime>  -> ε
     * */
     private ParseTree exprArithPrime(ParseTree parentTree) {
+        System.out.println("Entré dans exprArithPrime");
         if (currentToken.getType() == LexicalUnit.PLUS)
         {
             usedRules.add(15);
             ParseTree plusTree = new ParseTree(currentToken);
             parentTree.addChild(plusTree);
-
+            match(LexicalUnit.PLUS);
+            
             ParseTree prodTree = new ParseTree(new Symbol(LexicalUnit.PROD));
             parentTree.addChild(
                     prod(prodTree)
@@ -328,6 +348,7 @@ public class Parser {
             parentTree.addChild(
                     exprArithPrime(exprArithPrimeTree)
             );
+            System.out.println("exprArithPrime fini");
             return parentTree;
         }
         else if (currentToken.getType() == LexicalUnit.MINUS)
@@ -345,6 +366,7 @@ public class Parser {
             parentTree.addChild(
                     exprArithPrime(exprArithPrimeTree)
             );
+            System.out.println("exprArithPrime fini");
             return parentTree;
         }
         else if(currentToken.getType() == LexicalUnit.END ||
@@ -352,7 +374,6 @@ public class Parser {
                 currentToken.getType() == LexicalUnit.RPAREN ||
                 currentToken.getType() == LexicalUnit.ELSE ||
                 currentToken.getType() == LexicalUnit.THEN ||
-                currentToken.getType() == LexicalUnit.ELSE ||
                 currentToken.getType() == LexicalUnit.OR ||
                 currentToken.getType() == LexicalUnit.RBRACK ||
                 currentToken.getType() == LexicalUnit.DO ||
@@ -361,6 +382,7 @@ public class Parser {
                 currentToken.getType() == LexicalUnit.AND 
         ){
             usedRules.add(17);
+            System.out.println("exprArithPrime fini");
             return parentTree;
         }
         else {
@@ -373,6 +395,7 @@ public class Parser {
     * [18] <Prod> -> <Atom><ProdPrime>
     * */
     private ParseTree prod(ParseTree parentTree) {
+        System.out.println("Entré dans prod");
         if (currentToken.getType() == LexicalUnit.VARNAME ||
             currentToken.getType() == LexicalUnit.NUMBER ||
             currentToken.getType() == LexicalUnit.LPAREN ||
@@ -388,6 +411,7 @@ public class Parser {
             parentTree.addChild(
                     prodPrime(prodPrimeTree)
             );
+            System.out.println("prodprime fini");
             return parentTree;
         }
         else {
@@ -402,8 +426,7 @@ public class Parser {
     * [21] <ProdPrime> -> ε
     * */
     private ParseTree prodPrime(ParseTree parentTree) {
-        nextToken();
-        ;
+        System.out.println("Entré dans prodPrime");
         if (currentToken.getType() == LexicalUnit.TIMES)
         {
             usedRules.add(19);
@@ -419,6 +442,7 @@ public class Parser {
             parentTree.addChild(
                     prodPrime(prodPrimeTree)
             );
+            System.out.println("prodPrime fini");
             return parentTree;
         }
         else if (currentToken.getType() == LexicalUnit.DIVIDE)
@@ -436,6 +460,7 @@ public class Parser {
             parentTree.addChild(
                     prodPrime(prodPrimeTree)
             );
+            System.out.println("prodPrime fini");
             return parentTree;
         }
         else if(currentToken.getType() == LexicalUnit.END ||
@@ -453,6 +478,7 @@ public class Parser {
                 currentToken.getType() == LexicalUnit.DO
         ){
             usedRules.add(21);
+            System.out.println("prodPrime fini");
             return parentTree;
         }
         else {
@@ -468,11 +494,14 @@ public class Parser {
      * [25] <Atom> -> -<Atom>
      */
     private ParseTree atom(ParseTree parentTree) {
+        System.out.println("Entré dans atom");
         if (currentToken.getType() == LexicalUnit.VARNAME)
         {
             usedRules.add(22);
             ParseTree varNameTree = new ParseTree(currentToken);
             parentTree.addChild(varNameTree);
+            match(LexicalUnit.VARNAME);
+            System.out.println("atom fini");
             return parentTree;
         }
         else if(currentToken.getType() == LexicalUnit.NUMBER)
@@ -480,6 +509,9 @@ public class Parser {
             usedRules.add(23);
             ParseTree numberTree = new ParseTree(currentToken);
             parentTree.addChild(numberTree);
+            match(LexicalUnit.NUMBER);
+            System.out.println("atom fini");
+            
             return parentTree;
         }
         else if(currentToken.getType() == LexicalUnit.LPAREN)
@@ -487,17 +519,19 @@ public class Parser {
             usedRules.add(24);
             ParseTree lparenTree = new ParseTree(currentToken);
             parentTree.addChild(lparenTree);
+            match(LexicalUnit.LPAREN);
 
             ParseTree exprTree = new ParseTree(new Symbol(LexicalUnit.EXPRARIT));
             parentTree.addChild(
                     expr(exprTree)
             );
 
-            nextToken();
             if(currentToken.getType() == LexicalUnit.RPAREN)
             {
                 ParseTree rparenTree = new ParseTree(currentToken);
                 parentTree.addChild(rparenTree);
+                match(LexicalUnit.RPAREN);
+                System.out.println("atom fini");
                 return parentTree;
             }
             else {
@@ -510,11 +544,13 @@ public class Parser {
             usedRules.add(25);
             ParseTree minusTree = new ParseTree(currentToken);
             parentTree.addChild(minusTree);
+            match(LexicalUnit.MINUS);
 
             ParseTree atomTree = new ParseTree(new Symbol(LexicalUnit.ATOM));
             parentTree.addChild(
                     atom(atomTree)
             );
+            System.out.println("atom fini");
             return parentTree;
         }
         else {
@@ -527,6 +563,7 @@ public class Parser {
     * [26] <If> -> if<Cond>then<Instruction>else<ElseTail>
     * */
     private ParseTree ifRule(ParseTree parentTree) {
+        System.out.println("Entré dans if");
         usedRules.add(26);
         ParseTree ifTree = new ParseTree(currentToken);
         parentTree.addChild(ifTree);
@@ -537,7 +574,6 @@ public class Parser {
                 cond(condTree)
         );
 
-        nextToken();
         if(currentToken.getType()==LexicalUnit.THEN){
             ParseTree thenTree = new ParseTree(currentToken);
             parentTree.addChild(thenTree);}
@@ -551,7 +587,7 @@ public class Parser {
                 instruction(instructionTree)
         );
 
-        nextToken();
+        
         if(currentToken.getType() == LexicalUnit.ELSE)
         {
             ParseTree elseTree = new ParseTree(currentToken);
@@ -566,7 +602,7 @@ public class Parser {
         parentTree.addChild(
                 elseTail(elseTailTree)
         );
-        
+        System.out.println("if fini");
         return parentTree;
             
         
@@ -577,8 +613,8 @@ public class Parser {
     * [28] <ElseTail> -> ε
     * */
     private ParseTree elseTail(ParseTree parentTree) {
-        nextToken();
-        ;
+        System.out.println("Entré dans elseTail");
+        
         if (currentToken.getType() == LexicalUnit.VARNAME ||
             currentToken.getType() == LexicalUnit.BEG ||
             currentToken.getType() == LexicalUnit.IF ||
@@ -591,6 +627,7 @@ public class Parser {
             parentTree.addChild(
                     instruction(instructionTree)
             );
+            System.out.println("elseTail fini");
             return parentTree;
         }
         else if(currentToken.getType() == LexicalUnit.END ||
@@ -598,6 +635,7 @@ public class Parser {
                 currentToken.getType() == LexicalUnit.ELSE
         ){
             usedRules.add(28);
+            System.out.println("elseTail fini");
             return parentTree;
         }
         else {
@@ -610,7 +648,7 @@ public class Parser {
     * [29] <Cond> -> <And><CondPrime>
     * */
     private ParseTree cond(ParseTree parentTree) {
-
+        System.out.println("Entré dans cond");
         if (currentToken.getType() == LexicalUnit.VARNAME ||
             currentToken.getType() == LexicalUnit.NUMBER ||
             currentToken.getType() == LexicalUnit.LPAREN ||
@@ -628,6 +666,7 @@ public class Parser {
             parentTree.addChild(
                     condPrime(condPrimeTree)
             );
+            System.out.println("cond fini");
             return parentTree;
         }
         else {
@@ -641,7 +680,7 @@ public class Parser {
     * [31] <CondPrime> -> ε
     * */
     private ParseTree condPrime(ParseTree parentTree) {
-
+        System.out.println("Entré dans condPrime");
         if (currentToken.getType() == LexicalUnit.OR)
         {
             usedRules.add(30);
@@ -657,6 +696,7 @@ public class Parser {
             parentTree.addChild(
                     condPrime(condPrimeTree)
             );
+            System.out.println("condPrime fini");
             return parentTree;
         }
         else if(currentToken.getType() == LexicalUnit.THEN ||
@@ -664,6 +704,7 @@ public class Parser {
                 currentToken.getType() == LexicalUnit.DO
         ){
             usedRules.add(31);
+            System.out.println("condPrime fini");
             return parentTree;
         }
         else {
@@ -676,6 +717,7 @@ public class Parser {
     * [32] <And> -> <CondAtom><AndPrime>
     **/
     private ParseTree and(ParseTree parentTree) {
+        System.out.println("Entré dans and");
         if (currentToken.getType() == LexicalUnit.VARNAME ||
             currentToken.getType() == LexicalUnit.NUMBER ||
             currentToken.getType() == LexicalUnit.LPAREN ||
@@ -692,6 +734,7 @@ public class Parser {
             parentTree.addChild(
                     andPrime(andPrimeTree)
             );
+            System.out.println("and fini");
             return parentTree;
         }
         else {
@@ -705,6 +748,7 @@ public class Parser {
     * [34] <AndPrime> -> ε
     * */
     private ParseTree andPrime(ParseTree parentTree) {
+        System.out.println("Entré dans andPrime");
         if (currentToken.getType() == LexicalUnit.AND)
         {
             usedRules.add(33);
@@ -720,6 +764,7 @@ public class Parser {
             parentTree.addChild(
                     andPrime(andPrimeTree)
             );
+            System.out.println("andPrime fini");
             return parentTree;
         }
         else if(currentToken.getType() == LexicalUnit.THEN ||
@@ -728,6 +773,7 @@ public class Parser {
                 currentToken.getType() == LexicalUnit.DO
         ){
             usedRules.add(34);
+            System.out.println("andPrime fini");
             return parentTree;
         }
         else {
@@ -741,7 +787,7 @@ public class Parser {
     * [36] <CondAtom> -> <ExprArith><Comp><ExprArith>
     * */
     private ParseTree condAtom(ParseTree parentTree) {
-
+        System.out.println("Entré dans condAtom");
         if (currentToken.getType() == LexicalUnit.LBRACK)
         {
             usedRules.add(35);
@@ -753,7 +799,6 @@ public class Parser {
                     cond(condTree)
             );
 
-            nextToken();
             if(currentToken.getType() == LexicalUnit.RBRACK){
                 ParseTree rbrackTree = new ParseTree(currentToken);
                 parentTree.addChild(rbrackTree);
@@ -762,6 +807,7 @@ public class Parser {
                 syntaxError(currentToken);
                 return null;
             }
+            System.out.println("condAtom fini");
             return parentTree;
         }
         else if(currentToken.getType() == LexicalUnit.VARNAME ||
@@ -779,11 +825,12 @@ public class Parser {
             parentTree.addChild(
                     comp(compTree)
             );
-            nextToken();
+            
             ParseTree exprArithTree2 = new ParseTree(new Symbol(LexicalUnit.EXPRARIT));
             parentTree.addChild(
                     expr(exprArithTree2)
             );
+            System.out.println("condAtom fini");
             return parentTree;
         }
         else {
@@ -797,11 +844,14 @@ public class Parser {
     * [38]        -> <
     * */
     private ParseTree comp(ParseTree parentTree) {
+        System.out.println("Entré dans comp");
         if (currentToken.getType() == LexicalUnit.EQUAL)
         {
             usedRules.add(37);
             ParseTree equalTree = new ParseTree(currentToken);
             parentTree.addChild(equalTree);
+            match(LexicalUnit.EQUAL);
+            System.out.println("comp fini");
             return parentTree;
         }
         else if(currentToken.getType() == LexicalUnit.SMALLER)
@@ -809,6 +859,8 @@ public class Parser {
             usedRules.add(38);
             ParseTree smallerTree = new ParseTree(currentToken);
             parentTree.addChild(smallerTree);
+            match(LexicalUnit.SMALLER);
+            System.out.println("comp fini");
             return parentTree;
         }
         else {
@@ -821,34 +873,27 @@ public class Parser {
     * [39] <While> -> while<Cond>do<Instruction>
     * */
     private ParseTree whileRule(ParseTree parentTree) {
+        System.out.println("Entré dans whileRule");
+
         usedRules.add(39);
         ParseTree whileTree = new ParseTree(currentToken);
         parentTree.addChild(whileTree);
-        nextToken();
+        match(LexicalUnit.WHILE);
 
-            ParseTree condTree = new ParseTree(new Symbol(LexicalUnit.COND));
-            parentTree.addChild(
-                    cond(condTree)
-                    );
-        
+        ParseTree condTree = new ParseTree(new Symbol(LexicalUnit.COND));
+        parentTree.addChild(
+                cond(condTree)
+                );
 
-        if (currentToken.getType() == LexicalUnit.DO)
-        {
-            ParseTree doTree = new ParseTree(currentToken);
-            parentTree.addChild(doTree);
+        ParseTree doTree = new ParseTree(currentToken);
+        parentTree.addChild(doTree);
+        match(LexicalUnit.DO);
 
-        }
-        else
-        {
-            syntaxError(currentToken);
-            return null;
-        }
-        
-        nextToken();
         ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST));
         parentTree.addChild(
                 instruction(instructionTree)
         );
+        System.out.println("whileRule fini");
         return parentTree;
     }
     
@@ -857,11 +902,12 @@ public class Parser {
     * [40] <Print> -> print(<VarName>)
     * */
     private ParseTree printRule(ParseTree parentTree) {
+        System.out.println("Entré dans printRule");
         usedRules.add(40);
         ParseTree printTree = new ParseTree(currentToken);
         parentTree.addChild(printTree);
 
-        nextToken();
+        
         if (currentToken.getType() == LexicalUnit.LPAREN)
         {
             ParseTree lparenTree = new ParseTree(currentToken);
@@ -873,7 +919,7 @@ public class Parser {
             return null;
         }
         
-        nextToken();
+        
         if (currentToken.getType() == LexicalUnit.VARNAME)
         {
             ParseTree varNameTree = new ParseTree(currentToken);
@@ -885,7 +931,7 @@ public class Parser {
             return null;
         }
 
-        nextToken();
+        
         if (currentToken.getType() == LexicalUnit.RPAREN)
         {
             ParseTree rparenTree = new ParseTree(currentToken);
@@ -896,6 +942,7 @@ public class Parser {
             syntaxError(currentToken);
             return null;
         }
+        System.out.println("printRule fini");
         return parentTree;
     }
     
@@ -904,51 +951,46 @@ public class Parser {
     * [41] <Read> -> read(<VarName>)
     * */
     private ParseTree readRule(ParseTree parentTree) {
+        System.out.println("Entré dans readRule");
+
         usedRules.add(41);
         ParseTree readTree = new ParseTree(currentToken);
         parentTree.addChild(readTree);
-        nextToken();
-        if (currentToken.getType() == LexicalUnit.LPAREN)
-        {
-            ParseTree lparenTree = new ParseTree(currentToken);
-            parentTree.addChild(lparenTree);
-        }
-        else{
-            syntaxError(currentToken);
-            return null;
-        }
+        match(LexicalUnit.READ);
 
-        nextToken();
-        if (currentToken.getType() == LexicalUnit.VARNAME)
-        {
-            ParseTree varNameTree = new ParseTree(currentToken);
-            parentTree.addChild(varNameTree);
-        }
-        else
-        {
-            syntaxError(currentToken);
-            return null;
-        }
+        ParseTree lparenTree = new ParseTree(currentToken);
+        parentTree.addChild(lparenTree);
+        match(LexicalUnit.LPAREN);
 
-        nextToken();
-        if (currentToken.getType() == LexicalUnit.RPAREN)
-        {
-            ParseTree rparenTree = new ParseTree(currentToken);
-            parentTree.addChild(rparenTree);
-        }
-        else
-        {
-            syntaxError(currentToken);
-            return null;
-        }
+        ParseTree varNameTree = new ParseTree(currentToken);
+        parentTree.addChild(varNameTree);
+        match(LexicalUnit.VARNAME);
+
+        ParseTree rparenTree = new ParseTree(currentToken);
+        parentTree.addChild(rparenTree);
+        match(LexicalUnit.RPAREN);
+
+        System.out.println("readRule fini");
         return parentTree;
     }
 
+    private void match(LexicalUnit expected) {
+        if (currentToken.getType() == expected) {
+            System.out.println("Token Matched: " + currentToken.toString());
+            nextToken(); // Consume the current token if there's a match
+        } else {
+            System.out.println("############## Match error ##############");
+            System.out.println("The current token is: "+ currentToken.toString() + " but the expected one was: " + expected.toString());
+            syntaxError(currentToken);
+        }
+    }
 
 
     private void syntaxError(Symbol token) {
+        System.out.println("############## Syntax error ##############");
         System.out.println("Oh no ! Syntax error on line " + token.getLine() + " column " + token.getColumn() + " : " + token.getValue());
         System.out.println("Entré dans la règle : " + usedRules);
+        System.out.println("Progression: " + token.getLine() +token.getColumn());
         System.exit(1);
     }
 }
