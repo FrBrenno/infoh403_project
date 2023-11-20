@@ -24,26 +24,47 @@
 
 (INFO): Calculating first set for variable Variables.IF
 (DEBUG): Base case: First set for Variables.IF already computed: {<Terminals.IF: ('if',)>}
+(DEBUG): First Symbol of production [<Variables.WHILE: ('<While>',)>] is variable Variables.WHILE
+(INFO): Calculating first set for variable Variables.WHILE
 (DEBUG): First Symbol of production [<Terminals.WHILE: ('while',)>, <Variables.COND: ('<Cond>',)>, <Terminals.DO: ('do',)>, <Variables.INSTRUCTION: ('<Instruction>',)>] is terminal Terminals.WHILE
+(INFO):Computed first set for variable Variables.WHILE: {<Terminals.WHILE: ('while',)>}
+
+
+(INFO): Calculating first set for variable Variables.WHILE
+(DEBUG): Base case: First set for Variables.WHILE already computed: {<Terminals.WHILE: ('while',)>}
+(DEBUG): First Symbol of production [<Variables.PRINT: ('<Print>',)>] is variable Variables.PRINT
+(INFO): Calculating first set for variable Variables.PRINT
 (DEBUG): First Symbol of production [<Terminals.PRINT: ('print',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.RPAREN: (')',)>] is terminal Terminals.PRINT
+(INFO):Computed first set for variable Variables.PRINT: {<Terminals.PRINT: ('print',)>}
+
+
+(INFO): Calculating first set for variable Variables.PRINT
+(DEBUG): Base case: First set for Variables.PRINT already computed: {<Terminals.PRINT: ('print',)>}
+(DEBUG): First Symbol of production [<Variables.READ: ('<Read>',)>] is variable Variables.READ
+(INFO): Calculating first set for variable Variables.READ
 (DEBUG): First Symbol of production [<Terminals.READ: ('read',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.RPAREN: (')',)>] is terminal Terminals.READ
+(INFO):Computed first set for variable Variables.READ: {<Terminals.READ: ('read',)>}
+
+
+(INFO): Calculating first set for variable Variables.READ
+(DEBUG): Base case: First set for Variables.READ already computed: {<Terminals.READ: ('read',)>}
 (DEBUG): First Symbol of production [<Terminals.BEGIN: ('begin',)>, <Variables.INSTLIST: ('<InstList>',)>, <Terminals.END: ('end',)>] is terminal Terminals.BEGIN
-(INFO):Computed first set for variable Variables.INSTRUCTION: {<Terminals.IF: ('if',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.WHILE: ('while',)>}
+(INFO):Computed first set for variable Variables.INSTRUCTION: {<Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.WHILE: ('while',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.IF: ('if',)>}
 
 
 (INFO): Calculating first set for variable Variables.INSTRUCTION
-(DEBUG): Base case: First set for Variables.INSTRUCTION already computed: {<Terminals.IF: ('if',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.WHILE: ('while',)>}
-(INFO):Computed first set for variable Variables.INSTLIST: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.READ: ('read',)>, <Terminals.IF: ('if',)>, <Terminals.PRINT: ('print',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.WHILE: ('while',)>}
+(DEBUG): Base case: First set for Variables.INSTRUCTION already computed: {<Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.WHILE: ('while',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.IF: ('if',)>}
+(INFO):Computed first set for variable Variables.INSTLIST: {<Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.WHILE: ('while',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.IF: ('if',)>}
 
 
 (INFO): Calculating first set for variable Variables.INSTLIST
-(DEBUG): Base case: First set for Variables.INSTLIST already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.READ: ('read',)>, <Terminals.IF: ('if',)>, <Terminals.PRINT: ('print',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.WHILE: ('while',)>}
+(DEBUG): Base case: First set for Variables.INSTLIST already computed: {<Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.WHILE: ('while',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.IF: ('if',)>}
 (DEBUG): First Symbol of production [<Terminals.EPSILON: ('eps',)>] is terminal Terminals.EPSILON
-(INFO):Computed first set for variable Variables.CODE: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.READ: ('read',)>, <Terminals.IF: ('if',)>, <Terminals.PRINT: ('print',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.WHILE: ('while',)>}
+(INFO):Computed first set for variable Variables.CODE: {<Terminals.READ: ('read',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.PRINT: ('print',)>, <Terminals.WHILE: ('while',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.IF: ('if',)>}
 
 
 (INFO): Calculating first set for variable Variables.INSTLIST
-(DEBUG): Base case: First set for Variables.INSTLIST already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.READ: ('read',)>, <Terminals.IF: ('if',)>, <Terminals.PRINT: ('print',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.WHILE: ('while',)>}
+(DEBUG): Base case: First set for Variables.INSTLIST already computed: {<Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.WHILE: ('while',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.IF: ('if',)>}
 (INFO): Calculating first set for variable Variables.INSTTAIL
 (DEBUG): First Symbol of production [<Terminals.DOTS: ('...',)>, <Variables.INSTLIST: ('<InstList>',)>] is terminal Terminals.DOTS
 (DEBUG): First Symbol of production [<Terminals.EPSILON: ('eps',)>] is terminal Terminals.EPSILON
@@ -51,7 +72,7 @@
 
 
 (INFO): Calculating first set for variable Variables.INSTRUCTION
-(DEBUG): Base case: First set for Variables.INSTRUCTION already computed: {<Terminals.IF: ('if',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.WHILE: ('while',)>}
+(DEBUG): Base case: First set for Variables.INSTRUCTION already computed: {<Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.WHILE: ('while',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.IF: ('if',)>}
 (INFO): Calculating first set for variable Variables.ASSIGN
 (DEBUG): Base case: First set for Variables.ASSIGN already computed: {<Terminals.VARNAME: ('[VarName]',)>}
 (INFO): Calculating first set for variable Variables.EXPRARITH
@@ -63,17 +84,17 @@
 (DEBUG): First Symbol of production [<Terminals.NUMBER: ('[Number]',)>] is terminal Terminals.NUMBER
 (DEBUG): First Symbol of production [<Terminals.LPAREN: ('(',)>, <Variables.EXPRARITH: ('<ExprArith>',)>, <Terminals.RPAREN: (')',)>] is terminal Terminals.LPAREN
 (DEBUG): First Symbol of production [<Terminals.MINUS: ('-',)>, <Variables.ATOM: ('<Atom>',)>] is terminal Terminals.MINUS
-(INFO):Computed first set for variable Variables.ATOM: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
+(INFO):Computed first set for variable Variables.ATOM: {<Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>}
 
 
 (INFO): Calculating first set for variable Variables.ATOM
-(DEBUG): Base case: First set for Variables.ATOM already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
-(INFO):Computed first set for variable Variables.PROD: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
+(DEBUG): Base case: First set for Variables.ATOM already computed: {<Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>}
+(INFO):Computed first set for variable Variables.PROD: {<Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>}
 
 
 (INFO): Calculating first set for variable Variables.PROD
-(DEBUG): Base case: First set for Variables.PROD already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
-(INFO):Computed first set for variable Variables.EXPRARITH: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
+(DEBUG): Base case: First set for Variables.PROD already computed: {<Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>}
+(INFO):Computed first set for variable Variables.EXPRARITH: {<Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>}
 
 
 (INFO): Calculating first set for variable Variables.EXPRARITHPRIME
@@ -84,7 +105,7 @@
 
 
 (INFO): Calculating first set for variable Variables.PROD
-(DEBUG): Base case: First set for Variables.PROD already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
+(DEBUG): Base case: First set for Variables.PROD already computed: {<Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>}
 (INFO): Calculating first set for variable Variables.PRODPRIME
 (DEBUG): First Symbol of production [<Terminals.TIMES: ('*',)>, <Variables.ATOM: ('<Atom>',)>, <Variables.PRODPRIME: ("<Prod'>",)>] is terminal Terminals.TIMES
 (DEBUG): First Symbol of production [<Terminals.DIVIDE: ('/',)>, <Variables.ATOM: ('<Atom>',)>, <Variables.PRODPRIME: ("<Prod'>",)>] is terminal Terminals.DIVIDE
@@ -93,17 +114,17 @@
 
 
 (INFO): Calculating first set for variable Variables.ATOM
-(DEBUG): Base case: First set for Variables.ATOM already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
+(DEBUG): Base case: First set for Variables.ATOM already computed: {<Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>}
 (INFO): Calculating first set for variable Variables.IF
 (DEBUG): Base case: First set for Variables.IF already computed: {<Terminals.IF: ('if',)>}
 (INFO): Calculating first set for variable Variables.ELSETAIL
 (DEBUG): First Symbol of production [<Variables.INSTRUCTION: ('<Instruction>',)>] is variable Variables.INSTRUCTION
 (INFO): Calculating first set for variable Variables.INSTRUCTION
-(DEBUG): Base case: First set for Variables.INSTRUCTION already computed: {<Terminals.IF: ('if',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.WHILE: ('while',)>}
+(DEBUG): Base case: First set for Variables.INSTRUCTION already computed: {<Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.WHILE: ('while',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.IF: ('if',)>}
 (INFO): Calculating first set for variable Variables.INSTRUCTION
-(DEBUG): Base case: First set for Variables.INSTRUCTION already computed: {<Terminals.IF: ('if',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.WHILE: ('while',)>}
+(DEBUG): Base case: First set for Variables.INSTRUCTION already computed: {<Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.WHILE: ('while',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.IF: ('if',)>}
 (DEBUG): First Symbol of production [<Terminals.EPSILON: ('eps',)>] is terminal Terminals.EPSILON
-(INFO):Computed first set for variable Variables.ELSETAIL: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.READ: ('read',)>, <Terminals.IF: ('if',)>, <Terminals.PRINT: ('print',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.WHILE: ('while',)>}
+(INFO):Computed first set for variable Variables.ELSETAIL: {<Terminals.READ: ('read',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.PRINT: ('print',)>, <Terminals.WHILE: ('while',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.IF: ('if',)>}
 
 
 (INFO): Calculating first set for variable Variables.COND
@@ -112,46 +133,52 @@
 (DEBUG): First Symbol of production [<Variables.CONDATOM: ('<CondAtom>',)>, <Variables.ANDPRIME: ("<And'>",)>] is variable Variables.CONDATOM
 (INFO): Calculating first set for variable Variables.CONDATOM
 (DEBUG): First Symbol of production [<Terminals.LBRACK: ('{',)>, <Variables.COND: ('<Cond>',)>, <Terminals.RBRACK: ('}',)>] is terminal Terminals.LBRACK
-(DEBUG): First Symbol of production [<Variables.EXPRARITH: ('<ExprArith>',)>, <Variables.COMP: '<Comp>'>, <Variables.EXPRARITH: ('<ExprArith>',)>] is variable Variables.EXPRARITH
+(DEBUG): First Symbol of production [<Variables.EXPRARITH: ('<ExprArith>',)>, <Variables.COMP: ('<Comp>',)>, <Variables.EXPRARITH: ('<ExprArith>',)>] is variable Variables.EXPRARITH
 (INFO): Calculating first set for variable Variables.EXPRARITH
-(DEBUG): Base case: First set for Variables.EXPRARITH already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
+(DEBUG): Base case: First set for Variables.EXPRARITH already computed: {<Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>}
 (INFO): Calculating first set for variable Variables.EXPRARITH
-(DEBUG): Base case: First set for Variables.EXPRARITH already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
-(INFO):Computed first set for variable Variables.CONDATOM: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>}
+(DEBUG): Base case: First set for Variables.EXPRARITH already computed: {<Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>}
+(INFO):Computed first set for variable Variables.CONDATOM: {<Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.MINUS: ('-',)>}
 
 
 (INFO): Calculating first set for variable Variables.CONDATOM
-(DEBUG): Base case: First set for Variables.CONDATOM already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>}
-(INFO):Computed first set for variable Variables.AND: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>}
+(DEBUG): Base case: First set for Variables.CONDATOM already computed: {<Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.MINUS: ('-',)>}
+(INFO):Computed first set for variable Variables.AND: {<Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.MINUS: ('-',)>}
 
 
 (INFO): Calculating first set for variable Variables.AND
-(DEBUG): Base case: First set for Variables.AND already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>}
-(INFO):Computed first set for variable Variables.COND: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>}
+(DEBUG): Base case: First set for Variables.AND already computed: {<Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.MINUS: ('-',)>}
+(INFO):Computed first set for variable Variables.COND: {<Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.MINUS: ('-',)>}
 
 
 (INFO): Calculating first set for variable Variables.CONDPRIME
 (DEBUG): First Symbol of production [<Terminals.OR: ('or',)>, <Variables.AND: ('<And>',)>, <Variables.CONDPRIME: ("<Cond'>",)>] is terminal Terminals.OR
 (DEBUG): First Symbol of production [<Terminals.EPSILON: ('eps',)>] is terminal Terminals.EPSILON
-(INFO):Computed first set for variable Variables.CONDPRIME: {<Terminals.EPSILON: ('eps',)>, <Terminals.OR: ('or',)>}
+(INFO):Computed first set for variable Variables.CONDPRIME: {<Terminals.OR: ('or',)>, <Terminals.EPSILON: ('eps',)>}
 
 
 (INFO): Calculating first set for variable Variables.AND
-(DEBUG): Base case: First set for Variables.AND already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>}
+(DEBUG): Base case: First set for Variables.AND already computed: {<Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.MINUS: ('-',)>}
 (INFO): Calculating first set for variable Variables.ANDPRIME
 (DEBUG): First Symbol of production [<Terminals.AND: ('and',)>, <Variables.CONDATOM: ('<CondAtom>',)>, <Variables.ANDPRIME: ("<And'>",)>] is terminal Terminals.AND
 (DEBUG): First Symbol of production [<Terminals.EPSILON: ('eps',)>] is terminal Terminals.EPSILON
-(INFO):Computed first set for variable Variables.ANDPRIME: {<Terminals.AND: ('and',)>, <Terminals.EPSILON: ('eps',)>}
+(INFO):Computed first set for variable Variables.ANDPRIME: {<Terminals.EPSILON: ('eps',)>, <Terminals.AND: ('and',)>}
 
 
 (INFO): Calculating first set for variable Variables.CONDATOM
-(DEBUG): Base case: First set for Variables.CONDATOM already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>}
+(DEBUG): Base case: First set for Variables.CONDATOM already computed: {<Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.MINUS: ('-',)>}
 (INFO): Calculating first set for variable Variables.COMP
 (DEBUG): First Symbol of production [<Terminals.EQUAL: ('=',)>] is terminal Terminals.EQUAL
 (DEBUG): First Symbol of production [<Terminals.SMALLER: ('<',)>] is terminal Terminals.SMALLER
 (INFO):Computed first set for variable Variables.COMP: {<Terminals.SMALLER: ('<',)>, <Terminals.EQUAL: ('=',)>}
 
 
+(INFO): Calculating first set for variable Variables.WHILE
+(DEBUG): Base case: First set for Variables.WHILE already computed: {<Terminals.WHILE: ('while',)>}
+(INFO): Calculating first set for variable Variables.PRINT
+(DEBUG): Base case: First set for Variables.PRINT already computed: {<Terminals.PRINT: ('print',)>}
+(INFO): Calculating first set for variable Variables.READ
+(DEBUG): Base case: First set for Variables.READ already computed: {<Terminals.READ: ('read',)>}
 (INFO): Calculating first set for variable Variables.INSTTAIL
 (DEBUG): Base case: First set for Variables.INSTTAIL already computed: {<Terminals.EPSILON: ('eps',)>, <Terminals.DOTS: ('...',)>}
 (INFO): Calculating first set for variable Variables.INSTTAIL
@@ -160,58 +187,58 @@
 (DEBUG): Base case: First set for Variables.COMP already computed: {<Terminals.SMALLER: ('<',)>, <Terminals.EQUAL: ('=',)>}
 (INFO): Calculating first set for variable Variables.COMP
 (DEBUG): Base case: First set for Variables.COMP already computed: {<Terminals.SMALLER: ('<',)>, <Terminals.EQUAL: ('=',)>}
-(INFO): Calculating first set for variable Variables.EXPRARITHPRIME
-(DEBUG): Base case: First set for Variables.EXPRARITHPRIME already computed: {<Terminals.PLUS: ('+',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.MINUS: ('-',)>}
-(INFO): Calculating first set for variable Variables.EXPRARITHPRIME
-(DEBUG): Base case: First set for Variables.EXPRARITHPRIME already computed: {<Terminals.PLUS: ('+',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.MINUS: ('-',)>}
-(INFO): Calculating first set for variable Variables.EXPRARITHPRIME
-(DEBUG): Base case: First set for Variables.EXPRARITHPRIME already computed: {<Terminals.PLUS: ('+',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.MINUS: ('-',)>}
-(INFO): Calculating first set for variable Variables.EXPRARITHPRIME
-(DEBUG): Base case: First set for Variables.EXPRARITHPRIME already computed: {<Terminals.PLUS: ('+',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.MINUS: ('-',)>}
-(INFO): Calculating first set for variable Variables.EXPRARITHPRIME
-(DEBUG): Base case: First set for Variables.EXPRARITHPRIME already computed: {<Terminals.PLUS: ('+',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.MINUS: ('-',)>}
-(INFO): Calculating first set for variable Variables.EXPRARITHPRIME
-(DEBUG): Base case: First set for Variables.EXPRARITHPRIME already computed: {<Terminals.PLUS: ('+',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.MINUS: ('-',)>}
-(INFO): Calculating first set for variable Variables.PRODPRIME
-(DEBUG): Base case: First set for Variables.PRODPRIME already computed: {<Terminals.DIVIDE: ('/',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.TIMES: ('*',)>}
-(INFO): Calculating first set for variable Variables.PRODPRIME
-(DEBUG): Base case: First set for Variables.PRODPRIME already computed: {<Terminals.DIVIDE: ('/',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.TIMES: ('*',)>}
-(INFO): Calculating first set for variable Variables.PRODPRIME
-(DEBUG): Base case: First set for Variables.PRODPRIME already computed: {<Terminals.DIVIDE: ('/',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.TIMES: ('*',)>}
-(INFO): Calculating first set for variable Variables.PRODPRIME
-(DEBUG): Base case: First set for Variables.PRODPRIME already computed: {<Terminals.DIVIDE: ('/',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.TIMES: ('*',)>}
-(INFO): Calculating first set for variable Variables.PRODPRIME
-(DEBUG): Base case: First set for Variables.PRODPRIME already computed: {<Terminals.DIVIDE: ('/',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.TIMES: ('*',)>}
-(INFO): Calculating first set for variable Variables.PRODPRIME
-(DEBUG): Base case: First set for Variables.PRODPRIME already computed: {<Terminals.DIVIDE: ('/',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.TIMES: ('*',)>}
-(INFO): Calculating first set for variable Variables.CONDPRIME
-(DEBUG): Base case: First set for Variables.CONDPRIME already computed: {<Terminals.EPSILON: ('eps',)>, <Terminals.OR: ('or',)>}
-(INFO): Calculating first set for variable Variables.CONDPRIME
-(DEBUG): Base case: First set for Variables.CONDPRIME already computed: {<Terminals.EPSILON: ('eps',)>, <Terminals.OR: ('or',)>}
-(INFO): Calculating first set for variable Variables.CONDPRIME
-(DEBUG): Base case: First set for Variables.CONDPRIME already computed: {<Terminals.EPSILON: ('eps',)>, <Terminals.OR: ('or',)>}
-(INFO): Calculating first set for variable Variables.CONDPRIME
-(DEBUG): Base case: First set for Variables.CONDPRIME already computed: {<Terminals.EPSILON: ('eps',)>, <Terminals.OR: ('or',)>}
 (INFO): Calculating first set for variable Variables.ANDPRIME
-(DEBUG): Base case: First set for Variables.ANDPRIME already computed: {<Terminals.AND: ('and',)>, <Terminals.EPSILON: ('eps',)>}
+(DEBUG): Base case: First set for Variables.ANDPRIME already computed: {<Terminals.EPSILON: ('eps',)>, <Terminals.AND: ('and',)>}
 (INFO): Calculating first set for variable Variables.ANDPRIME
-(DEBUG): Base case: First set for Variables.ANDPRIME already computed: {<Terminals.AND: ('and',)>, <Terminals.EPSILON: ('eps',)>}
+(DEBUG): Base case: First set for Variables.ANDPRIME already computed: {<Terminals.EPSILON: ('eps',)>, <Terminals.AND: ('and',)>}
+(INFO): Calculating first set for variable Variables.CONDPRIME
+(DEBUG): Base case: First set for Variables.CONDPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.EPSILON: ('eps',)>}
+(INFO): Calculating first set for variable Variables.CONDPRIME
+(DEBUG): Base case: First set for Variables.CONDPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.EPSILON: ('eps',)>}
+(INFO): Calculating first set for variable Variables.CONDPRIME
+(DEBUG): Base case: First set for Variables.CONDPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.EPSILON: ('eps',)>}
+(INFO): Calculating first set for variable Variables.CONDPRIME
+(DEBUG): Base case: First set for Variables.CONDPRIME already computed: {<Terminals.OR: ('or',)>, <Terminals.EPSILON: ('eps',)>}
 (INFO): Calculating first set for variable Variables.ANDPRIME
-(DEBUG): Base case: First set for Variables.ANDPRIME already computed: {<Terminals.AND: ('and',)>, <Terminals.EPSILON: ('eps',)>}
+(DEBUG): Base case: First set for Variables.ANDPRIME already computed: {<Terminals.EPSILON: ('eps',)>, <Terminals.AND: ('and',)>}
 (INFO): Calculating first set for variable Variables.ANDPRIME
-(DEBUG): Base case: First set for Variables.ANDPRIME already computed: {<Terminals.AND: ('and',)>, <Terminals.EPSILON: ('eps',)>}
+(DEBUG): Base case: First set for Variables.ANDPRIME already computed: {<Terminals.EPSILON: ('eps',)>, <Terminals.AND: ('and',)>}
+(INFO): Calculating first set for variable Variables.EXPRARITHPRIME
+(DEBUG): Base case: First set for Variables.EXPRARITHPRIME already computed: {<Terminals.PLUS: ('+',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.MINUS: ('-',)>}
+(INFO): Calculating first set for variable Variables.EXPRARITHPRIME
+(DEBUG): Base case: First set for Variables.EXPRARITHPRIME already computed: {<Terminals.PLUS: ('+',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.MINUS: ('-',)>}
+(INFO): Calculating first set for variable Variables.EXPRARITHPRIME
+(DEBUG): Base case: First set for Variables.EXPRARITHPRIME already computed: {<Terminals.PLUS: ('+',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.MINUS: ('-',)>}
+(INFO): Calculating first set for variable Variables.EXPRARITHPRIME
+(DEBUG): Base case: First set for Variables.EXPRARITHPRIME already computed: {<Terminals.PLUS: ('+',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.MINUS: ('-',)>}
+(INFO): Calculating first set for variable Variables.EXPRARITHPRIME
+(DEBUG): Base case: First set for Variables.EXPRARITHPRIME already computed: {<Terminals.PLUS: ('+',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.MINUS: ('-',)>}
+(INFO): Calculating first set for variable Variables.EXPRARITHPRIME
+(DEBUG): Base case: First set for Variables.EXPRARITHPRIME already computed: {<Terminals.PLUS: ('+',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.MINUS: ('-',)>}
+(INFO): Calculating first set for variable Variables.PRODPRIME
+(DEBUG): Base case: First set for Variables.PRODPRIME already computed: {<Terminals.DIVIDE: ('/',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.TIMES: ('*',)>}
+(INFO): Calculating first set for variable Variables.PRODPRIME
+(DEBUG): Base case: First set for Variables.PRODPRIME already computed: {<Terminals.DIVIDE: ('/',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.TIMES: ('*',)>}
+(INFO): Calculating first set for variable Variables.PRODPRIME
+(DEBUG): Base case: First set for Variables.PRODPRIME already computed: {<Terminals.DIVIDE: ('/',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.TIMES: ('*',)>}
+(INFO): Calculating first set for variable Variables.PRODPRIME
+(DEBUG): Base case: First set for Variables.PRODPRIME already computed: {<Terminals.DIVIDE: ('/',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.TIMES: ('*',)>}
+(INFO): Calculating first set for variable Variables.PRODPRIME
+(DEBUG): Base case: First set for Variables.PRODPRIME already computed: {<Terminals.DIVIDE: ('/',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.TIMES: ('*',)>}
+(INFO): Calculating first set for variable Variables.PRODPRIME
+(DEBUG): Base case: First set for Variables.PRODPRIME already computed: {<Terminals.DIVIDE: ('/',)>, <Terminals.EPSILON: ('eps',)>, <Terminals.TIMES: ('*',)>}
 (INFO): Calculating first set for variable Variables.EXPRARITH
-(DEBUG): Base case: First set for Variables.EXPRARITH already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
+(DEBUG): Base case: First set for Variables.EXPRARITH already computed: {<Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>}
 (INFO): Calculating first set for variable Variables.EXPRARITH
-(DEBUG): Base case: First set for Variables.EXPRARITH already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
+(DEBUG): Base case: First set for Variables.EXPRARITH already computed: {<Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>}
 (INFO): Calculating first set for variable Terminals.BEGIN
 (DEBUG): Base case: Found terminal Terminals.BEGIN in variable Terminals.BEGIN
 (INFO): Calculating first set for variable Variables.INSTLIST
-(DEBUG): Base case: First set for Variables.INSTLIST already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.READ: ('read',)>, <Terminals.IF: ('if',)>, <Terminals.PRINT: ('print',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.WHILE: ('while',)>}
+(DEBUG): Base case: First set for Variables.INSTLIST already computed: {<Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.WHILE: ('while',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.IF: ('if',)>}
 (INFO): Calculating first set for variable Terminals.EPSILON
 (DEBUG): Base case: Found terminal Terminals.EPSILON in variable Terminals.EPSILON
 (INFO): Calculating first set for variable Variables.INSTRUCTION
-(DEBUG): Base case: First set for Variables.INSTRUCTION already computed: {<Terminals.IF: ('if',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.WHILE: ('while',)>}
+(DEBUG): Base case: First set for Variables.INSTRUCTION already computed: {<Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.WHILE: ('while',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.IF: ('if',)>}
 (INFO): Calculating first set for variable Terminals.DOTS
 (DEBUG): Base case: Found terminal Terminals.DOTS in variable Terminals.DOTS
 (INFO): Calculating first set for variable Terminals.EPSILON
@@ -220,18 +247,18 @@
 (DEBUG): Base case: First set for Variables.ASSIGN already computed: {<Terminals.VARNAME: ('[VarName]',)>}
 (INFO): Calculating first set for variable Variables.IF
 (DEBUG): Base case: First set for Variables.IF already computed: {<Terminals.IF: ('if',)>}
-(INFO): Calculating first set for variable Terminals.WHILE
-(DEBUG): Base case: Found terminal Terminals.WHILE in variable Terminals.WHILE
-(INFO): Calculating first set for variable Terminals.PRINT
-(DEBUG): Base case: Found terminal Terminals.PRINT in variable Terminals.PRINT
-(INFO): Calculating first set for variable Terminals.READ
-(DEBUG): Base case: Found terminal Terminals.READ in variable Terminals.READ
+(INFO): Calculating first set for variable Variables.WHILE
+(DEBUG): Base case: First set for Variables.WHILE already computed: {<Terminals.WHILE: ('while',)>}
+(INFO): Calculating first set for variable Variables.PRINT
+(DEBUG): Base case: First set for Variables.PRINT already computed: {<Terminals.PRINT: ('print',)>}
+(INFO): Calculating first set for variable Variables.READ
+(DEBUG): Base case: First set for Variables.READ already computed: {<Terminals.READ: ('read',)>}
 (INFO): Calculating first set for variable Terminals.BEGIN
 (DEBUG): Base case: First set for Terminals.BEGIN already computed: {<Terminals.BEGIN: ('begin',)>}
 (INFO): Calculating first set for variable Terminals.VARNAME
 (DEBUG): Base case: Found terminal Terminals.VARNAME in variable Terminals.VARNAME
 (INFO): Calculating first set for variable Variables.PROD
-(DEBUG): Base case: First set for Variables.PROD already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
+(DEBUG): Base case: First set for Variables.PROD already computed: {<Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>}
 (INFO): Calculating first set for variable Terminals.PLUS
 (DEBUG): Base case: Found terminal Terminals.PLUS in variable Terminals.PLUS
 (INFO): Calculating first set for variable Terminals.MINUS
@@ -239,7 +266,7 @@
 (INFO): Calculating first set for variable Terminals.EPSILON
 (DEBUG): Base case: First set for Terminals.EPSILON already computed: {<Terminals.EPSILON: ('eps',)>}
 (INFO): Calculating first set for variable Variables.ATOM
-(DEBUG): Base case: First set for Variables.ATOM already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
+(DEBUG): Base case: First set for Variables.ATOM already computed: {<Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>}
 (INFO): Calculating first set for variable Terminals.TIMES
 (DEBUG): Base case: Found terminal Terminals.TIMES in variable Terminals.TIMES
 (INFO): Calculating first set for variable Terminals.DIVIDE
@@ -257,17 +284,17 @@
 (INFO): Calculating first set for variable Terminals.IF
 (DEBUG): Base case: Found terminal Terminals.IF in variable Terminals.IF
 (INFO): Calculating first set for variable Variables.INSTRUCTION
-(DEBUG): Base case: First set for Variables.INSTRUCTION already computed: {<Terminals.IF: ('if',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.WHILE: ('while',)>}
+(DEBUG): Base case: First set for Variables.INSTRUCTION already computed: {<Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.WHILE: ('while',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.IF: ('if',)>}
 (INFO): Calculating first set for variable Terminals.EPSILON
 (DEBUG): Base case: First set for Terminals.EPSILON already computed: {<Terminals.EPSILON: ('eps',)>}
 (INFO): Calculating first set for variable Variables.AND
-(DEBUG): Base case: First set for Variables.AND already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>}
+(DEBUG): Base case: First set for Variables.AND already computed: {<Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.MINUS: ('-',)>}
 (INFO): Calculating first set for variable Terminals.OR
 (DEBUG): Base case: Found terminal Terminals.OR in variable Terminals.OR
 (INFO): Calculating first set for variable Terminals.EPSILON
 (DEBUG): Base case: First set for Terminals.EPSILON already computed: {<Terminals.EPSILON: ('eps',)>}
 (INFO): Calculating first set for variable Variables.CONDATOM
-(DEBUG): Base case: First set for Variables.CONDATOM already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>}
+(DEBUG): Base case: First set for Variables.CONDATOM already computed: {<Terminals.LBRACK: ('{',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.MINUS: ('-',)>}
 (INFO): Calculating first set for variable Terminals.AND
 (DEBUG): Base case: Found terminal Terminals.AND in variable Terminals.AND
 (INFO): Calculating first set for variable Terminals.EPSILON
@@ -275,13 +302,19 @@
 (INFO): Calculating first set for variable Terminals.LBRACK
 (DEBUG): Base case: Found terminal Terminals.LBRACK in variable Terminals.LBRACK
 (INFO): Calculating first set for variable Variables.EXPRARITH
-(DEBUG): Base case: First set for Variables.EXPRARITH already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
+(DEBUG): Base case: First set for Variables.EXPRARITH already computed: {<Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>}
 (INFO): Calculating first set for variable Terminals.EQUAL
 (DEBUG): Base case: Found terminal Terminals.EQUAL in variable Terminals.EQUAL
 (INFO): Calculating first set for variable Terminals.SMALLER
 (DEBUG): Base case: Found terminal Terminals.SMALLER in variable Terminals.SMALLER
+(INFO): Calculating first set for variable Terminals.WHILE
+(DEBUG): Base case: Found terminal Terminals.WHILE in variable Terminals.WHILE
+(INFO): Calculating first set for variable Terminals.PRINT
+(DEBUG): Base case: Found terminal Terminals.PRINT in variable Terminals.PRINT
+(INFO): Calculating first set for variable Terminals.READ
+(DEBUG): Base case: Found terminal Terminals.READ in variable Terminals.READ
 (INFO): Calculating first set for variable Variables.INSTLIST
-(DEBUG): Base case: First set for Variables.INSTLIST already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.READ: ('read',)>, <Terminals.IF: ('if',)>, <Terminals.PRINT: ('print',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.WHILE: ('while',)>}
+(DEBUG): Base case: First set for Variables.INSTLIST already computed: {<Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.WHILE: ('while',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.IF: ('if',)>}
 (INFO): Calculating first set for variable Terminals.EPSILON
 (DEBUG): Base case: First set for Terminals.EPSILON already computed: {<Terminals.EPSILON: ('eps',)>}
 (INFO): Calculating first set for variable Terminals.DOTS
@@ -294,58 +327,58 @@
 (DEBUG): Base case: First set for Variables.IF already computed: {<Terminals.IF: ('if',)>}
 (INFO): Calculating first set for variable Variables.ASSIGN
 (DEBUG): Base case: First set for Variables.ASSIGN already computed: {<Terminals.VARNAME: ('[VarName]',)>}
-(INFO): Calculating first set for variable Terminals.WHILE
-(DEBUG): Base case: First set for Terminals.WHILE already computed: {<Terminals.WHILE: ('while',)>}
+(INFO): Calculating first set for variable Variables.WHILE
+(DEBUG): Base case: First set for Variables.WHILE already computed: {<Terminals.WHILE: ('while',)>}
 (INFO): Calculating first set for variable Variables.ASSIGN
 (DEBUG): Base case: First set for Variables.ASSIGN already computed: {<Terminals.VARNAME: ('[VarName]',)>}
-(INFO): Calculating first set for variable Terminals.PRINT
-(DEBUG): Base case: First set for Terminals.PRINT already computed: {<Terminals.PRINT: ('print',)>}
+(INFO): Calculating first set for variable Variables.PRINT
+(DEBUG): Base case: First set for Variables.PRINT already computed: {<Terminals.PRINT: ('print',)>}
 (INFO): Calculating first set for variable Variables.ASSIGN
 (DEBUG): Base case: First set for Variables.ASSIGN already computed: {<Terminals.VARNAME: ('[VarName]',)>}
-(INFO): Calculating first set for variable Terminals.READ
-(DEBUG): Base case: First set for Terminals.READ already computed: {<Terminals.READ: ('read',)>}
+(INFO): Calculating first set for variable Variables.READ
+(DEBUG): Base case: First set for Variables.READ already computed: {<Terminals.READ: ('read',)>}
 (INFO): Calculating first set for variable Variables.ASSIGN
 (DEBUG): Base case: First set for Variables.ASSIGN already computed: {<Terminals.VARNAME: ('[VarName]',)>}
 (INFO): Calculating first set for variable Terminals.BEGIN
 (DEBUG): Base case: First set for Terminals.BEGIN already computed: {<Terminals.BEGIN: ('begin',)>}
 (INFO): Calculating first set for variable Variables.IF
 (DEBUG): Base case: First set for Variables.IF already computed: {<Terminals.IF: ('if',)>}
-(INFO): Calculating first set for variable Terminals.WHILE
-(DEBUG): Base case: First set for Terminals.WHILE already computed: {<Terminals.WHILE: ('while',)>}
+(INFO): Calculating first set for variable Variables.WHILE
+(DEBUG): Base case: First set for Variables.WHILE already computed: {<Terminals.WHILE: ('while',)>}
 (INFO): Calculating first set for variable Variables.IF
 (DEBUG): Base case: First set for Variables.IF already computed: {<Terminals.IF: ('if',)>}
-(INFO): Calculating first set for variable Terminals.PRINT
-(DEBUG): Base case: First set for Terminals.PRINT already computed: {<Terminals.PRINT: ('print',)>}
+(INFO): Calculating first set for variable Variables.PRINT
+(DEBUG): Base case: First set for Variables.PRINT already computed: {<Terminals.PRINT: ('print',)>}
 (INFO): Calculating first set for variable Variables.IF
 (DEBUG): Base case: First set for Variables.IF already computed: {<Terminals.IF: ('if',)>}
-(INFO): Calculating first set for variable Terminals.READ
-(DEBUG): Base case: First set for Terminals.READ already computed: {<Terminals.READ: ('read',)>}
+(INFO): Calculating first set for variable Variables.READ
+(DEBUG): Base case: First set for Variables.READ already computed: {<Terminals.READ: ('read',)>}
 (INFO): Calculating first set for variable Variables.IF
 (DEBUG): Base case: First set for Variables.IF already computed: {<Terminals.IF: ('if',)>}
 (INFO): Calculating first set for variable Terminals.BEGIN
 (DEBUG): Base case: First set for Terminals.BEGIN already computed: {<Terminals.BEGIN: ('begin',)>}
-(INFO): Calculating first set for variable Terminals.WHILE
-(DEBUG): Base case: First set for Terminals.WHILE already computed: {<Terminals.WHILE: ('while',)>}
-(INFO): Calculating first set for variable Terminals.PRINT
-(DEBUG): Base case: First set for Terminals.PRINT already computed: {<Terminals.PRINT: ('print',)>}
-(INFO): Calculating first set for variable Terminals.WHILE
-(DEBUG): Base case: First set for Terminals.WHILE already computed: {<Terminals.WHILE: ('while',)>}
-(INFO): Calculating first set for variable Terminals.READ
-(DEBUG): Base case: First set for Terminals.READ already computed: {<Terminals.READ: ('read',)>}
-(INFO): Calculating first set for variable Terminals.WHILE
-(DEBUG): Base case: First set for Terminals.WHILE already computed: {<Terminals.WHILE: ('while',)>}
+(INFO): Calculating first set for variable Variables.WHILE
+(DEBUG): Base case: First set for Variables.WHILE already computed: {<Terminals.WHILE: ('while',)>}
+(INFO): Calculating first set for variable Variables.PRINT
+(DEBUG): Base case: First set for Variables.PRINT already computed: {<Terminals.PRINT: ('print',)>}
+(INFO): Calculating first set for variable Variables.WHILE
+(DEBUG): Base case: First set for Variables.WHILE already computed: {<Terminals.WHILE: ('while',)>}
+(INFO): Calculating first set for variable Variables.READ
+(DEBUG): Base case: First set for Variables.READ already computed: {<Terminals.READ: ('read',)>}
+(INFO): Calculating first set for variable Variables.WHILE
+(DEBUG): Base case: First set for Variables.WHILE already computed: {<Terminals.WHILE: ('while',)>}
 (INFO): Calculating first set for variable Terminals.BEGIN
 (DEBUG): Base case: First set for Terminals.BEGIN already computed: {<Terminals.BEGIN: ('begin',)>}
-(INFO): Calculating first set for variable Terminals.PRINT
-(DEBUG): Base case: First set for Terminals.PRINT already computed: {<Terminals.PRINT: ('print',)>}
-(INFO): Calculating first set for variable Terminals.READ
-(DEBUG): Base case: First set for Terminals.READ already computed: {<Terminals.READ: ('read',)>}
-(INFO): Calculating first set for variable Terminals.PRINT
-(DEBUG): Base case: First set for Terminals.PRINT already computed: {<Terminals.PRINT: ('print',)>}
+(INFO): Calculating first set for variable Variables.PRINT
+(DEBUG): Base case: First set for Variables.PRINT already computed: {<Terminals.PRINT: ('print',)>}
+(INFO): Calculating first set for variable Variables.READ
+(DEBUG): Base case: First set for Variables.READ already computed: {<Terminals.READ: ('read',)>}
+(INFO): Calculating first set for variable Variables.PRINT
+(DEBUG): Base case: First set for Variables.PRINT already computed: {<Terminals.PRINT: ('print',)>}
 (INFO): Calculating first set for variable Terminals.BEGIN
 (DEBUG): Base case: First set for Terminals.BEGIN already computed: {<Terminals.BEGIN: ('begin',)>}
-(INFO): Calculating first set for variable Terminals.READ
-(DEBUG): Base case: First set for Terminals.READ already computed: {<Terminals.READ: ('read',)>}
+(INFO): Calculating first set for variable Variables.READ
+(DEBUG): Base case: First set for Variables.READ already computed: {<Terminals.READ: ('read',)>}
 (INFO): Calculating first set for variable Terminals.BEGIN
 (DEBUG): Base case: First set for Terminals.BEGIN already computed: {<Terminals.BEGIN: ('begin',)>}
 (INFO): Calculating first set for variable Terminals.PLUS
@@ -397,7 +430,7 @@
 (INFO): Calculating first set for variable Terminals.MINUS
 (DEBUG): Base case: First set for Terminals.MINUS already computed: {<Terminals.MINUS: ('-',)>}
 (INFO): Calculating first set for variable Variables.INSTRUCTION
-(DEBUG): Base case: First set for Variables.INSTRUCTION already computed: {<Terminals.IF: ('if',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.WHILE: ('while',)>}
+(DEBUG): Base case: First set for Variables.INSTRUCTION already computed: {<Terminals.READ: ('read',)>, <Terminals.PRINT: ('print',)>, <Terminals.WHILE: ('while',)>, <Terminals.VARNAME: ('[VarName]',)>, <Terminals.BEGIN: ('begin',)>, <Terminals.IF: ('if',)>}
 (INFO): Calculating first set for variable Terminals.EPSILON
 (DEBUG): Base case: First set for Terminals.EPSILON already computed: {<Terminals.EPSILON: ('eps',)>}
 (INFO): Calculating first set for variable Terminals.OR
@@ -411,7 +444,7 @@
 (INFO): Calculating first set for variable Terminals.LBRACK
 (DEBUG): Base case: First set for Terminals.LBRACK already computed: {<Terminals.LBRACK: ('{',)>}
 (INFO): Calculating first set for variable Variables.EXPRARITH
-(DEBUG): Base case: First set for Variables.EXPRARITH already computed: {<Terminals.VARNAME: ('[VarName]',)>, <Terminals.LPAREN: ('(',)>, <Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>}
+(DEBUG): Base case: First set for Variables.EXPRARITH already computed: {<Terminals.NUMBER: ('[Number]',)>, <Terminals.MINUS: ('-',)>, <Terminals.LPAREN: ('(',)>, <Terminals.VARNAME: ('[VarName]',)>}
 (INFO): Calculating first set for variable Terminals.EQUAL
 (DEBUG): Base case: First set for Terminals.EQUAL already computed: {<Terminals.EQUAL: ('=',)>}
 (INFO): Calculating first set for variable Terminals.SMALLER

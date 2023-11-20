@@ -25,12 +25,12 @@ public class Main {
         // In case multiple input are passed in parameters
         int i = 0;
         while (i < args.length) {
+            System.out.printf("FILE (%d/%d)\n", i+1, args.length);
             filepath = args[i];
+            parser = new Parser(filepath);
+            parser.program();
             i++;
         }
-        
-        parser = new Parser(filepath);
-        parser.program();
 
     }
 }

@@ -1,29 +1,33 @@
 '' This input tries to use every LexicalUnit available ''
 
 begin
-    a := 0
-    b := 1
-    c := a + b
-    d := a - b
-    e := a * b
-    f := a / b
+    a := 0...
+    b := 1...
+    c := a + b...
+    d := a - b...
+    e := a * b...
+    f := a / b...
 
     if a < b then
         g := 1
     else
-        g := 0
+        g := 0...
+    print(g)...
 
-    if b = a then
-        h := 1
-    else
-        h := 0
-
-    while {e < 100} do
+    if a < 1  and 0 < b then
         begin
-            e := (e + 1)
+            h := 1...
+            read(h)
         end
+    else
+        h := 0...
 
-    print(a)
-    print(b)
+    while e < 100 do
+        begin
+            e := e + 1
+        end...
+
+    print(a)...
+    print(b)...
     read(c)
 end
