@@ -13,24 +13,56 @@ public class Main {
      * @throws IOException Not able to find or open the file
      */
     public static void main(String[] args) throws IOException {
-        String filepath = "" ;
-        Parser parser ;
+        String filepath;
+        String latexFilepath;
 
         // Verify arguments entry
         if (args.length < 1) {
             System.out.println("Il faut passer un fichier en argument.");
             System.exit(1);
         }
-
-        // In case multiple input are passed in parameters
-        int i = 0;
-        while (i < args.length) {
-            System.out.printf("FILE (%d/%d)\n", i+1, args.length);
-            filepath = args[i];
-            parser = new Parser(filepath);
-            parser.program();
-            i++;
+        else if (args.length == 1) { // Command: java -jar ./dist/part2.jar <inputFile>
+            // Get arguments
+            filepath = args[0];
+            // Parse
+            parse(filepath);
         }
+        else if (args.length == 3 && "-wt".equals(args[0])) // Command: java -jar ./dist/part2.jar -wt <latexFile> <inputFile>
+        {
+            // Get arguments
+            latexFilepath = args[1];
+            filepath = args[2];
+            // Parse
+            ParseTree parseTree = parse(filepath);
+            // Write to latex file
+            try{
+                File latexFile = new File(latexFilepath);
+                FileWriter latexFileWriter = new FileWriter(latexFile);
+                latexFileWriter.write(parseTree.toLaTeX());
+                latexFileWriter.close();
+            } catch (IOException e) {
+                System.out.println("An error occurred while writing the latex.");
+                System.exit(1);
+            }
+        }
+        else {
+            System.out.println("Invalid command. See usage:");
+            System.out.println("Usage: java -jar ./dist/part2.jar <inputFile>");
+            System.out.println("   or: java -jar ./dist/part2.jar -wt <latexFile> <inputFile>");
+            System.exit(1);
+        }
+        System.exit(0);
+    }
 
+    /**
+     * Parse the input file and return the parse tree.
+     * @param filepath the path to the input file
+     * @return the parse tree
+     * @throws IOException Not able to find or open the file
+     */
+    private static ParseTree parse(String filepath) throws IOException {
+        Parser parser = new Parser(filepath);
+        parser.program();
+        return parser.getParseTree();
     }
 }

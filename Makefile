@@ -39,15 +39,15 @@ rebuild:
 
 test:
 	@echo ---Running tests---
-	java -jar ./dist/$(JAR_NAME) ./test/*.pmp
+	java -jar ./dist/$(JAR_NAME) ./test/all_lexical_units.pmp
+	java -jar ./dist/$(JAR_NAME) -wt "./test/out/all_lexical_units.tex" ./test/all_lexical_units.pmp
+	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/comments.tex" ./test/comments.pmp
+	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/euclid.tex" ./test/euclid.pmp
+	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/exprArith.tex" ./test/exprArith.pmp
+	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/fibonacci.tex" ./test/fibonacci.pmp
 
 deliverables:
 	make rebuild test javadoc
-
-flep:
-	jflex -d ./src/ ./src/*.flex
-	javac ./src/*.java
-	cd src && java Main ../test/euclid.pmp
 
 clean:
 	@echo ---Cleaning the project---

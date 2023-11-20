@@ -45,7 +45,7 @@ public class Parser {
      * Returns the current token
      * @return ParseTree Parse tree of the program
      */
-    public ParseTree getTree() {
+    public ParseTree getParseTree() {
         return root;
     }
 
@@ -94,8 +94,9 @@ public class Parser {
         }
 
         // End of the recursive descent
-        System.out.println("############## Syntax analysis finished ##############");
-        System.out.printf("File %s parsed successfully !%n", filename);
+        for (Integer usedRule : usedRules) {
+            System.out.printf("%d ", usedRule);
+        }
         return root;
     }
 
