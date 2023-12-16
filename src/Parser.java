@@ -71,7 +71,7 @@ public class Parser {
     First de <Program> : begin 
     */
     public ParseTree program() {
-        Symbol progSymbol = new Symbol(LexicalUnit.PROGRAM, true);
+        Symbol progSymbol = new Symbol(LexicalUnit.PROGRAM);
         root = new ParseTree(progSymbol);
 
         usedRules.add(1);
@@ -79,7 +79,7 @@ public class Parser {
         root.addChild(beginTree);
         match(LexicalUnit.BEG);
 
-        ParseTree codeTree = new ParseTree(new Symbol(LexicalUnit.CODE, true));
+        ParseTree codeTree = new ParseTree(new Symbol(LexicalUnit.CODE));
         root.addChild(
                 code(codeTree)
         );
@@ -111,7 +111,7 @@ public class Parser {
                 currentToken.getType() == LexicalUnit.READ
         ) {
             usedRules.add(2);
-            ParseTree instListTree = new ParseTree(new Symbol(LexicalUnit.INSTLIST, true));
+            ParseTree instListTree = new ParseTree(new Symbol(LexicalUnit.INSTLIST));
             parentTree.addChild(
                     instList(instListTree)
             );
@@ -139,12 +139,12 @@ public class Parser {
     private ParseTree instList(ParseTree parentTree) {
         state = LexicalUnit.INSTLIST;
         usedRules.add(4);
-        ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST, true));
+        ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST));
         parentTree.addChild(
                 instruction(instructionTree)
         );
 
-        ParseTree instTailTree = new ParseTree(new Symbol(LexicalUnit.INSTTAIL, true));
+        ParseTree instTailTree = new ParseTree(new Symbol(LexicalUnit.INSTTAIL));
         parentTree.addChild(
                 instTail(instTailTree)
         );
@@ -165,7 +165,7 @@ public class Parser {
             parentTree.addChild(dotsTree);
             match(LexicalUnit.DOTS);
 
-            ParseTree instListTree = new ParseTree(new Symbol(LexicalUnit.INSTLIST, true));
+            ParseTree instListTree = new ParseTree(new Symbol(LexicalUnit.INSTLIST));
             parentTree.addChild(
                     instList(instListTree)
             );
@@ -193,46 +193,46 @@ public class Parser {
         state = LexicalUnit.INST;
         if (currentToken.getType() == LexicalUnit.VARNAME) {
             usedRules.add(7);
-            ParseTree assignTree = new ParseTree(new Symbol(LexicalUnit.ASSIGN, true));
+            ParseTree assignTree = new ParseTree(new Symbol(LexicalUnit.ASSIGN));
             parentTree.addChild(
                     assign(assignTree)
             );
             return parentTree;
         } else if (currentToken.getType() == LexicalUnit.IF) {
             usedRules.add(8);
-            ParseTree ifTree = new ParseTree(new Symbol(LexicalUnit.IF, true));
+            ParseTree ifTree = new ParseTree(new Symbol(LexicalUnit.IF));
             parentTree.addChild(
                     ifRule(ifTree)
             );
             return parentTree;
         } else if (currentToken.getType() == LexicalUnit.WHILE) {
             usedRules.add(9);
-            ParseTree whileTree = new ParseTree(new Symbol(LexicalUnit.WHILE, true));
+            ParseTree whileTree = new ParseTree(new Symbol(LexicalUnit.WHILE));
             parentTree.addChild(
                     whileRule(whileTree)
             );
             return parentTree;
         } else if (currentToken.getType() == LexicalUnit.PRINT) {
             usedRules.add(10);
-            ParseTree printTree = new ParseTree(new Symbol(LexicalUnit.PRINT, true));
+            ParseTree printTree = new ParseTree(new Symbol(LexicalUnit.PRINT));
             parentTree.addChild(
                     printRule(printTree)
             );
             return parentTree;
         } else if (currentToken.getType() == LexicalUnit.READ) {
             usedRules.add(11);
-            ParseTree readTree = new ParseTree(new Symbol(LexicalUnit.READ, true));
+            ParseTree readTree = new ParseTree(new Symbol(LexicalUnit.READ));
             parentTree.addChild(
                     readRule(readTree)
             );
             return parentTree;
         } else if (currentToken.getType() == LexicalUnit.BEG) {
             usedRules.add(12);
-            ParseTree beginTree = new ParseTree(new Symbol(LexicalUnit.BEG, true));
+            ParseTree beginTree = new ParseTree(new Symbol(LexicalUnit.BEG));
             parentTree.addChild(beginTree);
             match(LexicalUnit.BEG);
 
-            ParseTree instListTree = new ParseTree(new Symbol(LexicalUnit.INSTLIST, true));
+            ParseTree instListTree = new ParseTree(new Symbol(LexicalUnit.INSTLIST));
             parentTree.addChild(
                     instList(instListTree)
             );
@@ -270,7 +270,7 @@ public class Parser {
         parentTree.addChild(assignTree);
         match(LexicalUnit.ASSIGN);
 
-        ParseTree exprTree = new ParseTree(new Symbol(LexicalUnit.EXPRARIT, true));
+        ParseTree exprTree = new ParseTree(new Symbol(LexicalUnit.EXPRARIT));
         parentTree.addChild(
                 expr(exprTree)
         );
@@ -290,12 +290,12 @@ public class Parser {
                 currentToken.getType() == LexicalUnit.MINUS
         ) {
             usedRules.add(14);
-            ParseTree prodTree = new ParseTree(new Symbol(LexicalUnit.PROD, true));
+            ParseTree prodTree = new ParseTree(new Symbol(LexicalUnit.PROD));
             parentTree.addChild(
                     prod(prodTree)
             );
 
-            ParseTree exprArithPrimeTree = new ParseTree(new Symbol(LexicalUnit.EXPRARITPRIME, true));
+            ParseTree exprArithPrimeTree = new ParseTree(new Symbol(LexicalUnit.EXPRARITPRIME));
             parentTree.addChild(
                     exprArithPrime(exprArithPrimeTree)
             );
@@ -322,12 +322,12 @@ public class Parser {
             parentTree.addChild(plusTree);
             match(LexicalUnit.PLUS);
 
-            ParseTree prodTree = new ParseTree(new Symbol(LexicalUnit.PROD, true));
+            ParseTree prodTree = new ParseTree(new Symbol(LexicalUnit.PROD));
             parentTree.addChild(
                     prod(prodTree)
             );
 
-            ParseTree exprArithPrimeTree = new ParseTree(new Symbol(LexicalUnit.EXPRARITPRIME, true));
+            ParseTree exprArithPrimeTree = new ParseTree(new Symbol(LexicalUnit.EXPRARITPRIME));
             parentTree.addChild(
                     exprArithPrime(exprArithPrimeTree)
             );
@@ -338,12 +338,12 @@ public class Parser {
             parentTree.addChild(minusTree);
             match(LexicalUnit.MINUS);
 
-            ParseTree prodTree = new ParseTree(new Symbol(LexicalUnit.PROD, true));
+            ParseTree prodTree = new ParseTree(new Symbol(LexicalUnit.PROD));
             parentTree.addChild(
                     prod(prodTree)
             );
 
-            ParseTree exprArithPrimeTree = new ParseTree(new Symbol(LexicalUnit.EXPRARITPRIME, true));
+            ParseTree exprArithPrimeTree = new ParseTree(new Symbol(LexicalUnit.EXPRARITPRIME));
             parentTree.addChild(
                     exprArithPrime(exprArithPrimeTree)
             );
@@ -391,12 +391,12 @@ public class Parser {
                 currentToken.getType() == LexicalUnit.MINUS
         ) {
             usedRules.add(18);
-            ParseTree atomTree = new ParseTree(new Symbol(LexicalUnit.ATOM, true));
+            ParseTree atomTree = new ParseTree(new Symbol(LexicalUnit.ATOM));
             parentTree.addChild(
                     atom(atomTree)
             );
 
-            ParseTree prodPrimeTree = new ParseTree(new Symbol(LexicalUnit.PRODPRIME, true));
+            ParseTree prodPrimeTree = new ParseTree(new Symbol(LexicalUnit.PRODPRIME));
             parentTree.addChild(
                     prodPrime(prodPrimeTree)
             );
@@ -423,12 +423,12 @@ public class Parser {
             parentTree.addChild(timesTree);
             match(LexicalUnit.TIMES);
 
-            ParseTree atomTree = new ParseTree(new Symbol(LexicalUnit.ATOM, true));
+            ParseTree atomTree = new ParseTree(new Symbol(LexicalUnit.ATOM));
             parentTree.addChild(
                     atom(atomTree)
             );
 
-            ParseTree prodPrimeTree = new ParseTree(new Symbol(LexicalUnit.PRODPRIME, true));
+            ParseTree prodPrimeTree = new ParseTree(new Symbol(LexicalUnit.PRODPRIME));
             parentTree.addChild(
                     prodPrime(prodPrimeTree)
             );
@@ -439,12 +439,12 @@ public class Parser {
             parentTree.addChild(divideTree);
             match(LexicalUnit.DIVIDE);
 
-            ParseTree atomTree = new ParseTree(new Symbol(LexicalUnit.ATOM, true));
+            ParseTree atomTree = new ParseTree(new Symbol(LexicalUnit.ATOM));
             parentTree.addChild(
                     atom(atomTree)
             );
 
-            ParseTree prodPrimeTree = new ParseTree(new Symbol(LexicalUnit.PRODPRIME, true));
+            ParseTree prodPrimeTree = new ParseTree(new Symbol(LexicalUnit.PRODPRIME));
             parentTree.addChild(
                     prodPrime(prodPrimeTree)
             );
@@ -512,7 +512,7 @@ public class Parser {
             parentTree.addChild(lparenTree);
             match(LexicalUnit.LPAREN);
 
-            ParseTree exprTree = new ParseTree(new Symbol(LexicalUnit.EXPRARIT, true));
+            ParseTree exprTree = new ParseTree(new Symbol(LexicalUnit.EXPRARIT));
             parentTree.addChild(
                     expr(exprTree)
             );
@@ -532,7 +532,7 @@ public class Parser {
             parentTree.addChild(minusTree);
             match(LexicalUnit.MINUS);
 
-            ParseTree atomTree = new ParseTree(new Symbol(LexicalUnit.ATOM, true));
+            ParseTree atomTree = new ParseTree(new Symbol(LexicalUnit.ATOM));
             parentTree.addChild(
                     atom(atomTree)
             );
@@ -556,7 +556,7 @@ public class Parser {
         parentTree.addChild(ifTree);
         match(LexicalUnit.IF);
 
-        ParseTree condTree = new ParseTree(new Symbol(LexicalUnit.COND, true));
+        ParseTree condTree = new ParseTree(new Symbol(LexicalUnit.COND));
         parentTree.addChild(
                 cond(condTree)
         );
@@ -565,7 +565,7 @@ public class Parser {
         parentTree.addChild(thenTree);
         match(LexicalUnit.THEN);
 
-        ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST, true));
+        ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST));
         parentTree.addChild(
                 instruction(instructionTree)
         );
@@ -574,7 +574,7 @@ public class Parser {
         parentTree.addChild(elseTree);
         match(LexicalUnit.ELSE);
 
-        ParseTree elseTailTree = new ParseTree(new Symbol(LexicalUnit.ELSETAIL, true));
+        ParseTree elseTailTree = new ParseTree(new Symbol(LexicalUnit.ELSETAIL));
         parentTree.addChild(
                 elseTail(elseTailTree)
         );
@@ -597,7 +597,7 @@ public class Parser {
                 currentToken.getType() == LexicalUnit.READ
         ) {
             usedRules.add(27);
-            ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST, true));
+            ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST ));
             parentTree.addChild(
                     instruction(instructionTree)
             );
@@ -634,13 +634,13 @@ public class Parser {
                 currentToken.getType() == LexicalUnit.LBRACK
         ) {
             usedRules.add(29);
-            ParseTree andTree = new ParseTree(new Symbol(LexicalUnit.AND, true));
+            ParseTree andTree = new ParseTree(new Symbol(LexicalUnit.AND ));
 
             parentTree.addChild(
                     and(andTree)
             );
 
-            ParseTree condPrimeTree = new ParseTree(new Symbol(LexicalUnit.CONDPRIME, true));
+            ParseTree condPrimeTree = new ParseTree(new Symbol(LexicalUnit.CONDPRIME ));
             parentTree.addChild(
                     condPrime(condPrimeTree)
             );
@@ -667,12 +667,12 @@ public class Parser {
             parentTree.addChild(orTree);
             match(LexicalUnit.OR);
 
-            ParseTree andTree = new ParseTree(new Symbol(LexicalUnit.AND, true));
+            ParseTree andTree = new ParseTree(new Symbol(LexicalUnit.AND));
             parentTree.addChild(
                     and(andTree)
             );
 
-            ParseTree condPrimeTree = new ParseTree(new Symbol(LexicalUnit.CONDPRIME, true));
+            ParseTree condPrimeTree = new ParseTree(new Symbol(LexicalUnit.CONDPRIME));
             parentTree.addChild(
                     condPrime(condPrimeTree)
             );
@@ -704,12 +704,12 @@ public class Parser {
                 currentToken.getType() == LexicalUnit.LBRACK
         ) {
             usedRules.add(32);
-            ParseTree condAtomTree = new ParseTree(new Symbol(LexicalUnit.CONDATOM, true));
+            ParseTree condAtomTree = new ParseTree(new Symbol(LexicalUnit.CONDATOM));
             parentTree.addChild(
                     condAtom(condAtomTree)
             );
 
-            ParseTree andPrimeTree = new ParseTree(new Symbol(LexicalUnit.ANDPRIME, true));
+            ParseTree andPrimeTree = new ParseTree(new Symbol(LexicalUnit.ANDPRIME));
             parentTree.addChild(
                     andPrime(andPrimeTree)
             );
@@ -736,12 +736,12 @@ public class Parser {
             parentTree.addChild(andTree);
             match(LexicalUnit.AND);
 
-            ParseTree condAtomTree = new ParseTree(new Symbol(LexicalUnit.CONDATOM, true));
+            ParseTree condAtomTree = new ParseTree(new Symbol(LexicalUnit.CONDATOM));
             parentTree.addChild(
                     condAtom(condAtomTree)
             );
 
-            ParseTree andPrimeTree = new ParseTree(new Symbol(LexicalUnit.ANDPRIME, true));
+            ParseTree andPrimeTree = new ParseTree(new Symbol(LexicalUnit.ANDPRIME));
             parentTree.addChild(
                     andPrime(andPrimeTree)
             );
@@ -775,7 +775,7 @@ public class Parser {
             parentTree.addChild(lbrackTree);
             match(LexicalUnit.LBRACK);
 
-            ParseTree condTree = new ParseTree(new Symbol(LexicalUnit.COND, true));
+            ParseTree condTree = new ParseTree(new Symbol(LexicalUnit.COND));
             parentTree.addChild(
                     cond(condTree)
             );
@@ -791,17 +791,17 @@ public class Parser {
                 currentToken.getType() == LexicalUnit.MINUS
         ) {
             usedRules.add(36);
-            ParseTree exprArithTree = new ParseTree(new Symbol(LexicalUnit.EXPRARIT, true));
+            ParseTree exprArithTree = new ParseTree(new Symbol(LexicalUnit.EXPRARIT));
             parentTree.addChild(
                     expr(exprArithTree)
             );
 
-            ParseTree compTree = new ParseTree(new Symbol(LexicalUnit.COMP, true));
+            ParseTree compTree = new ParseTree(new Symbol(LexicalUnit.COMP));
             parentTree.addChild(
                     comp(compTree)
             );
 
-            ParseTree exprArithTree2 = new ParseTree(new Symbol(LexicalUnit.EXPRARIT, true));
+            ParseTree exprArithTree2 = new ParseTree(new Symbol(LexicalUnit.EXPRARIT));
             parentTree.addChild(
                     expr(exprArithTree2)
             );
@@ -853,7 +853,7 @@ public class Parser {
         parentTree.addChild(whileTree);
         match(LexicalUnit.WHILE);
 
-        ParseTree condTree = new ParseTree(new Symbol(LexicalUnit.COND, true));
+        ParseTree condTree = new ParseTree(new Symbol(LexicalUnit.COND));
         parentTree.addChild(
                 cond(condTree)
         );
@@ -862,7 +862,7 @@ public class Parser {
         parentTree.addChild(doTree);
         match(LexicalUnit.DO);
 
-        ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST, true));
+        ParseTree instructionTree = new ParseTree(new Symbol(LexicalUnit.INST));
         parentTree.addChild(
                 instruction(instructionTree)
         );
