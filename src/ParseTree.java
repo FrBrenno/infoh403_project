@@ -112,19 +112,11 @@ public class ParseTree {
                 + toForestPicture() + "\n\n\\end{document}\n%% Local Variables:\n%% TeX-engine: pdflatex\n%% End:";
     }
 
-    /**
-     * Returns the label of the root of the tree
-     * @return  The label of the root of the tree
-     */
-    public Symbol getLabel() {
-        return this.label;
+    Symbol getLabel() {
+        return label;
     }
 
-    /**
-     * Returns the children of the root of the tree
-     * @return  The children of the root of the tree
-     */
-    public List<ParseTree> getChildren() {
-        return this.children;
+    List<ParseTree> getChildren() {
+        return children;
     }
 }

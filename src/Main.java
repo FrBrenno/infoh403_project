@@ -34,6 +34,9 @@ public class Main {
             filepath = args[2];
             // Parse
             ParseTree parseTree = parse(filepath);
+            // Generate AST
+            ASTGenerator astGenerator = new ASTGenerator();
+            AST ast = astGenerator.generateAST(parseTree);
             // Write to latex file
             try{
                 File latexFile = new File(latexFilepath);

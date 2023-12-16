@@ -14,24 +14,4 @@ public class AST extends ParseTree {
         super(label, children);
     }
 
-    /**
-     * Generates an AST from a parse tree.
-     * @param parseTree the parse tree
-     * @return the AST
-     */
-     public AST generateAST(ParseTree parseTree) {
-        if (parseTree == null) {
-            return null;
-        }
-        else if (parseTree.getChildren().isEmpty()) {
-            return new AST(parseTree.getLabel());
-        }
-        else {
-            List<ParseTree> children = new ArrayList<ParseTree>();
-            for (ParseTree child : parseTree.getChildren()) {
-                children.add(generateAST(child));
-            }
-            return new AST(parseTree.getLabel(), children);
-        }
-     }
 }
