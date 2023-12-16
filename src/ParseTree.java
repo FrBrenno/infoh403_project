@@ -111,4 +111,20 @@ public class ParseTree {
         return "\\documentclass[border=5pt]{standalone}\n\n\\usepackage{tikz}\n\\usepackage{forest}\n\n\\begin{document}\n\n"
                 + toForestPicture() + "\n\n\\end{document}\n%% Local Variables:\n%% TeX-engine: pdflatex\n%% End:";
     }
+
+    /**
+     * Returns the label of the root of the tree
+     * @return  The label of the root of the tree
+     */
+    public Symbol getLabel() {
+        return this.label;
+    }
+
+    /**
+     * Returns the children of the root of the tree
+     * @return  The children of the root of the tree
+     */
+    public List<ParseTree> getChildren() {
+        return this.children;
+    }
 }
