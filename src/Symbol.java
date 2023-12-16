@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Symbol{
 	public static final int UNDEFINED_POSITION = -1;
 	public static final Object NO_VALUE = null;
@@ -5,6 +7,7 @@ public class Symbol{
 	private final LexicalUnit type;
 	private final Object value;
 	private final int line,column;
+	private boolean isTerminal = true;
 
 	public Symbol(LexicalUnit unit,int line,int column,Object value){
 		this.type	= unit;
@@ -20,21 +23,26 @@ public class Symbol{
 	public Symbol(LexicalUnit unit,int line){
 		this(unit,line,UNDEFINED_POSITION,NO_VALUE);
 	}
-	
+
 	public Symbol(LexicalUnit unit){
 		this(unit,UNDEFINED_POSITION,UNDEFINED_POSITION,NO_VALUE);
 	}
-	
+
+	public Symbol(LexicalUnit unit, boolean isNonTerminal){
+		this(unit,UNDEFINED_POSITION,UNDEFINED_POSITION,NO_VALUE);
+		this.isTerminal = !isNonTerminal;
+	}
+
 	public Symbol(LexicalUnit unit,Object value){
 		this(unit,UNDEFINED_POSITION,UNDEFINED_POSITION,value);
 	}
 
 	public boolean isTerminal(){
-		return this.type != null;
+		return this.isTerminal;
 	}
 	
 	public boolean isNonTerminal(){
-		return this.type == null;
+		return !this.isTerminal;
 	}
 	
 	public LexicalUnit getType(){
@@ -62,16 +70,12 @@ public class Symbol{
 	
 	@Override
 	public String toString(){
-		if(this.isTerminal()){
-			final String value	= this.value != null? this.value.toString() : "null";
-			final String type		= this.type  != null? this.type.toString()  : "null";
-			return "token: "+value+"\tlexical unit: "+type;
-		}
-		return "Non-terminal symbol";
+		final String value	= this.value != null? this.value.toString() : "null";
+		final String type		= this.type  != null? this.type.toString()  : "null";
+		return "token: "+value+"\tlexical unit: "+type;
 	}
 
 	public String toTreeString(){
-	if(this.isTerminal()){
 		final String value	= this.value != null? this.value.toString() : "null";
 		final String type		= this.type  != null? this.type.toString()  : "null";
 		if(value == "null"){
@@ -79,6 +83,4 @@ public class Symbol{
 		}
 		return type+" value: "+value;
 		}
-		return "Non-terminal symbol";
-	}
 }

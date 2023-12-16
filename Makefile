@@ -45,6 +45,7 @@ test:
 	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/euclid.tex" ./test/euclid.pmp
 	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/exprArith.tex" ./test/exprArith.pmp
 	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/fibonacci.tex" ./test/fibonacci.pmp
+	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/ast2.tex" ./test/AST2.pmp
 
 deliverables:
 	make rebuild test javadoc

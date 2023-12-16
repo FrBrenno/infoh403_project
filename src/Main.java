@@ -35,13 +35,13 @@ public class Main {
             // Parse
             ParseTree parseTree = parse(filepath);
             // Generate AST
-            ASTGenerator astGenerator = new ASTGenerator();
-            AST ast = astGenerator.generateAST(parseTree);
+            ASTGenerator astGenerator = new ASTGenerator(parseTree);
+            AST ast = astGenerator.generateAST();
             // Write to latex file
             try{
                 File latexFile = new File(latexFilepath);
                 FileWriter latexFileWriter = new FileWriter(latexFile);
-                latexFileWriter.write(parseTree.toLaTeX());
+                latexFileWriter.write(ast.toLaTeX());
                 latexFileWriter.close();
             } catch (IOException e) {
                 System.out.println("An error occurred while writing the latex.");
