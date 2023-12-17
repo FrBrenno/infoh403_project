@@ -43,19 +43,20 @@ public class Symbol{
 		// variables.add(LexicalUnit.READ);
 		// variables.add(LexicalUnit.COND);
 		variables.add(LexicalUnit.PROD);
-		variables.add(LexicalUnit.EXPRARIT);
+		// variables.add(LexicalUnit.EXPRARIT);
 		variables.add(LexicalUnit.EXPRARITPRIME);
 		variables.add(LexicalUnit.ATOM);
 		variables.add(LexicalUnit.PRODPRIME);
-		variables.add(LexicalUnit.ELSETAIL);
+		// variables.add(LexicalUnit.ELSETAIL);
 		variables.add(LexicalUnit.CONDPRIME);
 		variables.add(LexicalUnit.CONDATOM);
 		variables.add(LexicalUnit.ANDPRIME);
 		variables.add(LexicalUnit.COMP);
 		variables.add(LexicalUnit.EOS);
 		variables.add(LexicalUnit.INSTTAIL);
-		variables.add(LexicalUnit.INSTLIST);
+		// variables.add(LexicalUnit.INSTLIST);
 		variables.add(LexicalUnit.INST);    // A VOIR, on laisse ou pas dans l'AST ?
+		variables.add(LexicalUnit.AND);
 		
 		if (variables.contains(this.type)) {
 			return true;

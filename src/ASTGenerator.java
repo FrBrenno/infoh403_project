@@ -44,7 +44,26 @@ public class ASTGenerator {
                         break;
                     case PRINT:
                         break;
-
+                    case AND:
+                        break;
+                    case BEG:
+                        break;
+                    case END:
+                        break;
+                    case THEN:
+                        break;
+                    case ELSE:
+                        break;
+                    case IF:
+                        break;
+                    case ASSIGN:
+                        break;
+                    case WHILE:
+                        break;
+                    case DO:
+                        break;
+                    // check s'il faut virer OR ?
+                    
                     default :
                         ast.addChild(new AST(child.getLabel()));
                 }
@@ -59,7 +78,6 @@ public class ASTGenerator {
                         ast.addChild(elem);
                     }
                 }
-
                 else {
                     ast.addChild(generateAST(child));
                 }
