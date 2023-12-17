@@ -1,5 +1,3 @@
-import java.sql.SQLOutput;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ASTGenerator {
@@ -70,7 +68,7 @@ public class ASTGenerator {
             }
             else {
                 // Variables
-                if (child.getLabel().isVariable())
+                if (child.getLabel().ignoreVariable())
                 {
                     List<ParseTree> grandChildren = generateAST(child).getChildren();
                     for (ParseTree elem : grandChildren)

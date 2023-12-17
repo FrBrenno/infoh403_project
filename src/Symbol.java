@@ -32,36 +32,30 @@ public class Symbol{
 		this(unit,UNDEFINED_POSITION,UNDEFINED_POSITION,value);
 	}
 
-	public boolean isVariable(){
+	/**
+	 * This function is used to ignore
+	 * the following variables that we don't want
+	 * to add to the AST
+	 */
+	public boolean ignoreVariable(){
 		List<LexicalUnit> variables = new ArrayList<LexicalUnit>();
-		// variables.add(LexicalUnit.ASSIGN);
 		variables.add(LexicalUnit.CODE);
-		// variables.add(LexicalUnit.IF);
-		// variables.add(LexicalUnit.WHILE);
-		// variables.add(LexicalUnit.DO);
-		// variables.add(LexicalUnit.PRINT);
-		// variables.add(LexicalUnit.READ);
-		// variables.add(LexicalUnit.COND);
 		variables.add(LexicalUnit.PROD);
-		// variables.add(LexicalUnit.EXPRARIT);
 		variables.add(LexicalUnit.EXPRARITPRIME);
 		variables.add(LexicalUnit.ATOM);
 		variables.add(LexicalUnit.PRODPRIME);
-		// variables.add(LexicalUnit.ELSETAIL);
 		variables.add(LexicalUnit.CONDPRIME);
 		variables.add(LexicalUnit.CONDATOM);
 		variables.add(LexicalUnit.ANDPRIME);
 		variables.add(LexicalUnit.COMP);
 		variables.add(LexicalUnit.EOS);
 		variables.add(LexicalUnit.INSTTAIL);
-		// variables.add(LexicalUnit.INSTLIST);
-		variables.add(LexicalUnit.INST);    // A VOIR, on laisse ou pas dans l'AST ?
+		variables.add(LexicalUnit.INST); 
 		variables.add(LexicalUnit.AND);
 		
 		if (variables.contains(this.type)) {
 			return true;
 		}
-		
 		else {
 			return false;
 		}	
