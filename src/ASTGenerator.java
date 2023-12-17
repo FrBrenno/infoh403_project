@@ -38,6 +38,12 @@ public class ASTGenerator {
                         break;
                     case ELSETAIL:
                         break;
+                    case READ:
+                        break;
+                    case DOTS:
+                        break;
+                    case PRINT:
+                        break;
 
                     default :
                         ast.addChild(new AST(child.getLabel()));

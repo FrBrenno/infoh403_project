@@ -32,44 +32,6 @@ public class Symbol{
 		this(unit,UNDEFINED_POSITION,UNDEFINED_POSITION,value);
 	}
 
-	public boolean isTerminal(){
-		List<LexicalUnit> terminals = new ArrayList<LexicalUnit>();
-		terminals.add(LexicalUnit.VARNAME);
-		// terminals.add(LexicalUnit.ASSIGN);
-		terminals.add(LexicalUnit.NUMBER);
-		terminals.add(LexicalUnit.BEG);
-		terminals.add(LexicalUnit.END);
-		terminals.add(LexicalUnit.DOTS);
-		terminals.add(LexicalUnit.LPAREN); // OUI NON ?
-		terminals.add(LexicalUnit.RPAREN); // OUI NON ?
-		terminals.add(LexicalUnit.MINUS);
-		terminals.add(LexicalUnit.PLUS);
-		terminals.add(LexicalUnit.TIMES);
-		terminals.add(LexicalUnit.DIVIDE);
-		// terminals.add(LexicalUnit.IF);
-		terminals.add(LexicalUnit.THEN);
-		terminals.add(LexicalUnit.ELSE);
-		terminals.add(LexicalUnit.AND);
-		terminals.add(LexicalUnit.OR);
-		terminals.add(LexicalUnit.LBRACK);
-		terminals.add(LexicalUnit.RBRACK);
-		terminals.add(LexicalUnit.EQUAL);
-		terminals.add(LexicalUnit.SMALLER);
-		// terminals.add(LexicalUnit.WHILE);
-		// terminals.add(LexicalUnit.DO);
-		// terminals.add(LexicalUnit.PRINT);
-		// terminals.add(LexicalUnit.READ);
-		// terminals.add(LexicalUnit.COND);
-		
-		if (terminals.contains(this.type)) {
-			return true;
-		}
-		
-		else {
-			return false;
-		}	
-	}
-
 	public boolean isVariable(){
 		List<LexicalUnit> variables = new ArrayList<LexicalUnit>();
 		// variables.add(LexicalUnit.ASSIGN);
@@ -93,7 +55,7 @@ public class Symbol{
 		variables.add(LexicalUnit.EOS);
 		variables.add(LexicalUnit.INSTTAIL);
 		variables.add(LexicalUnit.INSTLIST);
-		// variables.add(LexicalUnit.INST);    // A VOIR, on laisse ou pas dans l'AST ?
+		variables.add(LexicalUnit.INST);    // A VOIR, on laisse ou pas dans l'AST ?
 		
 		if (variables.contains(this.type)) {
 			return true;
