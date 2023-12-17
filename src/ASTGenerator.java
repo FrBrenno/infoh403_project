@@ -16,21 +16,44 @@ public class ASTGenerator {
     private AST generateAST(ParseTree parseTree) {
         AST ast = new AST(parseTree.getLabel());
         for (ParseTree child : parseTree.getChildren()) {
-            Symbol currentSymbol = child.getLabel();
-            if (currentSymbol.isTerminal()) {
-                ast.addChild(new AST(child.getLabel()));
+            if (child.getChildren().isEmpty()) { //ici on sait que c'est une feuille
+                switch(child.getLabel().getType()){ //tout les switchs des terminaux qu'on veut ignorer ou des variables qui vont vers epsilon
+                    case LBRACK:
+                        break;
+                    case RBRACK:
+                        break;
+                    case LPAREN:
+                        break;
+                    case RPAREN:
+                        break;
+                    case PRODPRIME:
+                        break;
+                    case EXPRARITPRIME:
+                        break;
+                    case ANDPRIME:
+                        break;
+                    case CONDPRIME:
+                        break;
+                    case INSTTAIL:  
+                        break;
+                    case ELSETAIL:
+                        break;
+
+                    default :
+                        ast.addChild(new AST(child.getLabel()));
+                }
             }
             else {
                 // Variables
-                if (child.getLabel().getType() == LexicalUnit.CODE)
+                if (child.getLabel().isVariable())
                 {
                     List<ParseTree> grandChildren = generateAST(child).getChildren();
-                    System.out.println(grandChildren.size());
-                    for (ParseTree codeChild : grandChildren)
+                    for (ParseTree elem : grandChildren)
                     {
-                        ast.addChild(codeChild);
+                        ast.addChild(elem);
                     }
                 }
+
                 else {
                     ast.addChild(generateAST(child));
                 }

@@ -35,7 +35,7 @@ public class Symbol{
 	public boolean isTerminal(){
 		List<LexicalUnit> terminals = new ArrayList<LexicalUnit>();
 		terminals.add(LexicalUnit.VARNAME);
-		terminals.add(LexicalUnit.ASSIGN);
+		// terminals.add(LexicalUnit.ASSIGN);
 		terminals.add(LexicalUnit.NUMBER);
 		terminals.add(LexicalUnit.BEG);
 		terminals.add(LexicalUnit.END);
@@ -46,7 +46,7 @@ public class Symbol{
 		terminals.add(LexicalUnit.PLUS);
 		terminals.add(LexicalUnit.TIMES);
 		terminals.add(LexicalUnit.DIVIDE);
-		terminals.add(LexicalUnit.IF);
+		// terminals.add(LexicalUnit.IF);
 		terminals.add(LexicalUnit.THEN);
 		terminals.add(LexicalUnit.ELSE);
 		terminals.add(LexicalUnit.AND);
@@ -55,13 +55,47 @@ public class Symbol{
 		terminals.add(LexicalUnit.RBRACK);
 		terminals.add(LexicalUnit.EQUAL);
 		terminals.add(LexicalUnit.SMALLER);
-		terminals.add(LexicalUnit.WHILE);
-		terminals.add(LexicalUnit.DO);
-		terminals.add(LexicalUnit.PRINT);
-		terminals.add(LexicalUnit.READ);
-		terminals.add(LexicalUnit.COND);
+		// terminals.add(LexicalUnit.WHILE);
+		// terminals.add(LexicalUnit.DO);
+		// terminals.add(LexicalUnit.PRINT);
+		// terminals.add(LexicalUnit.READ);
+		// terminals.add(LexicalUnit.COND);
 		
 		if (terminals.contains(this.type)) {
+			return true;
+		}
+		
+		else {
+			return false;
+		}	
+	}
+
+	public boolean isVariable(){
+		List<LexicalUnit> variables = new ArrayList<LexicalUnit>();
+		// variables.add(LexicalUnit.ASSIGN);
+		variables.add(LexicalUnit.CODE);
+		// variables.add(LexicalUnit.IF);
+		// variables.add(LexicalUnit.WHILE);
+		// variables.add(LexicalUnit.DO);
+		// variables.add(LexicalUnit.PRINT);
+		// variables.add(LexicalUnit.READ);
+		// variables.add(LexicalUnit.COND);
+		variables.add(LexicalUnit.PROD);
+		variables.add(LexicalUnit.EXPRARIT);
+		variables.add(LexicalUnit.EXPRARITPRIME);
+		variables.add(LexicalUnit.ATOM);
+		variables.add(LexicalUnit.PRODPRIME);
+		variables.add(LexicalUnit.ELSETAIL);
+		variables.add(LexicalUnit.CONDPRIME);
+		variables.add(LexicalUnit.CONDATOM);
+		variables.add(LexicalUnit.ANDPRIME);
+		variables.add(LexicalUnit.COMP);
+		variables.add(LexicalUnit.EOS);
+		variables.add(LexicalUnit.INSTTAIL);
+		variables.add(LexicalUnit.INSTLIST);
+		// variables.add(LexicalUnit.INST);    // A VOIR, on laisse ou pas dans l'AST ?
+		
+		if (variables.contains(this.type)) {
 			return true;
 		}
 		
