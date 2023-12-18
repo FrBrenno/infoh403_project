@@ -15,6 +15,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         String filepath;
         String latexFilepath;
+        String llvmFilepath;
 
         // Verify arguments entry
         if (args.length < 1) {
@@ -31,18 +32,29 @@ public class Main {
         {
             // Get arguments
             latexFilepath = args[1];
+            llvmFilepath = latexFilepath.replace(".tex", ".ll");
+            
             filepath = args[2];
             // Parse
             ParseTree parseTree = parse(filepath);
             // Generate AST
             ASTGenerator astGenerator = new ASTGenerator(parseTree);
             AST ast = astGenerator.generateAST();
+            LLVMGenerator LLVMGenerator = new LLVMGenerator();
+            LLVMGenerator.generate(ast);
+            
             // Write to latex file
+
             try{
                 File latexFile = new File(latexFilepath);
                 FileWriter latexFileWriter = new FileWriter(latexFile);
                 latexFileWriter.write(ast.toLaTeX());
                 latexFileWriter.close();
+
+                File llvmFile = new File(llvmFilepath);
+                FileWriter llvmFileWriter = new FileWriter(llvmFile);
+                llvmFileWriter.write(LLVMGenerator.getCode().toString());
+                llvmFileWriter.close();
             } catch (IOException e) {
                 System.out.println("An error occurred while writing the latex.");
                 System.exit(1);

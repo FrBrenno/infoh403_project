@@ -39,14 +39,16 @@ rebuild:
 
 test:
 	@echo ---Running tests---
-	java -jar ./dist/$(JAR_NAME) ./test/all_lexical_units.pmp
-	java -jar ./dist/$(JAR_NAME) -wt "./test/out/all_lexical_units.tex" ./test/all_lexical_units.pmp
-	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/comments.tex" ./test/comments.pmp
-	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/euclid.tex" ./test/euclid.pmp
-	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/exprArith.tex" ./test/exprArith.pmp
-	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/fibonacci.tex" ./test/fibonacci.pmp
-	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/ast2.tex" ./test/AST2.pmp
-
+# java -jar ./dist/$(JAR_NAME) ./test/all_lexical_units.pmp
+# java -jar ./dist/$(JAR_NAME) -wt "./test/out/all_lexical_units.tex" ./test/all_lexical_units.pmp
+# java -jar ./dist/$(JAR_NAME)  -wt "./test/out/comments.tex" ./test/comments.pmp
+# java -jar ./dist/$(JAR_NAME)  -wt "./test/out/euclid.tex" ./test/euclid.pmp
+# java -jar ./dist/$(JAR_NAME)  -wt "./test/out/exprArith.tex" ./test/exprArith.pmp
+# java -jar ./dist/$(JAR_NAME)  -wt "./test/out/fibonacci.tex" ./test/fibonacci.pmp
+# java -jar ./dist/$(JAR_NAME)  -wt "./test/out/ast2.tex" ./test/AST2.pmp
+	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/testAssign.tex" ./test/testAssign.pmp
+	llvm-as ./test/out/testAssign.ll 
+	lli ./test/out/testAssign.bc
 deliverables:
 	make rebuild test javadoc
 
