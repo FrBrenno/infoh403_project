@@ -22,7 +22,7 @@ public class LLVMGenerator {
         for (ParseTree child : myAst.getChildren()) {
             System.out.println("| "+child.getLabel().getType());
         }
-        System.out.println("__________________________________________________");
+        System.out.println("_______________________________________________\n");
     }
 
     public StringBuilder getCode() {
@@ -33,25 +33,16 @@ public class LLVMGenerator {
         DEBUGshowAST("generate", ast);
         addBasicFunctions();
         code.append("define i32 @main() {\n");
-        processProgram(ast.getChildren().get(0));
-        code.append("   ret i32 0\n" + //
-            "}\n");
+        processProgram(ast);
+        code.append("   ret i32 0\n}");
         
     }
 
     private void processProgram(ParseTree ast) {
         // écrire des trucs ? dans la fonction direct ?$
         DEBUGshowAST("processProgram", ast);
-        switch(ast.getLabel().getType()){
-            case INSTLIST:
-                for (ParseTree child : ast.getChildren()) {
-                    processInstList(child);
-                }
-                break;
-            case ASSIGN:
-                System.out.println("bordelllll");
-            default:
-                break;
+        for (ParseTree child : ast.getChildren()) {
+            processInstList(child);
         }
     }
 
@@ -60,7 +51,8 @@ public class LLVMGenerator {
         for (ParseTree child : ast.getChildren()) {
             switch(child.getLabel().getType()){
                 case ASSIGN:
-                    processAssign(ast);
+                    System.out.println("trouvé le assign");
+                    processAssign(child);
                     break;
                 case IF:
                     processIf(ast);
@@ -69,10 +61,13 @@ public class LLVMGenerator {
                     processWhile(ast);
                     break;
                 case PRINT:
-                    processPrint(ast);
+                    processPrint(child);
                     break;
                 case READ:
                     processRead(ast);
+                    break;
+                case INSTLIST:
+                    processInstList(child);
                     break;
                 default:
                     System.out.println("inside InstList default");
@@ -89,6 +84,8 @@ public class LLVMGenerator {
         incrVarCount() ;
         code.append("   %"+varCount.toString() +" = load i32, i32* %"+lastVarCount.toString()+"\n"); 
         code.append("   store i32 %"+ varCount.toString() + ", i32* %"+varname+", align 4\n");
+        code.append("\n");
+        incrVarCount();
     }   
 
     private void processExprArit(ParseTree ast) {
@@ -121,6 +118,13 @@ public class LLVMGenerator {
     }
 
     private void processPrint(ParseTree ast) {
+        // %6 = load i32, i32* %a
+        // call void @println(i32 %6)
+        DEBUGshowAST("print", ast);
+        String varname = ast.getChildren().get(0).getLabel().getValue().toString();
+        code.append("   %"+varCount.toString() +" = load i32, i32* %"+varname+"\n");
+        code.append("   call void @println(i32 %"+varCount.toString()+")\n");
+        incrVarCount();
     }
 
     private void processWhile(ParseTree ast) {

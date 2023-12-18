@@ -20,7 +20,24 @@ define void @println(i32 %x) #0 {
 
 define i32 @main() {
     %a = alloca i32
+    store i32 666, i32* %a
+    %b = alloca i32
+    %1 = load i32, i32* %a
+    store i32 %1, i32* %b
+;_______________________________________________________
+    %2 = load i32, i32* %a
+    %3 = load i32, i32* %b
+    call void @println(i32 %2)
+    call void @println(i32 %3)
+
+    %4 = load i32, i32* %a
+    %5 = add i32 %4, 111
+    store i32 %5, i32* %a
+
+    %6 = load i32, i32* %a
     call void @println(i32 %6)
+    
+    %7 = load i32, i32* %b
     call void @println(i32 %7)
     ret i32 0   
 }
