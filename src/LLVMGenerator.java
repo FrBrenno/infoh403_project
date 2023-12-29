@@ -30,7 +30,6 @@ public class LLVMGenerator {
     }
 
     public void generate(ParseTree ast) {
-        DEBUGshowAST("generate", ast);
         addBasicFunctions();
         code.append("define i32 @main() {\n");
         processProgram(ast);
@@ -40,14 +39,13 @@ public class LLVMGenerator {
 
     private void processProgram(ParseTree ast) {
         // écrire des trucs ? dans la fonction direct ?$
-        DEBUGshowAST("processProgram", ast);
         for (ParseTree child : ast.getChildren()) {
             processInstList(child);
         }
     }
 
     private void processInstList(ParseTree ast) {
-        DEBUGshowAST("processInstList", ast);
+        // DEBUGshowAST("processInstList", ast);
         for (ParseTree child : ast.getChildren()) {
             switch(child.getLabel().getType()){
                 case ASSIGN:
@@ -64,7 +62,7 @@ public class LLVMGenerator {
                     processPrint(child);
                     break;
                 case READ:
-                    processRead(ast);
+                    processRead(child);
                     break;
                 case INSTLIST:
                     processInstList(child);
@@ -79,11 +77,10 @@ public class LLVMGenerator {
     
     private void processAssign(ParseTree ast) {
         String varname = ast.getChildren().get(0).getLabel().getValue().toString();
-        code.append("   %"+varname+" = alloca i32, align 4\n");
         processExprArit(ast.getChildren().get(1));
-        incrVarCount() ;
-        code.append("   %"+varCount.toString() +" = load i32, i32* %"+lastVarCount.toString()+"\n"); 
-        code.append("   store i32 %"+ varCount.toString() + ", i32* %"+varname+", align 4\n");
+        //    %a = alloca i32, align 4
+        code.append("   %"+varname+ " = alloca i32 \n");
+        code.append("   store i32 %" + varCount.toString() + ", i32* %" + varname + "\n");
         code.append("\n");
         incrVarCount();
     }   
@@ -104,8 +101,7 @@ public class LLVMGenerator {
                 System.out.println("div");
                 break;
             case NUMBER:
-                code.append("   %"+varCount.toString() +" = alloca i32\n");
-                code.append("   store i32 "+ child.getLabel().getValue().toString() +", i32* %"+varCount.toString()+"\n");
+                code.append("   %"+varCount.toString() +" = add i32 0,"+ child.getLabel().getValue().toString()+ "\n");
                 break;
             default:
                 System.out.println("inside exprArith default");
@@ -115,15 +111,25 @@ public class LLVMGenerator {
 
 
     private void processRead(ParseTree ast) {
+        DEBUGshowAST("read", ast);
+        String varname = ast.getChildren().get(0).getLabel().getValue().toString();
+        code.append("   %"+varCount.toString()+" = call i32 @readInt()\n");
+
+        // Partie assign
+        code.append("   %"+varname+ " = alloca i32 \n");
+        code.append("   store i32 %" + varCount.toString() + ", i32* %" + varname + "\n");
+        code.append("\n");
+        incrVarCount();
     }
 
     private void processPrint(ParseTree ast) {
         // %6 = load i32, i32* %a
         // call void @println(i32 %6)
-        DEBUGshowAST("print", ast);
+        // DEBUGshowAST("print", ast);
         String varname = ast.getChildren().get(0).getLabel().getValue().toString();
         code.append("   %"+varCount.toString() +" = load i32, i32* %"+varname+"\n");
         code.append("   call void @println(i32 %"+varCount.toString()+")\n");
+        code.append("\n");
         incrVarCount();
     }
 
@@ -134,20 +140,19 @@ public class LLVMGenerator {
     }
 
     private void addBasicFunctions() {
-        code.append("@.strR = private unnamed_addr constant [3 x i8] c\"%d\\00\", align 1 \n" + //
-            "@.strP = private unnamed_addr constant [4 x i8] c\"%d\\0A\\00\", align 1\n"+//
-            "\n");
-
-        code.append("declare i32 @scanf(i8*, ...) #1\n") ; 
+        code.append("@.strR = private unnamed_addr constant [3 x i8] c\"%d\\00\", align 1 \n");
         code.append("define i32 @readInt() #0 {\n" + //
-            "   %1 = alloca i32, align 4\n" + //
-            "   %2 = call i32 (i8*, ...) @scanf(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.strR, i32 0, i32 0), i32* %1)\n" + //
-            "   %3 = load i32, i32* %1, align 4\n" + //
+            "   %x = alloca i32, align 4\n" + //
+            "   %1 = call i32 (i8*, ...) @scanf(i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.strR, i32 0, i32 0), i32* %x)\n" + //
+            "   %2 = load i32, i32* %x, align 4\n" + //
             "   ret i32 %2\n" + //
             "}\n"+ //
             "\n");
+
+        code.append("declare i32 @scanf(i8*, ...) #1\n") ; 
+
+        code.append("@.strP = private unnamed_addr constant [4 x i8] c\"%d\\0A\\00\", align 1\n");
         
-        code.append("declare i32 @printf(i8*, ...) #1\n" );
         code.append("define void @println(i32 %x) #0 {\n" + //
             "   %1 = alloca i32, align 4\n" + //
             "   store i32 %x, i32* %1, align 4\n"+ //
@@ -156,5 +161,8 @@ public class LLVMGenerator {
             "   ret void\n"+ //
             "}\n" +//
             "\n");
+
+        code.append("declare i32 @printf(i8*, ...) #1\n" );
+
     }
 }
