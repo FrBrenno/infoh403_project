@@ -41,9 +41,9 @@ public class Symbol{
 		List<LexicalUnit> variables = new ArrayList<LexicalUnit>();
 		variables.add(LexicalUnit.CODE);
 		variables.add(LexicalUnit.PROD);
-		variables.add(LexicalUnit.EXPRARITPRIME);
+		//variables.add(LexicalUnit.EXPRARITPRIME);
 		variables.add(LexicalUnit.ATOM);
-		variables.add(LexicalUnit.PRODPRIME);
+		//variables.add(LexicalUnit.PRODPRIME);
 		variables.add(LexicalUnit.CONDPRIME);
 		variables.add(LexicalUnit.CONDATOM);
 		variables.add(LexicalUnit.ANDPRIME);

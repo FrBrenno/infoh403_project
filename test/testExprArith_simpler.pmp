@@ -7,8 +7,10 @@ begin
 ''    c := 2*5...''
 ''    d := 20/2...''
 
-    print(a)
+      print(a)
 ''    print(b)...''
 ''    print(c)...''
-''    print(d)''
+''    print(d)...''
+''    print(e)...''
+''    print(f)...''
 end
