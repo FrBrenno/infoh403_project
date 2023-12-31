@@ -102,6 +102,7 @@ public class LLVMGenerator {
                 break;
             case NUMBER:
                 code.append("   %"+varCount.toString() +" = add i32 0,"+ child.getLabel().getValue().toString()+ "\n");
+                incrVarCount();
                 break;
             default:
                 System.out.println("inside exprArith default");
