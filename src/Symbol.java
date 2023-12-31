@@ -40,7 +40,7 @@ public class Symbol{
 	public boolean ignoreVariable(){
 		List<LexicalUnit> variables = new ArrayList<LexicalUnit>();
 		variables.add(LexicalUnit.CODE);
-		variables.add(LexicalUnit.PROD);
+		//variables.add(LexicalUnit.PROD);
 		variables.add(LexicalUnit.EXPRARITPRIME);
 		variables.add(LexicalUnit.ATOM);
 		variables.add(LexicalUnit.PRODPRIME);
