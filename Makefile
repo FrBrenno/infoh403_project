@@ -47,6 +47,14 @@ test:
 # java -jar ./dist/$(JAR_NAME)  -wt "./test/out/fibonacci.tex" ./test/fibonacci.pmp
 # java -jar ./dist/$(JAR_NAME)  -wt "./test/out/ast2.tex" ./test/AST2.pmp
 
+	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/testAssign.tex" ./test/testAssign.pmp
+	llvm-as ./test/out/testAssign.ll
+	lli ./test/out/testAssign.bc
+
+	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/testAssign.tex" ./test/testAssign.pmp
+	llvm-as ./test/out/testAssign.ll
+	lli ./test/out/testAssign.bc
+
 # java -jar ./dist/$(JAR_NAME)  -wt "./test/out/testRead.tex" ./test/testRead.pmp
 # llvm-as ./test/out/testRead.ll 
 # lli ./test/out/testRead.bc
@@ -58,6 +66,7 @@ test:
 	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/testExprArith_simpler.tex" ./test/testExprArith_simpler.pmp
 	llvm-as ./test/out/testExprArith_simpler.ll 
 	lli ./test/out/testExprArith_simpler.bc
+	
 	
 deliverables:
 	make rebuild test javadoc
