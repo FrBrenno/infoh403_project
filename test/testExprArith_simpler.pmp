@@ -1,13 +1,13 @@
 '' This input tests the ability to parser arithmetic expressions. ''
 
 begin
-    a := 7+4/2+1...
+   '' a := 7+4/2+1...''
     b := 12-3*4*5+67...
 ''    b := 13-3...''
 ''    c := 2*5...''
 ''    d := 20/2...''
 
-      print(a)
+      print(b)
 ''    print(b)...''
 ''    print(c)...''
 ''    print(d)...''

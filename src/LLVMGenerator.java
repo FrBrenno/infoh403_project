@@ -1,7 +1,7 @@
 public class LLVMGenerator {
     AST ast;
     StringBuilder code ;
-    Integer lastVarCount = 0;
+
     Integer varCount = 1;
 
     public LLVMGenerator() {
@@ -10,7 +10,6 @@ public class LLVMGenerator {
 
     private void incrVarCount() {
         varCount++;
-        lastVarCount++ ;
     }
     private void resetVarCount() {
         varCount = 0;
@@ -88,10 +87,13 @@ public class LLVMGenerator {
     private void processExprArit(ParseTree ast) {
         for (ParseTree child : ast.getChildren()) {
             switch(child.getLabel().getType()){
-            case PRODPRIME:
-                processProdPrime(child);
+            case NUMBER:
+                code.append("   %"+varCount.toString() +" = add i32 0,"+ child.getLabel().getValue().toString()+ "\n");
+                incrVarCount();
+                break;
             case EXPRARITPRIME:
                 processExprAritPrime(child);    
+                break;
             default:
                 System.out.println("inside exprArith default");
             }
@@ -100,6 +102,7 @@ public class LLVMGenerator {
 
     private void processExprAritPrime(ParseTree ast) {
         String operation = "";
+        Integer current_var = varCount - 1 ; //retient le %1 = 12
         for (ParseTree child : ast.getChildren()) {
             switch(child.getLabel().getType()){
             case PLUS:
@@ -110,9 +113,17 @@ public class LLVMGenerator {
                 break;
             case PRODPRIME:
                 processProdPrime(child);
+                Integer lastVarCount = varCount - 1;
+                Integer lastVarCount2 = current_var;
+                code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+ lastVarCount.toString() +", %"+ lastVarCount2.toString()+"\n");
+                incrVarCount();
                 break;
             case EXPRARITPRIME:
                 processExprAritPrime(child);
+                break;
+            case NUMBER:
+                code.append("   %"+varCount.toString() +" = add i32 0,"+ child.getLabel().getValue().toString()+ "\n"); // %2 = 3 // %7
+                incrVarCount();
                 break;
             default:
                 System.out.println("inside exprArithPrime default");
@@ -120,13 +131,15 @@ public class LLVMGenerator {
         }   
 
         Integer lastVarCount = varCount - 1;
-        Integer lastVarCount2 = varCount - 2;
+        Integer lastVarCount2 = current_var;
         code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+ lastVarCount.toString() +", %"+ lastVarCount2.toString()+"\n");
+        System.out.println("   %"+varCount.toString()+" = "+operation+" i32 %"+ lastVarCount.toString() +", %"+ lastVarCount2.toString()+"\n");
         incrVarCount();
     }
 
     private void processProdPrime(ParseTree ast) {
         String operation = "";
+        Integer current_var = varCount - 1 ; 
         for (ParseTree child : ast.getChildren()) {
             switch(child.getLabel().getType()){
             case TIMES:
@@ -136,7 +149,8 @@ public class LLVMGenerator {
                 operation = "sdiv";
                 break;
             case NUMBER:
-                code.append("   %"+varCount.toString() +" = add i32 0,"+ child.getLabel().getValue().toString()+ "\n");
+                code.append("   %"+varCount.toString() +" = add i32 0,"+ child.getLabel().getValue().toString()+ "\n"); // %3 = 4 ////////// %4 = 5
+                incrVarCount();
                 break;
             case PRODPRIME:
                 processProdPrime(child);
@@ -146,8 +160,8 @@ public class LLVMGenerator {
             }
         }   
 
-        Integer lastVarCount = varCount - 1;
-        Integer lastVarCount2 = varCount - 2;
+        Integer lastVarCount = varCount - 1; // %5
+        Integer lastVarCount2 = current_var; // %2
         code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+ lastVarCount.toString() +", %"+ lastVarCount2.toString()+"\n");
         incrVarCount();
     }
