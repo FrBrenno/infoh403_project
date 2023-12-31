@@ -105,13 +105,12 @@ public class LLVMGenerator {
                 break;
             default:
                 System.out.println("inside exprArith default");
-        }
+            }
         }
     }
 
 
     private void processRead(ParseTree ast) {
-        DEBUGshowAST("read", ast);
         String varname = ast.getChildren().get(0).getLabel().getValue().toString();
         code.append("   %"+varCount.toString()+" = call i32 @readInt()\n");
 
@@ -123,9 +122,6 @@ public class LLVMGenerator {
     }
 
     private void processPrint(ParseTree ast) {
-        // %6 = load i32, i32* %a
-        // call void @println(i32 %6)
-        // DEBUGshowAST("print", ast);
         String varname = ast.getChildren().get(0).getLabel().getValue().toString();
         code.append("   %"+varCount.toString() +" = load i32, i32* %"+varname+"\n");
         code.append("   call void @println(i32 %"+varCount.toString()+")\n");
