@@ -116,8 +116,9 @@ public class LLVMGenerator {
         }
         varCount--;
     }
-
+    
     private void processExprAritPrime(ParseTree ast) {
+        code.append(";___expraritprime beginnnn ________\n");
         String operation = "";
         Integer memory_varcount = varCount - 1 ; //retient le %1 = 12
         for (ParseTree child : ast.getChildren()) {
@@ -137,6 +138,8 @@ public class LLVMGenerator {
             case EXPRARITPRIME:
             //condition ici pour savoir si on traite dif ?
                 memory_varcount = varCount - 1; // %7
+
+                code.append(";mémoire : %"+memory_varcount.toString()+"\n");
                 processExprAritPrime(child); 
 
                 if (child.getChildren().get(0).getLabel().getType() == LexicalUnit.PLUS) {
@@ -161,6 +164,7 @@ public class LLVMGenerator {
         code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+ memory_varcount.toString() +", %"+ lastVarCount.toString()+"\n");
         System.out.println("   %"+varCount.toString()+" = "+operation+" i32 %"+ memory_varcount.toString() +", %"+ lastVarCount.toString()+"\n");
         incrVarCount();
+        code.append(";_______exprAritPrime end _________\n");
     }
 
     private void processProdPrime(ParseTree ast) {
