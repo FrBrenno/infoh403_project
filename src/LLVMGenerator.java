@@ -165,6 +165,11 @@ public class LLVMGenerator {
     private void processAtom(ParseTree ast) {
         for (ParseTree child : ast.getChildren()) {
             switch (child.getLabel().getType()) {
+                case MINUS:
+                    processAtom(child);
+                    Integer lastvar = varCount - 1;
+                    code.append("   %"+varCount.toString()+" = mul i32 -1, %"+lastvar.toString()+"\n");
+                    break;
                 case NUMBER:
                     code.append("   %"+varCount.toString()+" = add i32 0, "+child.getLabel().getValue().toString()+"\n");
                     incrVarCount();
