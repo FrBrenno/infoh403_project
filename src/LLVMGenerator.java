@@ -67,7 +67,6 @@ public class LLVMGenerator {
         for (ParseTree child : ast.getChildren()) {
             switch(child.getLabel().getType()){
                 case ASSIGN:
-                    System.out.println("trouvé le assign");
                     processAssign(child);
                     break;
                 case IF:
@@ -96,115 +95,105 @@ public class LLVMGenerator {
     private void processAssign(ParseTree ast) {
         String varname = ast.getChildren().get(0).getLabel().getValue().toString();
         processExprArit(ast.getChildren().get(1));
-        //    %a = alloca i32, align 4
         if (!varNames.contains(varname)) {
             varNames.add(varname);
             code.append("   %"+varname+ " = alloca i32 \n");
         }
-        code.append("   store i32 %" + varCount.toString() + ", i32* %" + varname + "\n");
+        Integer lastvar = varCount - 1;
+        code.append("   store i32 %" + lastvar.toString() + ", i32* %" + varname + "\n");
         code.append("\n");
-        incrVarCount();
     }   
 
     private void processExprArit(ParseTree ast) {
+        String operation = "";
+        Integer first_var = 0;
         for (ParseTree child : ast.getChildren()) {
-            switch(child.getLabel().getType()){
-            case NUMBER:
-                code.append("   %"+varCount.toString() +" = add i32 0,"+ child.getLabel().getValue().toString()+ "\n");
-                incrVarCount();
-                break;
-            case EXPRARITPRIME:
-                processExprAritPrime(child);    
-                break;
-            default:
-                System.out.println("inside exprArith default");
-            
+            switch (child.getLabel().getType()) {
+                case PROD:
+                    processProd(child);
+                    if (operation == "") {
+                        first_var = varCount - 1;
+                    }
+                    else {
+                        Integer second_var = varCount - 1;
+                        code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+first_var.toString()+", %"+second_var.toString()+"\n");
+                        first_var = varCount;
+                        incrVarCount();
+                    }
+                    break;
+                case PLUS:
+                    operation = "add";
+                    break;
+                case MINUS:
+                    operation = "sub";
+                    break;
+                default:
+                    break;
             }
         }
-        varCount--;
     }
     
-    private void processExprAritPrime(ParseTree ast) {
-        code.append(";___expraritprime beginnnn ________\n");
+    private void processProd(ParseTree ast) {
         String operation = "";
-        Integer memory_varcount = varCount - 1 ; //retient le %1 = 12
+        Integer first_var = 0;
         for (ParseTree child : ast.getChildren()) {
-            switch(child.getLabel().getType()){
-            case PLUS:
-                operation = "add";
-                break;
-            case MINUS:
-                operation = "sub";
-                break;
-            case PRODPRIME:
-                processProdPrime(child);
-                Integer lastVarCount = varCount - 1;
-                code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+ memory_varcount.toString() +", %"+ lastVarCount.toString()+"\n");
-                incrVarCount();
-                break;
-            case EXPRARITPRIME:
-            //condition ici pour savoir si on traite dif ?
-                memory_varcount = varCount - 1; // %7
-
-                code.append(";mémoire : %"+memory_varcount.toString()+"\n");
-                processExprAritPrime(child); 
-
-                if (child.getChildren().get(0).getLabel().getType() == LexicalUnit.PLUS) {
-                    operation = "add";
-                }else if (child.getChildren().get(0).getLabel().getType() == LexicalUnit.MINUS) {
-                    operation = "sub";}
-
-                break;
-            case NUMBER:
-                code.append("   %"+varCount.toString() +" = add i32 0,"+ child.getLabel().getValue().toString()+ "\n"); // %2 = 3 // %7
-                incrVarCount();
-                break;
-            default:
-                System.out.println("inside exprArithPrime default");
+            switch (child.getLabel().getType()) {
+                case ATOM:
+                    processAtom(child);
+                    if (operation == "") {
+                        first_var = varCount - 1;
+                    }
+                    else {
+                        Integer second_var = varCount - 1;
+                        code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+first_var.toString()+", %"+second_var.toString()+"\n");
+                        first_var = varCount;
+                        incrVarCount();
+                    }
+                    break;
+                case TIMES:
+                    operation = "mul";
+                    break;
+                case DIVIDE:
+                    operation = "sdiv";
+                    break;
+                default:
+                    break;
             }
-        }   
-        if (hasExprAritPrime(ast)) { // sert juste à skip quand EAprime n'est pas le dernier
-            return;
         }
-
-        Integer lastVarCount = varCount - 1; // %5
-        code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+ memory_varcount.toString() +", %"+ lastVarCount.toString()+"\n");
-        System.out.println("   %"+varCount.toString()+" = "+operation+" i32 %"+ memory_varcount.toString() +", %"+ lastVarCount.toString()+"\n");
-        incrVarCount();
-        code.append(";_______exprAritPrime end _________\n");
     }
 
-    private void processProdPrime(ParseTree ast) {
-        code.append(";prodprime being :");
-        String operation = "";
-        Integer memory_varcount = varCount - 1 ; 
+    private void processAtom(ParseTree ast) {
+        boolean is_unary_minus = false;
         for (ParseTree child : ast.getChildren()) {
-            switch(child.getLabel().getType()){
-            case TIMES:
-                operation = "mul";
-                break;
-            case DIVIDE:
-                operation = "sdiv";
-                break;
-            case NUMBER:
-                    code.append(" number"+child.getLabel().getValue().toString()+" \n");
-                code.append("   %"+varCount.toString() +" = add i32 0,"+ child.getLabel().getValue().toString()+ "\n"); // %3 = 4 ////////// %4 = 5
-                incrVarCount();
-                break;
-            case PRODPRIME:
-                processProdPrime(child);
-                break;
-            default:
-                System.out.println("inside prodPrime default");
+            switch (child.getLabel().getType()) {
+                case ATOM:
+                    processAtom(child);
+                    break;
+                case EXPRARIT:
+                    processExprArit(child);
+                    break;
+                case MINUS:
+                    is_unary_minus = true;
+                    break;
+                case NUMBER:
+                    code.append("   %"+varCount.toString()+" = add i32 0, "+child.getLabel().getValue().toString()+"\n");
+                    incrVarCount();
+                    break;
+                case VARNAME:
+                    code.append("   %"+varCount.toString()+" = load i32, i32* %"+child.getLabel().getValue().toString()+"\n");
+                    incrVarCount();
+                    break;
+                default:
+                    break;
             }
-        }   
-
-        Integer lastVarCount = varCount - 1; // %5
-        Integer lastVarCount2 = memory_varcount; // %2
-        code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+ lastVarCount.toString() +", %"+ lastVarCount2.toString()+"\n");
-        incrVarCount();
-        code.append(";prodprime end \n");
+        }
+        if (is_unary_minus) {
+            Integer lastvar = varCount - 1;
+            code.append("   %"+varCount.toString()+" = mul i32 -1, %"+lastvar.toString()+"\n");
+            incrVarCount();
+        }
     }
+    
 
     private void processRead(ParseTree ast) {
         String varname = ast.getChildren().get(0).getLabel().getValue().toString();
