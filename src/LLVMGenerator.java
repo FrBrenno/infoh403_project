@@ -1,8 +1,11 @@
+import java.util.ArrayList;
+
 public class LLVMGenerator {
     AST ast;
     StringBuilder code ;
 
     Integer varCount = 1;
+    ArrayList<String> varNames = new ArrayList<String>();
 
     public LLVMGenerator() {
         this.code = new StringBuilder();
@@ -27,6 +30,7 @@ public class LLVMGenerator {
     public StringBuilder getCode() {
         return code;
     }
+
 
     private Boolean hasExprAritPrime(ParseTree ast) {
         for (ParseTree child : ast.getChildren()) {
@@ -93,7 +97,10 @@ public class LLVMGenerator {
         String varname = ast.getChildren().get(0).getLabel().getValue().toString();
         processExprArit(ast.getChildren().get(1));
         //    %a = alloca i32, align 4
-        code.append("   %"+varname+ " = alloca i32 \n");
+        if (!varNames.contains(varname)) {
+            varNames.add(varname);
+            code.append("   %"+varname+ " = alloca i32 \n");
+        }
         code.append("   store i32 %" + varCount.toString() + ", i32* %" + varname + "\n");
         code.append("\n");
         incrVarCount();
