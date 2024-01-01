@@ -67,7 +67,6 @@ public class LLVMGenerator {
         for (ParseTree child : ast.getChildren()) {
             switch(child.getLabel().getType()){
                 case ASSIGN:
-                    System.out.println("trouvé le assign");
                     processAssign(child);
                     break;
                 case IF:
