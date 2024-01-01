@@ -163,12 +163,17 @@ public class LLVMGenerator {
     }
 
     private void processAtom(ParseTree ast) {
+        boolean is_unary_minus = false;
         for (ParseTree child : ast.getChildren()) {
             switch (child.getLabel().getType()) {
-                case MINUS:
+                case ATOM:
                     processAtom(child);
-                    Integer lastvar = varCount - 1;
-                    code.append("   %"+varCount.toString()+" = mul i32 -1, %"+lastvar.toString()+"\n");
+                    break;
+                case EXPRARIT:
+                    processExprArit(child);
+                    break;
+                case MINUS:
+                    is_unary_minus = true;
                     break;
                 case NUMBER:
                     code.append("   %"+varCount.toString()+" = add i32 0, "+child.getLabel().getValue().toString()+"\n");
@@ -181,6 +186,11 @@ public class LLVMGenerator {
                 default:
                     break;
             }
+        }
+        if (is_unary_minus) {
+            Integer lastvar = varCount - 1;
+            code.append("   %"+varCount.toString()+" = mul i32 -1, %"+lastvar.toString()+"\n");
+            incrVarCount();
         }
     }
     
