@@ -5,6 +5,7 @@ public class LLVMGenerator {
     StringBuilder code ;
 
     Integer varCount = 1;
+    Integer ifCount = 0;
     ArrayList<String> varNames = new ArrayList<String>();
 
     public LLVMGenerator() {
@@ -70,10 +71,10 @@ public class LLVMGenerator {
                     processAssign(child);
                     break;
                 case IF:
-                    processIf(ast);
+                    processIf(child);
                     break;
                 case WHILE:
-                    processWhile(ast);
+                    processWhile(child);
                     break;
                 case PRINT:
                     processPrint(child);
@@ -214,12 +215,78 @@ public class LLVMGenerator {
         incrVarCount();
     }
 
+    
+    private void processIf(ParseTree ast) {
+        ifCount++;
+        for (ParseTree child : ast.getChildren()) {
+            switch (child.getLabel().getType()) {
+                case COND:  // Condition
+                    processCond(child);
+                    Integer lastvar = varCount - 1;
+                    code.append("   br i1 %"+lastvar.toString()+", label %if_true_"+ifCount.toString()+", label %if_false_"+ifCount.toString()+"\n\n");
+                    break;
+                case INSTLIST: // IF True
+                    code.append("   if_true_"+ifCount.toString()+":\n");
+                    processInstList(child);
+                    code.append("   br label %if_end_"+ifCount.toString()+"\n\n");
+                    break;
+                case ELSETAIL: // IF False
+                    code.append("   if_false_"+ifCount.toString()+":\n");
+                    processElseTail(child);
+                    code.append("   br label %if_end_"+ifCount.toString()+"\n\n");
+                    break;
+                default:
+                    break;
+            }
+        }
+        code.append("   if_end_"+ifCount.toString()+":\n");
+    }
+
+    private void processCond(ParseTree ast) {
+        String operation = "";
+        Integer left = null;
+        Integer right = null;
+        for (ParseTree child : ast.getChildren()) {
+            switch (child.getLabel().getType()) {
+                case EXPRARIT:
+                    processExprArit(child);
+                    if (operation == "") {
+                        left = varCount - 1;
+                    }
+                    else {
+                        right = varCount - 1;
+                    }
+
+                    break;
+                case SMALLER:
+                    operation = "slt";
+                    break;
+                case EQUAL:
+                    operation = "eq";
+                    break;
+                default:
+                    break;
+            }
+        }
+        code.append("   %"+varCount.toString()+" = icmp "+operation+" i32 %"+left.toString()+", %"+right.toString()+"\n");
+        incrVarCount();
+    }
+
+    private void processElseTail(ParseTree ast) {
+        for (ParseTree child : ast.getChildren()) {
+            switch (child.getLabel().getType()) {
+                case INSTLIST:
+                    processInstList(child);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
     private void processWhile(ParseTree ast) {
     }
-
-    private void processIf(ParseTree ast) {
-    }
-
+    
     private void addBasicFunctions() {
         code.append("@.strR = private unnamed_addr constant [3 x i8] c\"%d\\00\", align 1 \n");
         code.append("define i32 @readInt() #0 {\n" + //
