@@ -55,10 +55,13 @@ test:
 # llvm-as ./test/out/testAssign.ll
 # lli ./test/out/testAssign.bc
 
-	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/testExprArith_simpler.tex" ./test/testExprArith_simpler.pmp
-	llvm-as ./test/out/testExprArith_simpler.ll 
-	lli ./test/out/testExprArith_simpler.bc
+	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/testIf.tex" ./test/testIf.pmp
+	llvm-as ./test/out/testIf.ll 
+	lli ./test/out/testIf.bc
 	
+# 	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/testExprArith_simpler.tex" ./test/testExprArith_simpler.pmp
+# llvm-as ./test/out/testExprArith_simpler.ll 
+# lli ./test/out/testExprArith_simpler.bc
 	
 deliverables:
 	make rebuild test javadoc
