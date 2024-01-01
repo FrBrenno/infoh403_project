@@ -41,27 +41,19 @@ declare i32 @printf(i8*, ...) #1
 ; }
 
 define i32 @main() {
-    ; process exprearit
     %1 = add i32 0,12
-    ; process EAprime
-    ;java connait le -  child(0)
     %2 = add i32 0,3 ;child(1)
-        ; process prodprime
-        ; java connait le *  child(0)
-        
-        %3 = add i32 0,4 ;child(1)
-        ; javavar2
-            ; process prodprime
-            ; java connait le *  child(0)
-            %4 = add i32 0,5 ;child(1)
-            ; quand on a pas de prodprime
-            %5 = mul i32 %4, %3 ; varcount-1, varcount-xxxx 2
-        %6 = mul i32 %5, %2 ; varcount-1, varcount-xxxxx 3
+    %3 = add i32 0,4 ;child(1)
+    %4 = add i32 0,5 ;child(1)
+    %5 = mul i32 %4, %3 ; varcount-1, varcount-xxxx 2
+    %6 = mul i32 %5, %2 ; varcount-1, varcount-xxxxx 3
     %7 = sub i32 %1, %6 ; varcount-1, varcount-xxxxx 7
-    ; 12 - 3*4*5
-    ; process expraritprime
     %8 = add i32 0,67
+
     %9 = add i32 %7, %8 ; varcount-1, varcount-xxxxx 11
-    call void @println(i32 %9)
+    %b = alloca i32
+    store i32 %9, i32* %b
+    %10 = load i32, i32* %b
+    call void @println(i32 %10)
     ret i32 0
 }

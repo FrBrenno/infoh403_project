@@ -28,6 +28,21 @@ public class LLVMGenerator {
         return code;
     }
 
+    private Boolean hasExprAritPrime(ParseTree ast) {
+        for (ParseTree child : ast.getChildren()) {
+            if (child.getLabel().getType() == LexicalUnit.EXPRARITPRIME && child.getLabel().getType() == LexicalUnit.PRODPRIME) {
+                return true;
+            }
+            else if (child.getLabel().getType() == LexicalUnit.EXPRARITPRIME) {
+                return true;
+            }
+            else if (child.getLabel().getType() == LexicalUnit.PRODPRIME) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public void generate(ParseTree ast) {
         addBasicFunctions();
         code.append("define i32 @main() {\n");
@@ -96,13 +111,15 @@ public class LLVMGenerator {
                 break;
             default:
                 System.out.println("inside exprArith default");
+            
             }
         }
+        varCount--;
     }
 
     private void processExprAritPrime(ParseTree ast) {
         String operation = "";
-        Integer current_var = varCount - 1 ; //retient le %1 = 12
+        Integer memory_varcount = varCount - 1 ; //retient le %1 = 12
         for (ParseTree child : ast.getChildren()) {
             switch(child.getLabel().getType()){
             case PLUS:
@@ -114,12 +131,19 @@ public class LLVMGenerator {
             case PRODPRIME:
                 processProdPrime(child);
                 Integer lastVarCount = varCount - 1;
-                Integer lastVarCount2 = current_var;
-                code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+ lastVarCount.toString() +", %"+ lastVarCount2.toString()+"\n");
+                code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+ memory_varcount.toString() +", %"+ lastVarCount.toString()+"\n");
                 incrVarCount();
                 break;
             case EXPRARITPRIME:
-                processExprAritPrime(child);
+            //condition ici pour savoir si on traite dif ?
+                memory_varcount = varCount - 1; // %7
+                processExprAritPrime(child); 
+
+                if (child.getChildren().get(0).getLabel().getType() == LexicalUnit.PLUS) {
+                    operation = "add";
+                }else if (child.getChildren().get(0).getLabel().getType() == LexicalUnit.MINUS) {
+                    operation = "sub";}
+
                 break;
             case NUMBER:
                 code.append("   %"+varCount.toString() +" = add i32 0,"+ child.getLabel().getValue().toString()+ "\n"); // %2 = 3 // %7
@@ -129,17 +153,20 @@ public class LLVMGenerator {
                 System.out.println("inside exprArithPrime default");
             }
         }   
+        if (hasExprAritPrime(ast)) { // sert juste à skip quand EAprime n'est pas le dernier
+            return;
+        }
 
-        Integer lastVarCount = varCount - 1;
-        Integer lastVarCount2 = current_var;
-        code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+ lastVarCount.toString() +", %"+ lastVarCount2.toString()+"\n");
-        System.out.println("   %"+varCount.toString()+" = "+operation+" i32 %"+ lastVarCount.toString() +", %"+ lastVarCount2.toString()+"\n");
+        Integer lastVarCount = varCount - 1; // %5
+        code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+ memory_varcount.toString() +", %"+ lastVarCount.toString()+"\n");
+        System.out.println("   %"+varCount.toString()+" = "+operation+" i32 %"+ memory_varcount.toString() +", %"+ lastVarCount.toString()+"\n");
         incrVarCount();
     }
 
     private void processProdPrime(ParseTree ast) {
+        code.append(";prodprime being :");
         String operation = "";
-        Integer current_var = varCount - 1 ; 
+        Integer memory_varcount = varCount - 1 ; 
         for (ParseTree child : ast.getChildren()) {
             switch(child.getLabel().getType()){
             case TIMES:
@@ -149,6 +176,7 @@ public class LLVMGenerator {
                 operation = "sdiv";
                 break;
             case NUMBER:
+                    code.append(" number"+child.getLabel().getValue().toString()+" \n");
                 code.append("   %"+varCount.toString() +" = add i32 0,"+ child.getLabel().getValue().toString()+ "\n"); // %3 = 4 ////////// %4 = 5
                 incrVarCount();
                 break;
@@ -161,9 +189,10 @@ public class LLVMGenerator {
         }   
 
         Integer lastVarCount = varCount - 1; // %5
-        Integer lastVarCount2 = current_var; // %2
+        Integer lastVarCount2 = memory_varcount; // %2
         code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+ lastVarCount.toString() +", %"+ lastVarCount2.toString()+"\n");
         incrVarCount();
+        code.append(";prodprime end \n");
     }
 
     private void processRead(ParseTree ast) {
