@@ -86,7 +86,7 @@ public class LLVMGenerator {
                     processInstList(child);
                     break;
                 default:
-                    System.out.println("inside InstList default");
+                    break;
         }
         }
         
@@ -218,28 +218,38 @@ public class LLVMGenerator {
     
     private void processIf(ParseTree ast) {
         ifCount++;
-        for (ParseTree child : ast.getChildren()) {
-            switch (child.getLabel().getType()) {
-                case COND:  // Condition
-                    processCond(child);
-                    Integer lastvar = varCount - 1;
-                    code.append("   br i1 %"+lastvar.toString()+", label %if_true_"+ifCount.toString()+", label %if_false_"+ifCount.toString()+"\n\n");
-                    break;
-                case INSTLIST: // IF True
-                    code.append("   if_true_"+ifCount.toString()+":\n");
-                    processInstList(child);
-                    code.append("   br label %if_end_"+ifCount.toString()+"\n\n");
-                    break;
-                case ELSETAIL: // IF False
-                    code.append("   if_false_"+ifCount.toString()+":\n");
-                    processElseTail(child);
-                    code.append("   br label %if_end_"+ifCount.toString()+"\n\n");
-                    break;
-                default:
-                    break;
-            }
+        Integer memory_if_count = ifCount;
+        String if_true_name = "if_true_"+memory_if_count.toString();
+        String if_false_name = "if_false_"+memory_if_count.toString();
+        String if_end_name = "if_end_"+memory_if_count.toString();
+
+        // CONDITION
+        ParseTree cond = ast.getChildren().get(0);
+        processCond(cond);
+        Integer lastvar = varCount - 1;
+        code.append("   br i1 %"+lastvar.toString()+", label %"+if_true_name+", label %"+if_false_name+"\n\n");
+
+        // IF TRUE
+        ParseTree ifTrueNode = ast.getChildren().get(1);
+        code.append("   "+if_true_name+":\n");
+        if (ifTrueNode.getLabel().getType() == LexicalUnit.INSTLIST)
+        {
+            processInstList(ifTrueNode);
+        }else
+        {
+            processInstList(ast);
         }
-        code.append("   if_end_"+ifCount.toString()+":\n");
+        code.append("   br label %"+ if_end_name +"\n\n");
+
+        // ELSE
+        code.append("   "+if_false_name+":\n");
+        if (ast.getChildren().size() == 3)
+        {
+            ParseTree elseNode = ast.getChildren().get(2);
+            processElseTail(elseNode);
+        }
+        code.append("   br label %"+ if_end_name +"\n\n");
+        code.append("   if_end_"+memory_if_count.toString()+":\n");
     }
 
     private void processCond(ParseTree ast) {
