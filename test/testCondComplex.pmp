@@ -5,12 +5,7 @@ begin
     true := 777 ...
     false := -777 ...
 
-    a := 1 ...
-    b := 2 ...
-    c := 3 ...
-    d := 4 ...
-
-    if true < 888 then
+    if 1 < 2 then                ''rend true''
       print(true)
     else
       begin 
@@ -19,7 +14,7 @@ begin
 
     print(separator)...
 
-    if a < b and c = d then
+    if 1 < 2 and 2 = 3 then                 ''rend false''
       print(true)
     else
       begin 
@@ -29,7 +24,7 @@ begin
 
     print(separator)...
 
-    if a < b or c = d then
+    if 2 < 1 or 3 = 3 then                ''rend true''
       print(true)
     else
       begin 
@@ -38,13 +33,24 @@ begin
 
     print(separator)...
 
-    if {a < b or c = d} and a = 1  then
+    if {5 < 4 or 1 = 1} and 1 = 1  then                ''rend true''
       print(true)
     else
       begin 
         print(false)
       end...
       
-    print(separator)
+    print(separator)...
+
+    ''
+    rend false 
+    (le 2e or est faux, ce qui rend tout les and faux)
+    ''
+    if {5 < 4 or 1 = 1} and 1 = 1 and 2=2 and 555<444 or 2=4 and 2=2 then
+      print(true)
+    else
+      begin 
+        print(false)
+      end
 
 end
