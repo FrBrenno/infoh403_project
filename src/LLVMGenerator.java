@@ -18,37 +18,9 @@ public class LLVMGenerator {
         varCount++;
         lastvar = varCount - 1;
     }
-    private void resetVarCount() {
-        varCount = 0;
-    }
-
-    private void DEBUGshowAST(String message, ParseTree myAst) {
-        System.out.println("________________" + message + "________________");
- 
-        for (ParseTree child : myAst.getChildren()) {
-            System.out.println("| "+child.getLabel().getType());
-        }
-        System.out.println("_______________________________________________\n");
-    }
 
     public StringBuilder getCode() {
         return code;
-    }
-
-
-    private Boolean hasExprAritPrime(ParseTree ast) {
-        for (ParseTree child : ast.getChildren()) {
-            if (child.getLabel().getType() == LexicalUnit.EXPRARITPRIME && child.getLabel().getType() == LexicalUnit.PRODPRIME) {
-                return true;
-            }
-            else if (child.getLabel().getType() == LexicalUnit.EXPRARITPRIME) {
-                return true;
-            }
-            else if (child.getLabel().getType() == LexicalUnit.PRODPRIME) {
-                return true;
-            }
-        }
-        return false;
     }
     
     public void generate(ParseTree ast) {
@@ -56,18 +28,15 @@ public class LLVMGenerator {
         code.append("define i32 @main() {\n");
         processProgram(ast);
         code.append("   ret i32 0\n}");
-        
     }
 
     private void processProgram(ParseTree ast) {
-        // écrire des trucs ? dans la fonction direct ?$
         for (ParseTree child : ast.getChildren()) {
             processInstList(child);
         }
     }
 
     private void processInstList(ParseTree ast) {
-        // DEBUGshowAST("processInstList", ast);
         for (ParseTree child : ast.getChildren()) {
             switch(child.getLabel().getType()){
                 case ASSIGN:
@@ -90,10 +59,8 @@ public class LLVMGenerator {
                     break;
                 default:
                     break;
+            }
         }
-        }
-        
-        
     }
     
     private void processAssign(ParseTree ast) {
@@ -114,11 +81,11 @@ public class LLVMGenerator {
             switch (child.getLabel().getType()) {
                 case PROD:
                     processProd(child);
-                    if (operation == "") {
-                        first_var = varCount - 1;
+                    if (operation == "") {          // Check si c'est le premier elem (operation pas encore traitée => d'office elem de gauche)
+                        first_var = lastvar;
                     }
                     else {
-                        Integer second_var = varCount - 1;
+                        Integer second_var = lastvar;
                         code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+first_var.toString()+", %"+second_var.toString()+"\n");
                         first_var = varCount;
                         incrVarCount();
@@ -143,11 +110,11 @@ public class LLVMGenerator {
             switch (child.getLabel().getType()) {
                 case ATOM:
                     processAtom(child);
-                    if (operation == "") {
-                        first_var = varCount - 1;
+                    if (operation == "") {    // Check si c'est le premier elem (operation pas encore traitée => d'office elem de gauche)
+                        first_var = lastvar;
                     }
                     else {
-                        Integer second_var = varCount - 1;
+                        Integer second_var = lastvar;
                         code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+first_var.toString()+", %"+second_var.toString()+"\n");
                         first_var = varCount;
                         incrVarCount();
@@ -200,7 +167,6 @@ public class LLVMGenerator {
     private void processRead(ParseTree ast) {
         String varname = ast.getChildren().get(0).getLabel().getValue().toString();
         code.append("   %"+varCount.toString()+" = call i32 @readInt()\n");
-
         // Partie assign
         code.append("   %"+varname+ " = alloca i32 \n");
         code.append("   store i32 %" + varCount.toString() + ", i32* %" + varname + "\n");
@@ -216,6 +182,34 @@ public class LLVMGenerator {
         incrVarCount();
     }
 
+    private void processCond(ParseTree ast) {
+        String operation = "";
+        Integer left = null;
+        Integer right = null;
+        for (ParseTree child : ast.getChildren()) {
+            switch (child.getLabel().getType()) {
+                case EXPRARIT:
+                    processExprArit(child);
+                    if (operation == "") {         // Check si c'est le premier elem (operation pas encore traitée => d'office elem de gauche) 
+                        left = varCount - 1; 
+                    }
+                    else {
+                        right = varCount - 1;
+                    }
+                    break;
+                case SMALLER:
+                    operation = "slt";
+                    break;
+                case EQUAL:
+                    operation = "eq";
+                    break;
+                default:
+                    break;
+            }
+        }
+        code.append("   %"+varCount.toString()+" = icmp "+operation+" i32 %"+left.toString()+", %"+right.toString()+"\n");
+        incrVarCount();
+    }
     
     private void processIf(ParseTree ast) {
         ifCount++;
@@ -252,35 +246,6 @@ public class LLVMGenerator {
         code.append("   "+if_end_name+":\n");
     }
 
-    private void processCond(ParseTree ast) { //appeller process cond avec le left right déjà ?
-        String operation = "";
-        Integer left = null;
-        Integer right = null;
-        for (ParseTree child : ast.getChildren()) {
-            switch (child.getLabel().getType()) {
-                case EXPRARIT:
-                    processExprArit(child);
-                    if (operation == "") {
-                        left = varCount - 1;
-                    }
-                    else {
-                        right = varCount - 1;
-                    }
-                    break;
-                case SMALLER:
-                    operation = "slt";
-                    break;
-                case EQUAL:
-                    operation = "eq";
-                    break;
-                default:
-                    break;
-            }
-        }
-        code.append("   %"+varCount.toString()+" = icmp "+operation+" i32 %"+left.toString()+", %"+right.toString()+"\n");
-        incrVarCount();
-    }
-
     private void processElseTail(ParseTree ast) {
         for (ParseTree child : ast.getChildren()) {
             switch (child.getLabel().getType()) {
@@ -313,11 +278,10 @@ public class LLVMGenerator {
         {
             processInstList(ast);
         }
-        // Réévaluer la condition 
+        // RE-EVALUATE CONDITION 
         processCond(cond);
         code.append("   br i1 %"+lastvar.toString()+", label %"+whileLoopName+", label %"+whileEndName+"\n\n");
         code.append("   "+whileEndName+":\n");
-        // incrVarCount();
     }
     
     private void addBasicFunctions() {
