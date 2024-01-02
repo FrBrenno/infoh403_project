@@ -77,6 +77,11 @@ testWhile :
 	llvm-as ./test/out/testWhile.ll 
 	lli ./test/out/testWhile.bc
 
+testCondComplex :
+	java -jar ./dist/$(JAR_NAME)  -wt "./test/out/testCondComplex.tex" ./test/testCondComplex.pmp
+	llvm-as ./test/out/testCondComplex.ll 
+	lli ./test/out/testCondComplex.bc
+
 deliverables:
 	make rebuild test javadoc
 
