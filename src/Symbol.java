@@ -45,13 +45,13 @@ public class Symbol{
 		//variables.add(LexicalUnit.ATOM);
 		variables.add(LexicalUnit.PRODPRIME);
 		variables.add(LexicalUnit.CONDPRIME);
-		variables.add(LexicalUnit.CONDATOM);
+		// variables.add(LexicalUnit.CONDATOM);
 		variables.add(LexicalUnit.ANDPRIME);
 		variables.add(LexicalUnit.COMP);
 		variables.add(LexicalUnit.EOS);
 		variables.add(LexicalUnit.INSTTAIL);
 		variables.add(LexicalUnit.INST); 
-		variables.add(LexicalUnit.AND);
+		// variables.add(LexicalUnit.AND);
 		
 		if (variables.contains(this.type)) {
 			return true;

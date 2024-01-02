@@ -194,10 +194,10 @@ public class LLVMGenerator {
                 case EXPRARIT:
                     processExprArit(child);
                     if (operation == "") {         // Check si c'est le premier elem (operation pas encore traitée => d'office elem de gauche) 
-                        left = varCount - 1; 
+                        left = lastvar; 
                     }
                     else {
-                        right = varCount - 1;
+                        right = lastvar;
                     }
                     break;
                 case SMALLER:
@@ -206,7 +206,10 @@ public class LLVMGenerator {
                 case EQUAL:
                     operation = "eq";
                     break;
+                
                 default:
+                    left = lastvar; // c'est juste pour que java run, à enlever
+                    right = lastvar;
                     break;
             }
         }

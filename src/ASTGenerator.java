@@ -60,7 +60,6 @@ public class ASTGenerator {
                         break;
                     case DO:
                         break;
-                    // check s'il faut virer OR ?
                     
                     default :
                         ast.addChild(new AST(child.getLabel()));
