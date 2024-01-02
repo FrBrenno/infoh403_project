@@ -25,8 +25,27 @@ public class Main {
         else if (args.length == 1) { // Command: java -jar ./dist/part2.jar <inputFile>
             // Get arguments
             filepath = args[0];
+            llvmFilepath = filepath.replace(".pmp", ".ll");
+            llvmFilepath = llvmFilepath.replace("/test/", "/test/out/");
             // Parse
-            parse(filepath);
+            ParseTree parseTree = parse(filepath);
+            // Generate AST
+            ASTGenerator astGenerator = new ASTGenerator(parseTree);
+            AST ast = astGenerator.generateAST();
+            LLVMGenerator LLVMGenerator = new LLVMGenerator();
+            LLVMGenerator.generate(ast);
+            
+            // Write to latex file
+
+            try{
+                File llvmFile = new File(llvmFilepath);
+                FileWriter llvmFileWriter = new FileWriter(llvmFile);
+                llvmFileWriter.write(LLVMGenerator.getCode().toString());
+                llvmFileWriter.close();
+            } catch (IOException e) {
+                System.out.println("An error occurred while writing the latex.");
+                System.exit(1);
+            }
         }
         else if (args.length == 3 && "-wt".equals(args[0])) // Command: java -jar ./dist/part2.jar -wt <latexFile> <inputFile>
         {

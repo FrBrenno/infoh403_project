@@ -65,10 +65,26 @@ public class LLVMGenerator {
         }
     }
     
+    private boolean treeHasVariable(ParseTree ast, String varname) {
+        if (ast.getLabel().getType() == LexicalUnit.VARNAME && ast.getLabel().getValue().toString().equals(varname)) {
+            return true;
+        }
+        for (ParseTree child : ast.getChildren()) {
+            if (treeHasVariable(child, varname)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void processAssign(ParseTree ast) {
         String varname = ast.getChildren().get(0).getLabel().getValue().toString();
         processExprArit(ast.getChildren().get(1));
         if (!varNames.contains(varname)) {
+            if (treeHasVariable(ast.getChildren().get(1), varname)) {
+                System.out.println("Compilation error: variable "+varname+" is not initialized.");
+                System.exit(1);
+            }
             varNames.add(varname);
             String alloca = "   %"+varname+ " = alloca i32 \n";
             code.insert(OFFSET, alloca);

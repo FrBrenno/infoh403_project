@@ -5,11 +5,8 @@ JAR_NAME = $(PROJECT_NAME).jar
 MAIN_CLASS = Main
 
 # Test file and arguments
-OUT_DIR = ./test/out
-TEST_DIR = ./test
-TEST_FILES := $(wildcard $(TEST_DIR)/*.pmp)
-TEX_FILES := $(patsubst $(TEST_DIR)/%.pmp, $(OUT_DIR)/%.tex, $(TEST_FILES))
-
+TEST_FILES := $(wildcard test/*.pmp)
+TEST_NAMES := $(patsubst test/%.pmp,%,$(TEST_FILES))
 
 # Determine the operating system
 ifeq ($(OS),Windows_NT)
@@ -41,15 +38,16 @@ rebuild:
 	@echo ---Rebuilding the project---
 	make clean all
 
-test: $(TEX_FILES)
+test: $(TEST_NAMES)
+# rm -f test/out/*.ll  
 
-$(OUT_DIR)/%.tex: $(TEST_DIR)/%.pmp
-	@echo ---Testing $<---
-	-java -jar ./dist/$(JAR_NAME) -wt $@ $<
-	-llvm-as $(OUT_DIR)/$*.ll -o $(OUT_DIR)/$*.bc
-	-lli $(OUT_DIR)/$*.bc > $(OUT_DIR)/$*.out
+$(TEST_NAMES): 
+	@echo "Running test $@"
+	-java -jar ./dist/$(JAR_NAME) ./test/$@.pmp
+	-llvm-as ./test/out/$@.ll
+# -lli ./test/out/$@.bc > ./test/out/$@.out
 	@echo \
-	
+
 deliverables:
 	make rebuild test javadoc
 
