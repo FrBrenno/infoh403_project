@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class LLVMGenerator {
-    AST ast;
+    ParseTree ast;
     StringBuilder code ;
 
     Integer varCount = 1;

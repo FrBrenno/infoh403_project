@@ -31,7 +31,7 @@ public class Main {
             ParseTree parseTree = parse(filepath);
             // Generate AST
             ASTGenerator astGenerator = new ASTGenerator(parseTree);
-            AST ast = astGenerator.generateAST();
+            ParseTree ast = astGenerator.generateAST();
             LLVMGenerator LLVMGenerator = new LLVMGenerator();
             LLVMGenerator.generate(ast);
             
@@ -58,7 +58,7 @@ public class Main {
             ParseTree parseTree = parse(filepath);
             // Generate AST
             ASTGenerator astGenerator = new ASTGenerator(parseTree);
-            AST ast = astGenerator.generateAST();
+            ParseTree ast = astGenerator.generateAST();
             LLVMGenerator LLVMGenerator = new LLVMGenerator();
             LLVMGenerator.generate(ast);
             
