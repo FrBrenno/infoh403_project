@@ -168,7 +168,10 @@ public class LLVMGenerator {
         String varname = ast.getChildren().get(0).getLabel().getValue().toString();
         code.append("   %"+varCount.toString()+" = call i32 @readInt()\n");
         // Partie assign
-        code.append("   %"+varname+ " = alloca i32 \n");
+        if (!varNames.contains(varname)) {
+            varNames.add(varname);
+            code.append("   %"+varname+ " = alloca i32 \n");
+        }
         code.append("   store i32 %" + varCount.toString() + ", i32* %" + varname + "\n");
         code.append("\n");
         incrVarCount();
