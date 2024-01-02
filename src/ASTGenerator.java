@@ -11,11 +11,16 @@ public class ASTGenerator {
         return generateAST(parseTree);
     }
 
+    /**
+     *  Generates the AST from the parse tree
+     * @param parseTree derivation tree from parser
+     * @return AST
+     */
     private ParseTree generateAST(ParseTree parseTree) {
         ParseTree ast = new ParseTree(parseTree.getLabel());
         for (ParseTree child : parseTree.getChildren()) {
-            if (child.getChildren().isEmpty()) { //ici on sait que c'est une feuille
-                switch(child.getLabel().getType()){ //tout les switchs des terminaux qu'on veut ignorer ou des variables qui vont vers epsilon
+            if (child.getChildren().isEmpty()) {     //so it's a leaf
+                switch(child.getLabel().getType()){  //the switch is for terminals that can be ignored or variables that goes to epsilon
                     case LBRACK:
                         break;
                     case RBRACK:
