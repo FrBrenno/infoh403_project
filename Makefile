@@ -42,8 +42,7 @@ test: $(TEST_NAMES)
 
 $(TEST_NAMES): 
 	@echo "---Running test $@---"
-	-java -jar ./dist/$(JAR_NAME) ./test/$@.pmp
-	-llvm-as ./test/out/$@.ll
+	-java -jar ./dist/$(JAR_NAME) ./test/$@.pmp > ./test/out/$@.ll
 	@echo \
 
 deliverables:

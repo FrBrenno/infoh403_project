@@ -29,7 +29,7 @@ public class Main {
             ParseTree parseTree = parser.getParseTree();
             // Generate AST
             ASTGenerator astGenerator = new ASTGenerator(parseTree);
-            AST ast = astGenerator.generateAST();
+            ParseTree ast = astGenerator.generateAST();
             // Generate Code
             LLVMGenerator LLVMGenerator = new LLVMGenerator(ast);
             LLVMGenerator.generate();
