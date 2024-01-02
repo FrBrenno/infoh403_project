@@ -5,7 +5,9 @@ public class LLVMGenerator {
     StringBuilder code ;
 
     Integer varCount = 1;
+    Integer lastvar = 0;
     Integer ifCount = 0;
+    Integer whileCount = 0;
     ArrayList<String> varNames = new ArrayList<String>();
 
     public LLVMGenerator() {
@@ -14,6 +16,7 @@ public class LLVMGenerator {
 
     private void incrVarCount() {
         varCount++;
+        lastvar = varCount - 1;
     }
     private void resetVarCount() {
         varCount = 0;
@@ -100,7 +103,6 @@ public class LLVMGenerator {
             varNames.add(varname);
             code.append("   %"+varname+ " = alloca i32 \n");
         }
-        Integer lastvar = varCount - 1;
         code.append("   store i32 %" + lastvar.toString() + ", i32* %" + varname + "\n");
         code.append("\n");
     }   
@@ -189,7 +191,6 @@ public class LLVMGenerator {
             }
         }
         if (is_unary_minus) {
-            Integer lastvar = varCount - 1;
             code.append("   %"+varCount.toString()+" = mul i32 -1, %"+lastvar.toString()+"\n");
             incrVarCount();
         }
@@ -226,7 +227,6 @@ public class LLVMGenerator {
         // CONDITION
         ParseTree cond = ast.getChildren().get(0);
         processCond(cond);
-        Integer lastvar = varCount - 1;
         code.append("   br i1 %"+lastvar.toString()+", label %"+if_true_name+", label %"+if_false_name+"\n\n");
 
         // IF TRUE
@@ -249,10 +249,10 @@ public class LLVMGenerator {
             processElseTail(elseNode);
         }
         code.append("   br label %"+ if_end_name +"\n\n");
-        code.append("   if_end_"+memory_if_count.toString()+":\n");
+        code.append("   "+if_end_name+":\n");
     }
 
-    private void processCond(ParseTree ast) {
+    private void processCond(ParseTree ast) { //appeller process cond avec le left right déjà ?
         String operation = "";
         Integer left = null;
         Integer right = null;
@@ -266,7 +266,6 @@ public class LLVMGenerator {
                     else {
                         right = varCount - 1;
                     }
-
                     break;
                 case SMALLER:
                     operation = "slt";
@@ -295,6 +294,30 @@ public class LLVMGenerator {
     }
 
     private void processWhile(ParseTree ast) {
+        whileCount++;
+        Integer memory_while_count = whileCount;
+        String whileLoopName = "while_loop_"+memory_while_count.toString();
+        String whileEndName = "while_end_"+memory_while_count.toString();
+        // CONDITION
+        ParseTree cond = ast.getChildren().get(0);
+        processCond(cond);
+        code.append("   br i1 %"+lastvar.toString()+", label %"+whileLoopName+", label %"+whileEndName+"\n\n");
+
+        // WHILE LOOP
+        ParseTree WhileLoopNode = ast.getChildren().get(1);
+        code.append("   "+whileLoopName+":\n");
+        if (WhileLoopNode.getLabel().getType() == LexicalUnit.INSTLIST)
+        {
+            processInstList(WhileLoopNode);
+        }else
+        {
+            processInstList(ast);
+        }
+        // Réévaluer la condition 
+        processCond(cond);
+        code.append("   br i1 %"+lastvar.toString()+", label %"+whileLoopName+", label %"+whileEndName+"\n\n");
+        code.append("   "+whileEndName+":\n");
+        // incrVarCount();
     }
     
     private void addBasicFunctions() {

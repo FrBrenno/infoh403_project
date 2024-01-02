@@ -1,0 +1,7 @@
+''Sert juste à générer des bouts de code''
+
+begin
+      a := 0...
+      print(a)...
+      a := a + 1
+end
