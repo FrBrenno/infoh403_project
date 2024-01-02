@@ -9,6 +9,7 @@ public class LLVMGenerator {
     Integer ifCount = 0;
     Integer whileCount = 0;
     ArrayList<String> varNames = new ArrayList<String>();
+    Integer OFFSET = 705;
 
     public LLVMGenerator() {
         this.code = new StringBuilder();
@@ -26,6 +27,7 @@ public class LLVMGenerator {
     public void generate(ParseTree ast) {
         addBasicFunctions();
         code.append("define i32 @main() {\n");
+        OFFSET = code.length();
         processProgram(ast);
         code.append("   ret i32 0\n}");
     }
@@ -68,7 +70,9 @@ public class LLVMGenerator {
         processExprArit(ast.getChildren().get(1));
         if (!varNames.contains(varname)) {
             varNames.add(varname);
-            code.append("   %"+varname+ " = alloca i32 \n");
+            String alloca = "   %"+varname+ " = alloca i32 \n";
+            code.insert(OFFSET, alloca);
+            OFFSET += alloca.length();
         }
         code.append("   store i32 %" + lastvar.toString() + ", i32* %" + varname + "\n");
         code.append("\n");
@@ -170,7 +174,9 @@ public class LLVMGenerator {
         // Partie assign
         if (!varNames.contains(varname)) {
             varNames.add(varname);
-            code.append("   %"+varname+ " = alloca i32 \n");
+            String alloca = "   %"+varname+ " = alloca i32 \n";
+            code.insert(OFFSET, alloca);
+            OFFSET += alloca.length();
         }
         code.append("   store i32 %" + varCount.toString() + ", i32* %" + varname + "\n");
         code.append("\n");
@@ -362,6 +368,5 @@ public class LLVMGenerator {
             "\n");
 
         code.append("declare i32 @printf(i8*, ...) #1\n" );
-
     }
 }
