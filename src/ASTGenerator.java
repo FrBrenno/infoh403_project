@@ -42,8 +42,6 @@ public class ASTGenerator {
                         break;
                     case PRINT:
                         break;
-                    case AND:
-                        break;
                     case BEG:
                         break;
                     case END:

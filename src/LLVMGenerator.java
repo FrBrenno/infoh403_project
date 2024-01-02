@@ -187,36 +187,84 @@ public class LLVMGenerator {
 
     private void processCond(ParseTree ast) {
         String operation = "";
-        Integer left = null;
-        Integer right = null;
+        Integer first_var = 0;
         for (ParseTree child : ast.getChildren()) {
             switch (child.getLabel().getType()) {
-                case EXPRARIT:
-                    processExprArit(child);
-                    if (operation == "") {         // Check si c'est le premier elem (operation pas encore traitée => d'office elem de gauche) 
-                        left = lastvar; 
+                case AND: 
+                    processAnd(child);
+                    if (operation == "") {          // Check si c'est le premier elem (operation pas encore traitée => d'office elem de gauche)
+                        first_var = lastvar;
                     }
                     else {
-                        right = lastvar;
+                        Integer second_var = lastvar;
+                        code.append("   %"+varCount.toString()+" = "+operation+" i1 %"+first_var.toString()+", %"+second_var.toString()+"\n");
+                        first_var = varCount;
+                        incrVarCount();
                     }
                     break;
-                case SMALLER:
-                    operation = "slt";
+                case OR:
+                    operation = "or";
                     break;
-                case EQUAL:
-                    operation = "eq";
+                default:
                     break;
                 
-                default:
-                    left = lastvar; // c'est juste pour que java run, à enlever
-                    right = lastvar;
-                    break;
             }
         }
-        code.append("   %"+varCount.toString()+" = icmp "+operation+" i32 %"+left.toString()+", %"+right.toString()+"\n");
-        incrVarCount();
     }
-    
+
+    private void processAnd(ParseTree ast) {
+        String operation = "";
+        Integer first_var = 0;
+        for (ParseTree child : ast.getChildren()) {
+            switch (child.getLabel().getType()) {
+                case CONDATOM:
+                    processCondAtom(child);
+                    if (operation == "") {          // Check si c'est le premier elem (operation pas encore traitée => d'office elem de gauche)
+                        first_var = lastvar;
+                    }
+                    else {
+                        Integer second_var = lastvar;
+                        code.append("   %"+varCount.toString()+" = "+operation+" i1 %"+first_var.toString()+", %"+second_var.toString()+"\n");
+                        first_var = varCount;
+                        incrVarCount();
+                    }
+                    break ;
+                case AND:
+                    operation = "and";
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
+
+    private void processCondAtom(ParseTree ast) {
+        if (ast.getChildren().size() == 1){
+            processCond(ast.getChildren().get(0));
+            return;
+        }
+        
+        else{
+            String operation = "";
+            ParseTree left = ast.getChildren().get(0);
+            ParseTree right = ast.getChildren().get(2);
+
+            if (ast.getChildren().get(1).getLabel().getType() == LexicalUnit.EQUAL) {
+                operation = "eq";
+            }
+            else if (ast.getChildren().get(1).getLabel().getType() == LexicalUnit.SMALLER){
+                operation = "slt";
+            }
+            processExprArit(left);
+            Integer leftVar = lastvar;
+            processExprArit(right);
+            Integer rightVar = lastvar;
+
+            code.append("   %"+varCount.toString()+" = icmp "+operation+" i32 %"+leftVar.toString()+", %"+rightVar.toString()+"\n");
+            incrVarCount();
+        }
+    }
+
     private void processIf(ParseTree ast) {
         ifCount++;
         Integer memory_if_count = ifCount;
