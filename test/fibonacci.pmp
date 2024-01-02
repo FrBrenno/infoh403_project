@@ -2,10 +2,7 @@
 '' As there is no string definition in our language, we will use comments instead. ''
 
 begin
-    ** Prompt the user for the number of terms
-    print(a)... **Imagine that a is a variable containing the string "Fibonnaci Terms"
-
-    numTerms := 5...
+    numTerms := 10... '' Number of terms to display ''
 
     ** Initialize variables
     term1 := 0...
