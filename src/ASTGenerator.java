@@ -7,12 +7,12 @@ public class ASTGenerator {
         this.parseTree = parseTree;
     }
 
-    public AST generateAST() {
+    public ParseTree generateAST() {
         return generateAST(parseTree);
     }
 
-    private AST generateAST(ParseTree parseTree) {
-        AST ast = new AST(parseTree.getLabel());
+    private ParseTree generateAST(ParseTree parseTree) {
+        ParseTree ast = new ParseTree(parseTree.getLabel());
         for (ParseTree child : parseTree.getChildren()) {
             if (child.getChildren().isEmpty()) { //ici on sait que c'est une feuille
                 switch(child.getLabel().getType()){ //tout les switchs des terminaux qu'on veut ignorer ou des variables qui vont vers epsilon
@@ -60,7 +60,7 @@ public class ASTGenerator {
                         break;
                     
                     default :
-                        ast.addChild(new AST(child.getLabel()));
+                        ast.addChild(new ParseTree(child.getLabel()));
                 }
             }
             else {

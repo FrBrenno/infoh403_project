@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class LLVMGenerator {
-    AST ast;
+    ParseTree ast;
     StringBuilder code ;
 
     Integer varCount = 1;
@@ -83,7 +83,7 @@ public class LLVMGenerator {
         processExprArit(ast.getChildren().get(1));
         if (!varNames.contains(varname)) {
             if (treeHasVariable(ast.getChildren().get(1), varname)) {
-                System.out.println("Compilation error: variable "+varname+" is not initialized.");
+                System.out.println("Illegal action: variable "+varname+" is not initialized.");
                 System.exit(1);
             }
             varNames.add(varname);
