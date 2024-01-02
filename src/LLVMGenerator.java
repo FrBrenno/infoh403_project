@@ -5,11 +5,12 @@ public class LLVMGenerator {
     StringBuilder code ;
 
     Integer varCount = 1;
-    Integer lastvar = 0;
+    Integer lastVar = 0;
     Integer ifCount = 0;
     Integer whileCount = 0;
-    ArrayList<String> varNames = new ArrayList<String>();
-    Integer OFFSET = 705;
+    ArrayList<String> varNames = new ArrayList<String>(); // List of all the variables names (used to check if a variable is initialized)
+    Integer OFFSET ;                                      // Offset used to know where to alloca variables
+
 
     public LLVMGenerator(ParseTree ast) {
         this.ast = ast;
@@ -18,13 +19,21 @@ public class LLVMGenerator {
 
     private void incrVarCount() {
         varCount++;
-        lastvar = varCount - 1;
+        lastVar = varCount - 1;
     }
 
+    /**
+     * Returns the generated code 
+     * @return Code
+     */
     public StringBuilder getCode() {
         return code;
     }
     
+    /**
+     * Generates the code
+     * processProgram is called first
+     */
     public void generate() {
         addBasicFunctions();
         code.append("define i32 @main() {\n");
@@ -33,12 +42,19 @@ public class LLVMGenerator {
         code.append("   ret i32 0\n}");
     }
 
+    /**
+     * Processes the program node
+     */
     private void processProgram(ParseTree ast) {
         for (ParseTree child : ast.getChildren()) {
             processInstList(child);
         }
     }
 
+    /**
+     * Processes the instruction list node
+     * Checks the type of the instruction and calls the corresponding function
+     */
     private void processInstList(ParseTree ast) {
         for (ParseTree child : ast.getChildren()) {
             switch(child.getLabel().getType()){
@@ -66,6 +82,13 @@ public class LLVMGenerator {
         }
     }
     
+    /**
+     * Checks if a tree contains a specific variable name
+     * Used to check if a variable is initialized
+     * @param ast Tree to check
+     * @param varname Variable name to check
+     * @return True if the tree contains the variable, false otherwise
+     */
     private boolean treeHasVariable(ParseTree ast, String varname) {
         if (ast.getLabel().getType() == LexicalUnit.VARNAME && ast.getLabel().getValue().toString().equals(varname)) {
             return true;
@@ -78,9 +101,14 @@ public class LLVMGenerator {
         return false;
     }
 
+    /**
+     * Processes the assign node
+     * Throws an error when initializing a variable with itself (x:=x+1)
+     */
     private void processAssign(ParseTree ast) {
         String varname = ast.getChildren().get(0).getLabel().getValue().toString();
         processExprArit(ast.getChildren().get(1));
+
         if (!varNames.contains(varname)) {
             if (treeHasVariable(ast.getChildren().get(1), varname)) {
                 System.out.println("Illegal action: variable "+varname+" is not initialized.");
@@ -91,24 +119,32 @@ public class LLVMGenerator {
             code.insert(OFFSET, alloca);
             OFFSET += alloca.length();
         }
-        code.append("   store i32 %" + lastvar.toString() + ", i32* %" + varname + "\n");
+        code.append("   store i32 %" + lastVar.toString() + ", i32* %" + varname + "\n");
         code.append("\n");
     }   
 
+    /**
+     * Processes the arithmetic expression node
+     * Checks the type of the expression and calls the corresponding function
+     * The childs are processed from left to right, so
+     * when the operator is not defined yet, it's the left element,
+     * then when operator is defined, it's the right element and
+     * the two elements are added or substracted.
+     */
     private void processExprArit(ParseTree ast) {
         String operation = "";
-        Integer first_var = 0;
+        Integer leftVar = 0;
         for (ParseTree child : ast.getChildren()) {
             switch (child.getLabel().getType()) {
                 case PROD:
                     processProd(child);
-                    if (operation == "") {          // Check si c'est le premier elem (operation pas encore traitée => d'office elem de gauche)
-                        first_var = lastvar;
+                    if (operation == "") {          // Check if first elem (operator not processed => d'office left elem)
+                        leftVar = lastVar;
                     }
                     else {
-                        Integer second_var = lastvar;
-                        code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+first_var.toString()+", %"+second_var.toString()+"\n");
-                        first_var = varCount;
+                        Integer rightVar = lastVar;
+                        code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+leftVar.toString()+", %"+rightVar.toString()+"\n");
+                        leftVar = varCount;
                         incrVarCount();
                     }
                     break;
@@ -124,20 +160,28 @@ public class LLVMGenerator {
         }
     }
     
+    /**
+     * Processes the product node
+     * Checks the type of the expression and calls the corresponding function
+     * The childs are processed from left to right, so
+     * when the operator is not defined yet, it's the left element,
+     * then when operator is defined, it's the right element and 
+     * the two elements are multiplied or divided.
+     */
     private void processProd(ParseTree ast) {
         String operation = "";
-        Integer first_var = 0;
+        Integer leftVar = 0;
         for (ParseTree child : ast.getChildren()) {
             switch (child.getLabel().getType()) {
                 case ATOM:
                     processAtom(child);
-                    if (operation == "") {    // Check si c'est le premier elem (operation pas encore traitée => d'office elem de gauche)
-                        first_var = lastvar;
+                    if (operation == "") {          // Check if first elem (operator not processed => d'office left elem)
+                        leftVar = lastVar;
                     }
                     else {
-                        Integer second_var = lastvar;
-                        code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+first_var.toString()+", %"+second_var.toString()+"\n");
-                        first_var = varCount;
+                        Integer rightVar = lastVar;
+                        code.append("   %"+varCount.toString()+" = "+operation+" i32 %"+leftVar.toString()+", %"+rightVar.toString()+"\n");
+                        leftVar = varCount;
                         incrVarCount();
                     }
                     break;
@@ -153,6 +197,10 @@ public class LLVMGenerator {
         }
     }
 
+    /**
+     * Processes the atom node
+     * Checks the type of the expression and calls the corresponding function
+     */
     private void processAtom(ParseTree ast) {
         boolean is_unary_minus = false;
         for (ParseTree child : ast.getChildren()) {
@@ -179,12 +227,17 @@ public class LLVMGenerator {
             }
         }
         if (is_unary_minus) {
-            code.append("   %"+varCount.toString()+" = mul i32 -1, %"+lastvar.toString()+"\n");
+            code.append("   %"+varCount.toString()+" = mul i32 -1, %"+lastVar.toString()+"\n");
             incrVarCount();
         }
     }
     
 
+    /**
+     * Processes the read node
+     * Checks if the variable is already initialized first
+     * Similar to assign
+     */
     private void processRead(ParseTree ast) {
         String varname = ast.getChildren().get(0).getLabel().getValue().toString();
         code.append("   %"+varCount.toString()+" = call i32 @readInt()\n");
@@ -200,6 +253,9 @@ public class LLVMGenerator {
         incrVarCount();
     }
 
+    /**
+     * Processes the print node
+     */
     private void processPrint(ParseTree ast) {
         String varname = ast.getChildren().get(0).getLabel().getValue().toString();
         code.append("   %"+varCount.toString() +" = load i32, i32* %"+varname+"\n");
@@ -208,20 +264,28 @@ public class LLVMGenerator {
         incrVarCount();
     }
 
+    /**
+     * Processes the condition node
+     * Checks the type of the expression and calls the corresponding function
+     * The childs are processed from left to right, so
+     * when the operator is not defined yet, it's the left element,
+     * then when operator is defined, it's the right element and 
+     * the two elements are compared with "or".
+     */
     private void processCond(ParseTree ast) {
         String operation = "";
-        Integer first_var = 0;
+        Integer leftVar = 0;
         for (ParseTree child : ast.getChildren()) {
             switch (child.getLabel().getType()) {
                 case AND: 
                     processAnd(child);
                     if (operation == "") {          // Check si c'est le premier elem (operation pas encore traitée => d'office elem de gauche)
-                        first_var = lastvar;
+                        leftVar = lastVar;
                     }
                     else {
-                        Integer second_var = lastvar;
-                        code.append("   %"+varCount.toString()+" = "+operation+" i1 %"+first_var.toString()+", %"+second_var.toString()+"\n");
-                        first_var = varCount;
+                        Integer rightVar = lastVar;
+                        code.append("   %"+varCount.toString()+" = "+operation+" i1 %"+leftVar.toString()+", %"+rightVar.toString()+"\n");
+                        leftVar = varCount;
                         incrVarCount();
                     }
                     break;
@@ -235,6 +299,14 @@ public class LLVMGenerator {
         }
     }
 
+    /**
+     * Processes the and node
+     * Checks the type of the expression and calls the corresponding function
+     * The childs are processed from left to right, so
+     * when the operator is not defined yet, it's the left element,
+     * then when operator is defined, it's the right element and 
+     * the two elements are compared with "and".
+     */
     private void processAnd(ParseTree ast) {
         String operation = "";
         Integer first_var = 0;
@@ -243,10 +315,10 @@ public class LLVMGenerator {
                 case CONDATOM:
                     processCondAtom(child);
                     if (operation == "") {          // Check si c'est le premier elem (operation pas encore traitée => d'office elem de gauche)
-                        first_var = lastvar;
+                        first_var = lastVar;
                     }
                     else {
-                        Integer second_var = lastvar;
+                        Integer second_var = lastVar;
                         code.append("   %"+varCount.toString()+" = "+operation+" i1 %"+first_var.toString()+", %"+second_var.toString()+"\n");
                         first_var = varCount;
                         incrVarCount();
@@ -261,6 +333,11 @@ public class LLVMGenerator {
             }
         }
 
+    /**
+     * Processes the cond atom node
+     * CondAtom has either 3 children (left, operator, right)
+     * or 1 child (Cond)
+     */
     private void processCondAtom(ParseTree ast) {
         if (ast.getChildren().size() == 1){
             processCond(ast.getChildren().get(0));
@@ -279,15 +356,23 @@ public class LLVMGenerator {
                 operation = "slt";
             }
             processExprArit(left);
-            Integer leftVar = lastvar;
+            Integer leftVar = lastVar;
             processExprArit(right);
-            Integer rightVar = lastvar;
+            Integer rightVar = lastVar;
 
             code.append("   %"+varCount.toString()+" = icmp "+operation+" i32 %"+leftVar.toString()+", %"+rightVar.toString()+"\n");
             incrVarCount();
         }
     }
 
+    /**
+     * Processes the if node
+     * The if node has either 2 children (cond, if_true_code)
+     * or 3 children (cond, if_true_code, else_code)
+     * 
+     * The else label is always created, but if there is no else_code,
+     * it just does nothing and goes to the end label
+     */
     private void processIf(ParseTree ast) {
         ifCount++;
         Integer memory_if_count = ifCount;
@@ -298,7 +383,7 @@ public class LLVMGenerator {
         // CONDITION
         ParseTree cond = ast.getChildren().get(0);
         processCond(cond);
-        code.append("   br i1 %"+lastvar.toString()+", label %"+if_true_name+", label %"+if_false_name+"\n\n");
+        code.append("   br i1 %"+lastVar.toString()+", label %"+if_true_name+", label %"+if_false_name+"\n\n");
 
         // IF TRUE
         ParseTree ifTrueNode = ast.getChildren().get(1);
@@ -323,6 +408,9 @@ public class LLVMGenerator {
         code.append("   "+if_end_name+":\n");
     }
 
+    /**
+     * Processes the else node
+     */
     private void processElseTail(ParseTree ast) {
         for (ParseTree child : ast.getChildren()) {
             switch (child.getLabel().getType()) {
@@ -335,6 +423,10 @@ public class LLVMGenerator {
         }
     }
 
+    /**
+     * Processes the while node
+     * The while node has 2 children (cond, while_code)
+     */
     private void processWhile(ParseTree ast) {
         whileCount++;
         Integer memory_while_count = whileCount;
@@ -343,7 +435,7 @@ public class LLVMGenerator {
         // CONDITION
         ParseTree cond = ast.getChildren().get(0);
         processCond(cond);
-        code.append("   br i1 %"+lastvar.toString()+", label %"+whileLoopName+", label %"+whileEndName+"\n\n");
+        code.append("   br i1 %"+lastVar.toString()+", label %"+whileLoopName+", label %"+whileEndName+"\n\n");
 
         // WHILE LOOP
         ParseTree WhileLoopNode = ast.getChildren().get(1);
@@ -357,10 +449,13 @@ public class LLVMGenerator {
         }
         // RE-EVALUATE CONDITION 
         processCond(cond);
-        code.append("   br i1 %"+lastvar.toString()+", label %"+whileLoopName+", label %"+whileEndName+"\n\n");
+        code.append("   br i1 %"+lastVar.toString()+", label %"+whileLoopName+", label %"+whileEndName+"\n\n");
         code.append("   "+whileEndName+":\n");
     }
     
+    /**
+     * Adds the code for readInt and println functions
+     */
     private void addBasicFunctions() {
         code.append("@.strR = private unnamed_addr constant [3 x i8] c\"%d\\00\", align 1 \n");
         code.append("define i32 @readInt() #0 {\n" + //
