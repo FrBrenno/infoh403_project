@@ -11,7 +11,8 @@ public class LLVMGenerator {
     ArrayList<String> varNames = new ArrayList<String>();
     Integer OFFSET = 705;
 
-    public LLVMGenerator() {
+    public LLVMGenerator(ParseTree ast) {
+        this.ast = ast;
         this.code = new StringBuilder();
     }
 
@@ -24,7 +25,7 @@ public class LLVMGenerator {
         return code;
     }
     
-    public void generate(ParseTree ast) {
+    public void generate() {
         addBasicFunctions();
         code.append("define i32 @main() {\n");
         OFFSET = code.length();

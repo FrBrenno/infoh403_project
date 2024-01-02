@@ -1,5 +1,5 @@
 # JAR file name and main class
-PROJECT_NAME = part2
+PROJECT_NAME = part3
 AUTHORS = "BrennoFerreira_PhilippeMutkowski"
 JAR_NAME = $(PROJECT_NAME).jar
 MAIN_CLASS = Main
@@ -39,13 +39,11 @@ rebuild:
 	make clean all
 
 test: $(TEST_NAMES)
-# rm -f test/out/*.ll  
 
 $(TEST_NAMES): 
-	@echo "Running test $@"
+	@echo "---Running test $@---"
 	-java -jar ./dist/$(JAR_NAME) ./test/$@.pmp
 	-llvm-as ./test/out/$@.ll
-# -lli ./test/out/$@.bc > ./test/out/$@.out
 	@echo \
 
 deliverables:
