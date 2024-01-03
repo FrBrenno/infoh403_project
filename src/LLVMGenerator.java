@@ -46,9 +46,7 @@ public class LLVMGenerator {
      * Processes the program node
      */
     private void processProgram(ParseTree ast) {
-        for (ParseTree child : ast.getChildren()) {
-            processInstList(child);
-        }
+            processInstList(ast.getChildren().get(0));
     }
 
     /**
@@ -412,15 +410,7 @@ public class LLVMGenerator {
      * Processes the else node
      */
     private void processElseTail(ParseTree ast) {
-        for (ParseTree child : ast.getChildren()) {
-            switch (child.getLabel().getType()) {
-                case INSTLIST:
-                    processInstList(child);
-                    break;
-                default:
-                    break;
-            }
-        }
+        processInstList(ast.getChildren().get(0));    
     }
 
     /**
