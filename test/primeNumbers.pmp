@@ -1,0 +1,47 @@
+'' This code prints the 10 first prime numbers ''
+** The lack of <= operators implies that whenever a <= is needed, we use this construction {divisor < number/2 or divisor = number/2} or 
+** divisor < number/2 +1.
+
+begin
+    numTerms := 15...
+    isPrime := 1... ** 1 for true, -1 for false
+
+    counter := 1...
+    number := 0...
+
+    while counter < 11 do
+    begin 
+        ** isPrimeNumber function: computes if number is prime
+        isPrime := 1...
+        if number < 2 then
+            isPrime := -1
+        else
+        begin
+            divisor := 2...
+            while {divisor < number/2 or divisor = number/2} and isPrime = 1 do     ** could also use divisor < number/2+1, intentionally used {} here.
+            begin
+                ** Modulo function: computes the number % divisor
+                remainder := number...
+                while divisor < remainder or divisor = remainder do
+                begin
+                    remainder := remainder - divisor
+                end...
+
+                if remainder = 0 then
+                    isPrime := -1
+                else...
+
+                divisor := divisor + 1
+            end
+        end...
+
+        if isPrime = 1 then ** If number is prime, print it and increment counter
+        begin
+            print(number)...
+            counter := counter + 1
+        end
+        else...
+        
+        number := number + 1 
+    end
+end

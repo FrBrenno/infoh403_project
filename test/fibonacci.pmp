@@ -2,7 +2,7 @@
 '' As there is no string definition in our language, we will use comments instead. ''
 
 begin
-    numTerms := 10... '' Number of terms to display ''
+    numTerms := 15... '' Number of terms to display ''
 
     ** Initialize variables
     term1 := 0...

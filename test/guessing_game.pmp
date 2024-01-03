@@ -1,0 +1,38 @@
+'' Guessing Game: Without looking at the source code, guess what is the number choosen ''
+
+begin
+   hidden := 10...
+   guess := 0...
+
+   tries := 0...
+   flag := 0...
+   higher := 1...  ** If the hidden number is higher than the guess, this is printed
+   lower := -1...  ** If the hidden number is lower than the guess, this is printed
+
+   victory := 11111111...  ** Special separators to tell the user if he has won or lost, since there is no string...
+   loss := -11111111...
+
+   while flag = 0 and tries < 10 do 
+   begin
+      read(guess)...                ** read users guess
+      if guess = hidden then        ** If correct, break out the loop
+         flag := 1
+      else
+      begin
+         if guess < hidden then     ** If guess low, prints 1 to say that the hidden value is higher
+            print(higher)
+         else
+         begin
+            print(lower)            ** If guess is high, prints -1 to say that the hidden value is lower
+         end
+      end...
+      tries := tries + 1
+   end...
+
+   if tries < 10 then               ** Outside the loop, we verify win criteria
+      print(victory)
+   else
+   begin
+      print(loss)
+   end
+end
