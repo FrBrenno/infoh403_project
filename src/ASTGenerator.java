@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class ASTGenerator {
@@ -63,14 +64,13 @@ public class ASTGenerator {
                         break;
                     case DO:
                         break;
-                    
                     default :
                         ast.addChild(new ParseTree(child.getLabel()));
                 }
             }
             else {
                 // Variables
-                if (child.getLabel().ignoreVariable())
+                if (ignoreVariable(child.getLabel().getType()))
                 {
                     List<ParseTree> grandChildren = generateAST(child).getChildren();
                     for (ParseTree elem : grandChildren)
@@ -85,4 +85,33 @@ public class ASTGenerator {
         }
         return ast;
     }
+
+    /**
+	 * This function is used to ignore
+	 * the following variables that we don't want
+	 * to add to the AST
+	 */
+	private boolean ignoreVariable(LexicalUnit type){
+		List<LexicalUnit> variables = new ArrayList<LexicalUnit>();
+		variables.add(LexicalUnit.CODE);
+		variables.add(LexicalUnit.EXPRARITPRIME);
+		variables.add(LexicalUnit.PRODPRIME);
+		variables.add(LexicalUnit.CONDPRIME);
+		variables.add(LexicalUnit.ANDPRIME);
+		variables.add(LexicalUnit.COMP);
+		variables.add(LexicalUnit.EOS);
+		variables.add(LexicalUnit.INSTTAIL);
+		variables.add(LexicalUnit.INST); 
+		//variables.add(LexicalUnit.PROD);
+		//variables.add(LexicalUnit.ATOM);
+		// variables.add(LexicalUnit.CONDATOM);
+		// variables.add(LexicalUnit.AND);
+		
+		if (variables.contains(type)) {
+			return true;
+		}
+		else {
+			return false;
+		}	
+	}
 }

@@ -9,7 +9,7 @@ public class LLVMGenerator {
     Integer ifCount = 0;
     Integer whileCount = 0;
     ArrayList<String> varNames = new ArrayList<String>(); // List of all the variables names (used to check if a variable is initialized)
-    Integer OFFSET ;                                      // Offset used to know where to alloca variables
+    Integer OFFSET_ALLOCA ;                               // Offset used to know where to alloca variables
 
 
     public LLVMGenerator(ParseTree ast) {
@@ -37,7 +37,7 @@ public class LLVMGenerator {
     public void generate() {
         addBasicFunctions();
         code.append("define i32 @main() {\n");
-        OFFSET = code.length();
+        OFFSET_ALLOCA = code.length();
         processProgram(ast);
         code.append("   ret i32 0\n}");
     }
@@ -116,8 +116,8 @@ public class LLVMGenerator {
             }
             varNames.add(varname);
             String alloca = "   %"+varname+ " = alloca i32 \n";
-            code.insert(OFFSET, alloca);
-            OFFSET += alloca.length();
+            code.insert(OFFSET_ALLOCA, alloca);
+            OFFSET_ALLOCA += alloca.length();
         }
         code.append("   store i32 %" + lastVar.toString() + ", i32* %" + varname + "\n");
         code.append("\n");
@@ -245,8 +245,8 @@ public class LLVMGenerator {
         if (!varNames.contains(varname)) {
             varNames.add(varname);
             String alloca = "   %"+varname+ " = alloca i32 \n";
-            code.insert(OFFSET, alloca);
-            OFFSET += alloca.length();
+            code.insert(OFFSET_ALLOCA, alloca);
+            OFFSET_ALLOCA += alloca.length();
         }
         code.append("   store i32 %" + varCount.toString() + ", i32* %" + varname + "\n");
         code.append("\n");
