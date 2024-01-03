@@ -63,7 +63,6 @@ public class ASTGenerator {
                         break;
                     case DO:
                         break;
-                    
                     default :
                         ast.addChild(new ParseTree(child.getLabel()));
                 }
