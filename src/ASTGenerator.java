@@ -58,11 +58,7 @@ public class ASTGenerator {
 		variables.add(LexicalUnit.EOS);
 		variables.add(LexicalUnit.INSTTAIL);
 		variables.add(LexicalUnit.INST); 
-		//variables.add(LexicalUnit.PROD);
-		//variables.add(LexicalUnit.ATOM);
-		// variables.add(LexicalUnit.CONDATOM);
-		// variables.add(LexicalUnit.AND);
-
+        
         return variables.contains(type);
 	}
 
