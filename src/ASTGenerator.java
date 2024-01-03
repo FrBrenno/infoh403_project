@@ -21,7 +21,7 @@ public class ASTGenerator {
         ParseTree ast = new ParseTree(parseTree.getLabel());
         for (ParseTree child : parseTree.getChildren()) {
             if (child.getChildren().isEmpty()) {     //so it's a leaf
-                if (!ignoreTerminal(child.getLabel().getType())) { // it is not ignored, add it to the AST
+                if (!ignoreLeaf(child.getLabel().getType())) { // it is not ignored, add it to the AST
                     ast.addChild(new ParseTree(child.getLabel()));
                 }
             }
@@ -68,11 +68,12 @@ public class ASTGenerator {
 
     /**
 	 * This function is used to ignore
-	 * the following terminals that we don't want
+	 * the following leaf node that we don't want
 	 * to add to the AST
 	 */
-	private boolean ignoreTerminal(LexicalUnit type){
+	private boolean ignoreLeaf(LexicalUnit type){
 		List<LexicalUnit> terminals = new ArrayList<LexicalUnit>();
+        // Leaf Terminals
         terminals.add(LexicalUnit.LBRACK);
         terminals.add(LexicalUnit.RBRACK);
         terminals.add(LexicalUnit.LPAREN);
@@ -88,7 +89,7 @@ public class ASTGenerator {
         terminals.add(LexicalUnit.ASSIGN);
         terminals.add(LexicalUnit.WHILE);
         terminals.add(LexicalUnit.DO);
-        // Leafs variables were considered as terminals
+        // Leafs variables
         terminals.add(LexicalUnit.PRODPRIME);
         terminals.add(LexicalUnit.EXPRARITPRIME);
         terminals.add(LexicalUnit.ANDPRIME);
