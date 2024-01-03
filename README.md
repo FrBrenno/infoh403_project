@@ -18,8 +18,6 @@ This project was part of the course INFO-F403 of Computer Science Master's Degre
 
 ## Examples
 
-(Provide examples of code written in PASCALMaisPresque, showcasing various features)
-
 ```pmp
 
 '' This prompt is a piece of code that should work ''
