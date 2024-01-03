@@ -72,31 +72,31 @@ public class ASTGenerator {
 	 * to add to the AST
 	 */
 	private boolean ignoreLeaf(LexicalUnit type){
-		List<LexicalUnit> terminals = new ArrayList<LexicalUnit>();
+		List<LexicalUnit> leafs = new ArrayList<LexicalUnit>();
         // Leaf Terminals
-        terminals.add(LexicalUnit.LBRACK);
-        terminals.add(LexicalUnit.RBRACK);
-        terminals.add(LexicalUnit.LPAREN);
-        terminals.add(LexicalUnit.RPAREN);
-        terminals.add(LexicalUnit.READ);
-        terminals.add(LexicalUnit.DOTS);
-        terminals.add(LexicalUnit.PRINT);
-        terminals.add(LexicalUnit.BEG);
-        terminals.add(LexicalUnit.END);
-        terminals.add(LexicalUnit.THEN);
-        terminals.add(LexicalUnit.ELSE);
-        terminals.add(LexicalUnit.IF);
-        terminals.add(LexicalUnit.ASSIGN);
-        terminals.add(LexicalUnit.WHILE);
-        terminals.add(LexicalUnit.DO);
+        leafs.add(LexicalUnit.LBRACK);
+        leafs.add(LexicalUnit.RBRACK);
+        leafs.add(LexicalUnit.LPAREN);
+        leafs.add(LexicalUnit.RPAREN);
+        leafs.add(LexicalUnit.READ);
+        leafs.add(LexicalUnit.DOTS);
+        leafs.add(LexicalUnit.PRINT);
+        leafs.add(LexicalUnit.BEG);
+        leafs.add(LexicalUnit.END);
+        leafs.add(LexicalUnit.THEN);
+        leafs.add(LexicalUnit.ELSE);
+        leafs.add(LexicalUnit.IF);
+        leafs.add(LexicalUnit.ASSIGN);
+        leafs.add(LexicalUnit.WHILE);
+        leafs.add(LexicalUnit.DO);
         // Leafs variables
-        terminals.add(LexicalUnit.PRODPRIME);
-        terminals.add(LexicalUnit.EXPRARITPRIME);
-        terminals.add(LexicalUnit.ANDPRIME);
-        terminals.add(LexicalUnit.CONDPRIME);
-        terminals.add(LexicalUnit.INSTTAIL); 
-        terminals.add(LexicalUnit.ELSETAIL);
+        leafs.add(LexicalUnit.PRODPRIME);
+        leafs.add(LexicalUnit.EXPRARITPRIME);
+        leafs.add(LexicalUnit.ANDPRIME);
+        leafs.add(LexicalUnit.CONDPRIME);
+        leafs.add(LexicalUnit.INSTTAIL); 
+        leafs.add(LexicalUnit.ELSETAIL);
         
-        return terminals.contains(type);
+        return leafs.contains(type);
 	}
 }
