@@ -46,7 +46,7 @@ public class LLVMGenerator {
      * Processes the program node
      */
     private void processProgram(ParseTree ast) {
-            processInstList(ast.getChildren().get(0));
+        processInstList(ast.getChildren().get(0));
     }
 
     /**
@@ -104,6 +104,7 @@ public class LLVMGenerator {
      * Throws an error when initializing a variable with itself (x:=x+1)
      */
     private void processAssign(ParseTree ast) {
+        code.append("\n");
         String varname = ast.getChildren().get(0).getLabel().getValue().toString();
         processExprArit(ast.getChildren().get(1));
 
@@ -118,7 +119,6 @@ public class LLVMGenerator {
             OFFSET_ALLOCA += alloca.length();
         }
         code.append("   store i32 %" + lastVar.toString() + ", i32* %" + varname + "\n");
-        code.append("\n");
     }   
 
     /**
