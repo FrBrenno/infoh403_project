@@ -203,15 +203,6 @@ public class LLVMGenerator {
         boolean is_unary_minus = false;
         for (ParseTree child : ast.getChildren()) {
             switch (child.getLabel().getType()) {
-                case ATOM:
-                    processAtom(child);
-                    break;
-                case EXPRARIT:
-                    processExprArit(child);
-                    break;
-                case MINUS:
-                    is_unary_minus = true;
-                    break;
                 case NUMBER:
                     code.append("   %"+varCount.toString()+" = add i32 0, "+child.getLabel().getValue().toString()+"\n");
                     incrVarCount();
@@ -219,6 +210,15 @@ public class LLVMGenerator {
                 case VARNAME:
                     code.append("   %"+varCount.toString()+" = load i32, i32* %"+child.getLabel().getValue().toString()+"\n");
                     incrVarCount();
+                    break;
+                case EXPRARIT:
+                    processExprArit(child);
+                    break;
+                case ATOM:
+                    processAtom(child);
+                    break;
+                case MINUS:
+                    is_unary_minus = true;
                     break;
                 default:
                     break;
@@ -262,6 +262,49 @@ public class LLVMGenerator {
         incrVarCount();
     }
 
+    /**
+     * Processes the if node
+     * The if node has either 2 children (cond, if_true_code)
+     * or 3 children (cond, if_true_code, else_code)
+     * 
+     * The else label is always created, but if there is no else_code,
+     * it just does nothing and goes to the end label
+     */
+    private void processIf(ParseTree ast) {
+        ifCount++;
+        Integer memory_if_count = ifCount;
+        String if_true_name = "if_true_"+memory_if_count.toString();
+        String if_false_name = "if_false_"+memory_if_count.toString();
+        String if_end_name = "if_end_"+memory_if_count.toString();
+
+        // CONDITION
+        ParseTree cond = ast.getChildren().get(0);
+        processCond(cond);
+        code.append("   br i1 %"+lastVar.toString()+", label %"+if_true_name+", label %"+if_false_name+"\n\n");
+
+        // IF TRUE
+        ParseTree ifTrueNode = ast.getChildren().get(1);
+        code.append("   "+if_true_name+":\n");
+        if (ifTrueNode.getLabel().getType() == LexicalUnit.INSTLIST)
+        {
+            processInstList(ifTrueNode);
+        }else
+        {
+            processInstList(ast);
+        }
+        code.append("   br label %"+ if_end_name +"\n\n");
+
+        // ELSE
+        code.append("   "+if_false_name+":\n");
+        if (ast.getChildren().size() == 3)
+        {
+            ParseTree elseNode = ast.getChildren().get(2);
+            processElseTail(elseNode);
+        }
+        code.append("   br label %"+ if_end_name +"\n\n");
+        code.append("   "+if_end_name+":\n");
+    }
+    
     /**
      * Processes the condition node
      * Checks the type of the expression and calls the corresponding function
@@ -361,49 +404,6 @@ public class LLVMGenerator {
             code.append("   %"+varCount.toString()+" = icmp "+operation+" i32 %"+leftVar.toString()+", %"+rightVar.toString()+"\n");
             incrVarCount();
         }
-    }
-
-    /**
-     * Processes the if node
-     * The if node has either 2 children (cond, if_true_code)
-     * or 3 children (cond, if_true_code, else_code)
-     * 
-     * The else label is always created, but if there is no else_code,
-     * it just does nothing and goes to the end label
-     */
-    private void processIf(ParseTree ast) {
-        ifCount++;
-        Integer memory_if_count = ifCount;
-        String if_true_name = "if_true_"+memory_if_count.toString();
-        String if_false_name = "if_false_"+memory_if_count.toString();
-        String if_end_name = "if_end_"+memory_if_count.toString();
-
-        // CONDITION
-        ParseTree cond = ast.getChildren().get(0);
-        processCond(cond);
-        code.append("   br i1 %"+lastVar.toString()+", label %"+if_true_name+", label %"+if_false_name+"\n\n");
-
-        // IF TRUE
-        ParseTree ifTrueNode = ast.getChildren().get(1);
-        code.append("   "+if_true_name+":\n");
-        if (ifTrueNode.getLabel().getType() == LexicalUnit.INSTLIST)
-        {
-            processInstList(ifTrueNode);
-        }else
-        {
-            processInstList(ast);
-        }
-        code.append("   br label %"+ if_end_name +"\n\n");
-
-        // ELSE
-        code.append("   "+if_false_name+":\n");
-        if (ast.getChildren().size() == 3)
-        {
-            ParseTree elseNode = ast.getChildren().get(2);
-            processElseTail(elseNode);
-        }
-        code.append("   br label %"+ if_end_name +"\n\n");
-        code.append("   "+if_end_name+":\n");
     }
 
     /**
