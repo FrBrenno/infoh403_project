@@ -21,56 +21,12 @@ public class ASTGenerator {
         ParseTree ast = new ParseTree(parseTree.getLabel());
         for (ParseTree child : parseTree.getChildren()) {
             if (child.getChildren().isEmpty()) {     //so it's a leaf
-                switch(child.getLabel().getType()){  //the switch is for terminals that can be ignored or variables that goes to epsilon
-                    case LBRACK:
-                        break;
-                    case RBRACK:
-                        break;
-                    case LPAREN:
-                        break;
-                    case RPAREN:
-                        break;
-                    case PRODPRIME:
-                        break;
-                    case EXPRARITPRIME:
-                        break;
-                    case ANDPRIME:
-                        break;
-                    case CONDPRIME:
-                        break;
-                    case INSTTAIL:  
-                        break;
-                    case ELSETAIL:
-                        break;
-                    case READ:
-                        break;
-                    case DOTS:
-                        break;
-                    case PRINT:
-                        break;
-                    case BEG:
-                        break;
-                    case END:
-                        break;
-                    case THEN:
-                        break;
-                    case ELSE:
-                        break;
-                    case IF:
-                        break;
-                    case ASSIGN:
-                        break;
-                    case WHILE:
-                        break;
-                    case DO:
-                        break;
-                    default :
-                        ast.addChild(new ParseTree(child.getLabel()));
+                if (!ignoreTerminal(child.getLabel().getType())) { // it is not ignored, add it to the AST
+                    ast.addChild(new ParseTree(child.getLabel()));
                 }
             }
-            else {
-                // Variables
-                if (ignoreVariable(child.getLabel().getType()))
+            else {// Variables
+                if (ignoreVariable(child.getLabel().getType())) // it ignored, get the children and check
                 {
                     List<ParseTree> grandChildren = generateAST(child).getChildren();
                     for (ParseTree elem : grandChildren)
@@ -78,7 +34,7 @@ public class ASTGenerator {
                         ast.addChild(elem);
                     }
                 }
-                else {
+                else { // it is not ignored, add it to the AST
                     ast.addChild(generateAST(child));
                 }
             }
@@ -106,12 +62,40 @@ public class ASTGenerator {
 		//variables.add(LexicalUnit.ATOM);
 		// variables.add(LexicalUnit.CONDATOM);
 		// variables.add(LexicalUnit.AND);
-		
-		if (variables.contains(type)) {
-			return true;
-		}
-		else {
-			return false;
-		}	
+
+        return variables.contains(type);
+	}
+
+    /**
+	 * This function is used to ignore
+	 * the following terminals that we don't want
+	 * to add to the AST
+	 */
+	private boolean ignoreTerminal(LexicalUnit type){
+		List<LexicalUnit> terminals = new ArrayList<LexicalUnit>();
+        terminals.add(LexicalUnit.LBRACK);
+        terminals.add(LexicalUnit.RBRACK);
+        terminals.add(LexicalUnit.LPAREN);
+        terminals.add(LexicalUnit.RPAREN);
+        terminals.add(LexicalUnit.READ);
+        terminals.add(LexicalUnit.DOTS);
+        terminals.add(LexicalUnit.PRINT);
+        terminals.add(LexicalUnit.BEG);
+        terminals.add(LexicalUnit.END);
+        terminals.add(LexicalUnit.THEN);
+        terminals.add(LexicalUnit.ELSE);
+        terminals.add(LexicalUnit.IF);
+        terminals.add(LexicalUnit.ASSIGN);
+        terminals.add(LexicalUnit.WHILE);
+        terminals.add(LexicalUnit.DO);
+        // Leafs variables were considered as terminals
+        terminals.add(LexicalUnit.PRODPRIME);
+        terminals.add(LexicalUnit.EXPRARITPRIME);
+        terminals.add(LexicalUnit.ANDPRIME);
+        terminals.add(LexicalUnit.CONDPRIME);
+        terminals.add(LexicalUnit.INSTTAIL); 
+        terminals.add(LexicalUnit.ELSETAIL);
+        
+        return terminals.contains(type);
 	}
 }
